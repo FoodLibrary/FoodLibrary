@@ -1,0 +1,102 @@
+#myPageTitle {
+    font-size: 5vh;
+    align-content: center;
+    font-family: Cafe24Oneprettynight;
+    color: #a6d149;
+    margin-left: -2vh;
+}
+
+#ageAndSexInfoText {
+    font-size: 2.5vh;
+    font-family: Cafe24Oneprettynight;
+    color: #a6d149;
+    margin-right: 6vh;
+}
+
+#memberImage {
+    max-width: 15vh;
+    border-radius: 50%;
+    border: 2px solid #a6d149;
+    margin-bottom: -10vh;
+}
+
+.memberImageEdit {
+    margin-top: 1vh;
+}
+
+#editMemberInfoButton {
+    font-size: 2.5vh;
+    color: #a6d149;
+    border: 1px solid #fffde5;
+    background-color: #fffde5;
+    font-family: Cafe24Oneprettynight;
+    border-radius: 25px;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    min-width: 12vh;
+}
+
+@media (max-width:400px) {
+    #memberImage {
+        margin-bottom: -3vh;
+    }
+    .ageAndSexInfoText {
+       padding-top: 2vh;
+    }
+
+}
+
+#editMemberInfoButton:active {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.ageAndSexInfoText {
+    margin-top: 4vh;
+    margin-left: 6vh;
+}
+
+.editMemberInfoButton {
+    margin-top:3.5vh;
+}
+
+.myFilter {
+    color: white;
+    background-color: #a6d149;
+    border: 1px solid #a6d149;
+    font-family: Cafe24Oneprettynight;
+    font-size: 2.5vh;
+    border-radius: 30px;
+    padding: 0.5vh 3vh 0.5vh 3vh;
+    margin-left: 2vh;
+    margin-top: 4vh;
+}
+
+#myFilterLogo {
+    width: 3vh;
+    height: auto;
+    margin-right: 1vh;
+
+}
+
+.myHeart {
+    color: white;
+    background-color: #a6d149;
+    border: 1px solid #a6d149;
+    font-family: Cafe24Oneprettynight;
+    font-size: 2.5vh;
+    border-radius: 30px;
+    padding: 0.5vh 3vh 0.5vh 3vh;
+    margin-left: 2vh;
+    margin-top: 4vh;
+}
+
+#myHeartLogo {
+    width: 3vh;
+    height: auto;
+    margin-right: 1vh;
+}
+
+.saveInfo {
+    margin-bottom: 0;
+}

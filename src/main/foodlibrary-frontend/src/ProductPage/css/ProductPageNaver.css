@@ -1,0 +1,18 @@
+.ProductPageNaverframe1{
+    margin:0;
+}
+.ProductPageNaverframe2{
+    padding: 0;
+}
+.ProductPageNaverTitle{
+    background-color: rgba(59, 139, 0, 0.6);
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0 2vh 0 2vh;
+    font-size: 4vh;
+}
+.ProductPageNaverTitleImg{
+    width: 4vh;
+    height: 4vh;
+}

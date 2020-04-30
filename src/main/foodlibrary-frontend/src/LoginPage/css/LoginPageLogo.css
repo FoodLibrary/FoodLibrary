@@ -1,0 +1,13 @@
+
+#img{
+    width: 8vh;
+    height: 8vh;
+}
+.one{
+    text-align: center;
+}
+.two{
+    text-align: left;
+    font-size: 5vh;
+    color: rgba(166, 209, 73, 0.75);
+}

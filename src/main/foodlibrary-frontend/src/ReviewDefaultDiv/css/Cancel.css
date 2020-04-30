@@ -1,0 +1,10 @@
+.CancelButton{
+    background-color:#3B8B00;
+    border-color: #3B8B00;
+    opacity: 0.6;
+    border-radius: 60px 60px;
+    font-size: 1.5vh;
+    color : white;
+    margin : 3px;
+    width:10vh;
+}

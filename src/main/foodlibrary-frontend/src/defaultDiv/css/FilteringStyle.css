@@ -1,0 +1,36 @@
+.allergyCheck {
+    font-family: Cafe24Oneprettynight;
+    font-size: 1.5vh;
+    margin-bottom: 1vh;
+}
+
+.diseaseCheck {
+    font-family: Cafe24Oneprettynight;
+    font-size: 1.5vh;
+    margin-bottom: 1vh;
+}
+
+#allergyRow {
+    padding-bottom: 3vh;
+}
+
+#allergyTitle {
+    padding-top:4vh;
+    margin-bottom: 2vh;
+}
+
+#allergyText {
+    font-size: 2vh;
+}
+
+#diseaseTitle {
+    margin-bottom: 2vh;
+}
+
+#diseaseText {
+    font-size: 2.5vh;
+}
+
+#allergyText {
+    font-size: 2.5vh;
+}

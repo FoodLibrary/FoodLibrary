@@ -1,0 +1,98 @@
+body {
+    background-color:  #fffde5;
+    font-family: 'NanumPen', cursive;
+}
+@font-face{
+    font-family:NanumPen;
+    src:url('../util/Cafe24Oneprettynight.ttf');
+}
+.main{
+    margin-top: 25vh;
+    text-align: center;
+}
+
+#logoImg {
+    padding-bottom: 0.5vh;
+    padding-right: 0.5vh;
+    max-width: 10vh;
+    max-height: 10vh;
+    min-width: 5vh;
+    min-height: 5vh;
+}
+
+#title {
+    font-size: 5vh;
+    color: #a6d149 ;
+    font-family: Cafe24Oneprettynight;
+}
+
+.categoryImgArea {
+    padding-bottom: 1vh;
+    padding-right: 1vh;
+    max-width: 4vh;
+    max-height: 4vh;
+    background-color: #fffde5;
+    border: #fffde5;
+
+}
+
+
+.mainSearchButton {
+    background-color: #fffde5;
+    border: 1px solid #a6d149;
+}
+
+.mainSearchButton:hover {
+    background-color: #a6d149;
+    border: 1px solid #a6d149;
+}
+
+#mainSearchButton {
+    max-width: 2vh;
+    max-height: 2vh;
+}
+
+#mainSearchArea {
+    border: 1px solid #a6d149;
+    background-color: #fffde5;
+    max-width: 70vh;
+    min-width: 40vh;
+}
+
+@media (max-width:1600px) {
+    #loginButton {
+        display: none;
+    }
+}
+
+.search {
+    max-width: 40vw;
+}
+
+.memberImage {
+    max-width: 5vh;
+    border: 2px solid #a6d149;
+    border-radius: 25px;
+}
+
+#loginButton {
+    font-family: Cafe24Oneprettynight;
+    max-width: 20vw;
+    background-color: #a6d149;
+    border-radius: 25px;
+    color: white;
+
+}
+
+#login {
+    font-size: 1.5vh;
+    letter-spacing: 0.1vw;
+    padding-left: 0.1vw;
+    padding-right: 0.1vw;
+}
+
+.FilteringDropdown{
+    margin-left: 50vw;
+    max-width : 10vw;
+    min-width : 10vw ;
+}

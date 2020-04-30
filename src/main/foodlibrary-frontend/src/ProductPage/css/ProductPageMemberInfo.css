@@ -1,0 +1,35 @@
+.ProductPageMemberInfoframe1{
+    margin-top: 2vh;
+}
+.ProductPageMemberInfoImg{
+    width:10vh;
+    height: 10vh;
+}
+.ProductPageMemberInfoStar{
+    width: 2vh;
+    height: 2vh;
+}
+.ProductPageMemberInfoCol{
+    padding:0;
+}
+.ProductPageMemberInfoText{
+    font-size: 2vh;
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ProductPageMemberInfoHashTag{
+    font-size: 2vh;
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ProductPageMemberInfoDesc{
+    font-size: 2vh;
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

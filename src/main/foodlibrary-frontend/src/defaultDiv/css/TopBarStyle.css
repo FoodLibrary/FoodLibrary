@@ -1,0 +1,107 @@
+#topBar {
+    font-family: Cafe24Oneprettynight;
+    color: #a6d149;
+    position: sticky;
+    top: 0;
+}
+
+#logoImg {
+    padding-bottom: 0.5vh;
+    padding-right: 0.5vh;
+
+    padding-left: 1vh;
+    max-width: 6vh;
+    max-height: 6vh;
+    min-width: 5vh;
+    min-height: 5vh;
+}
+
+
+#title {
+    font-size: 3.5vh;
+    color: #a6d149 ;
+    font-family: Cafe24Oneprettynight;
+}
+
+.categoryImgArea {
+    padding-bottom: 1vh;
+    padding-right: 1vh;
+    max-width: 4vh;
+    max-height: 4vh;
+    background-color: #fffde5;
+    border: #fffde5;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: none;
+}
+
+.categoryImgArea:focus{
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.categoryImgArea:active {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.searchButton {
+    background-color: #fffde5;
+    border: 1px solid #a6d149;
+}
+
+.searchButton:hover {
+    background-color: #a6d149;
+    border: 1px solid #a6d149;
+}
+
+#searchButton {
+    max-width: 2vh;
+    max-height: 2vh;
+}
+
+#searchArea {
+    border: 1px solid #a6d149;
+    background-color: #fffde5;
+    max-width: 30vw;
+    min-width: 30vw;
+    font-family: Cafe24Oneprettynight;
+}
+
+@media (max-width:1600px) {
+    #searchArea {
+        display: none;
+    }
+    #loginButton {
+        display: none;
+    }
+    .searchButton {
+        display: none;
+    }
+}
+
+.search {
+    max-width: 40vw;
+}
+
+.memberImage {
+    max-width: 5vh;
+    border: 2px solid #a6d149;
+    border-radius: 25px;
+}
+
+#loginButton {
+    font-family: Cafe24Oneprettynight;
+    max-width: 20vw;
+    background-color: #a6d149;
+    border-radius: 25px;
+    color: white;
+
+}
+
+#login {
+    font-size: 1.5vh;
+    letter-spacing: 0.1vw;
+    padding-left: 0.1vw;
+    padding-right: 0.1vw;
+}
+

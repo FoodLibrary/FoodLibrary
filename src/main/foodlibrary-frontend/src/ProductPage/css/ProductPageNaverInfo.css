@@ -1,0 +1,19 @@
+.ProductPageNaverInfoCol{
+    margin-top: 2vh;
+}
+.ProductPageNaverInfoImg{
+    width: 10vh;
+    height: 10vh;
+}
+.ProductPageNaverInfoDesc{
+    text-align: left;
+    padding: 0;
+    font-size: 2vh;
+    
+}
+.ProductPageNaberInfoDescSpan{
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

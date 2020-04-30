@@ -1,0 +1,66 @@
+
+.searchResultLogo {
+    margin-left: 2vh;
+    margin-bottom: 1vh;
+    padding: 0 2vh 0 2vh;
+    border: solid 1px rgba(73, 209, 83, 0.25);
+    background-color: rgba(59, 139, 0, 0.6);
+    border-radius: 25px;
+    font-size: 3vh;
+    color: #ffffff;
+}
+
+.searchResultImg{
+    width : 3vh;
+    height: 3vh;
+}
+.classification{
+    margin-left: 8vw;
+    border: solid 1px rgba(73, 209, 83, 0.25);
+    background-color: rgba(59, 139, 0, 0.6);
+    border-radius: 25px;
+    padding: 0 2vh 0 2vh;
+    font-size: 2.5vh;
+    color: #ffffff;
+}
+
+.resultSort{
+    margin-left: 8vw;
+    margin-top: 5px;
+    padding: 0 0 0 2vh;
+    font-size: 2vh;
+}
+
+.likeSort{
+    border: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    padding: 0 0 0 2vh;
+    font-size: 2vh;
+}
+.starSort{
+    border: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    padding: 0 0 0 2vh;
+    font-size: 2vh;
+}
+.reviewSort{
+    border: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    padding: 0 0 0 2vh;
+    font-size: 2vh;
+}
+
+.moreResultBtn{
+    border: solid 1px #a6d149;
+    background-color: #a6d149;
+    border-radius: 25px;
+    font-family: 'NanumPen', cursive;
+    color: #ffffff;
+    padding: 0 2vh 0 2vh;
+    font-size: 2.5vh;
+    margin-left: 40vw;
+    margin-top: 4vh;
+}

@@ -1,0 +1,79 @@
+body {
+    background-color:  #fffde5;
+    font-family: 'NanumPen', cursive;
+}
+@font-face{
+    font-family:NanumPen;
+    src:url('../util/Cafe24Oneprettynight.ttf');
+}
+hr{
+    color : #a6d149;
+    border :1px solid ;
+    margin: 0;
+}
+
+.rankingLogo{
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 5vh;
+    color: #a6d149;
+}
+.rankingImage{
+    width : 5vh;
+    height : 5vh;
+}
+.rankingKind{
+    text-align: center;
+}
+.resultRanking{
+    border: 0;
+    padding: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    font-size: 2vh;
+    color : #a6d149;
+}
+
+.reviewRanking{
+    border: 0;
+    padding: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    font-size: 2vh;
+    color : #a6d149;
+}
+
+.sexRanking{
+    border: 0;
+    padding: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    font-size: 2vh;
+    color : #a6d149;
+}
+
+.ageRanking{
+    border: 0;
+    padding: 0;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    font-size: 2vh;
+    color : #a6d149;
+}
+
+.kind{
+    margin : 2vh;
+    background-color :#fffde5;
+    font-family: 'NanumPen', cursive;
+    font-size: 3.5vh;
+    color : #a6d149;
+    border-bottom: 1px solid #a6d149;
+}
+
+.nowRanking{
+    width : 3.5vh;
+}
+
+.logoImage{
+    width : 2vh;
+}
