@@ -4,5 +4,23 @@
     "react-bootstrap": "^1.0.1",
     "reactstrap": "^8.4.1",
     "typescript": "^3.8.3"
-  }
+  },
+  "name": "reactspringboot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoodLibrary/ReactSpringBoot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FoodLibrary/ReactSpringBoot/issues"
+  },
+  "homepage": "https://github.com/FoodLibrary/ReactSpringBoot#readme",
+  "description": ""
 }
