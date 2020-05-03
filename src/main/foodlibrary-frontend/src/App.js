@@ -12,6 +12,9 @@ import ProductList from "./SearchResultPage/js/ProductList";
 import SearchResult from "./SearchResultPage/js/SearchResult";
 
 function App() {
+    const [message, setMessage] = useState("");
+
+
     return (
         <div>
             <TopBar/>

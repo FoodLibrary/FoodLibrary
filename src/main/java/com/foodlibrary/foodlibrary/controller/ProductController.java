@@ -23,7 +23,7 @@ public class ProductController {
         return service.saveProducts(products);
     }
 
-    @GetMapping("/products")
+    @GetMapping("/v")
     public List<Product> findAllProducts(){
         return service.getProducts();
     }

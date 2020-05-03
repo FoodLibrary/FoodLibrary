@@ -6,7 +6,9 @@ import {Image} from "react-bootstrap";
 const imageResources = require('../../util/ImageResources.js');
 
 class ProductList extends React.Component {
+
     render() {
+
         return (
             <Container>
                 <Row>
