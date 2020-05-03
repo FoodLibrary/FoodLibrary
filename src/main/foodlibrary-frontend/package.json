@@ -6,13 +6,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "latest",
     "reactstrap": "latest"
   },
+  "proxy": "http://localhost:8080",
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -22,7 +22,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:8081",
   "browserslist": {
     "production": [
       ">0.2%",
