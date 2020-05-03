@@ -2,9 +2,51 @@ import React, {Component} from 'react';
 import '../css/SearchResult.css';
 import {Container, Row, Col, Label} from 'reactstrap';
 import ProductList from "./ProductList";
+import ProductDesc from "../../ProductPage/js/ProductDesc";
 
 
 class SearchResult extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            prdlstreportno:'',
+            prdlstnm:'',
+            manufacture:'',
+            category:'',
+            img:'',
+            rawmtrl:'',
+            nutrient:'',
+            allergy:'',
+            productHashtag:'',
+            likecount:0,
+            zzimcount:0
+
+        }
+    }
+    callApi = () =>{
+        fetch('api/product/닥터다잇 소고기 스테이크')
+            .then(res=>res.json())
+            .then(json=>{
+                this.setState({
+                    prdlstreportno:json.prdlstreportno,
+                    prdlstnm:json.prdlstnm,
+                    manufacture:json.manufacture,
+                    category:json.category,
+                    img:json.img,
+                    rawmtrl:json.rawmtrl,
+                    nutrient:json.nutrient,
+                    allergy:json.allergy,
+                    productHashtag:json.productHashtag,
+                    likecount:json.likecount,
+                    zzimcount:json.zzimcount
+                })
+            })
+    }
+    componentDidMount() {
+        this.callApi();
+    }
+
+
     render() {
         return (
             <Container>
@@ -25,7 +67,8 @@ class SearchResult extends Component {
                     <button className="reviewSort"> 리뷰순</button>
                 </Row>
                 <Row className="productList">
-                    <ProductList/>
+                    <ProductList prdlstnm={this.state.prdlstnm} img={this.state.img} manufacture={this.state.manufacture} allergy={this.state.allergy}/>
+
                 </Row>
 
                 <Row className="moreResult">

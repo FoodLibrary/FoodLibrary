@@ -23,26 +23,25 @@ public class ProductController {
         return service.saveProducts(products);
     }
 
-    @GetMapping("/v")
+    @GetMapping("/products")
     public List<Product> findAllProducts(){
         return service.getProducts();
     }
 
     @GetMapping("/product/{id}")
     public Product findProductById(@PathVariable String id){
-
         return service.getProductById(id);
     }
     @GetMapping("api/productpage/{prdlstreportno}")
     public Product findOneProduct(@PathVariable String prdlstreportno){
         return service.getOneProduct(prdlstreportno);
     }
-/*
-    @GetMapping("/product/{name}")
-    public Product findProductByName(@PathVariable String name){
-        return service.getProductByName(name);
+
+    @GetMapping("api/product/{prdlstnm}")
+    public Product findProductByPrductName(@PathVariable String prdlstnm) {
+        return service.getOneProductByName(prdlstnm);
     }
-*/
+
     @PutMapping("/updateProduct")
     public Product updateProduct(@RequestBody Product product){
         return service.updateProduct(product);

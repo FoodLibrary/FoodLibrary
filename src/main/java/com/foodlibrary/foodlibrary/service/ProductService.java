@@ -18,6 +18,8 @@ public class ProductService {
         return repository.findByPrdlstreportno(prdlstreportno);
     }
 
+    public Product getOneProductByName(String prdlstnm) { return repository.findByPrdlstnm(prdlstnm);}
+
     public Product saveProduct(Product product){
         return repository.save(product);
     }
@@ -60,4 +62,5 @@ public class ProductService {
 
         return repository.save(existingProduct);
     }
+
 }
