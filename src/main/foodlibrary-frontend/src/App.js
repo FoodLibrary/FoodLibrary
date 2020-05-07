@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/App.css';
 import 'reactstrap';
 import ProductPage from './ProductPage/js/ProductPage';
 
@@ -11,7 +12,6 @@ function App() {
     return (
         <div>
             <TopBar/>
-            <ReviewDetail/>
         </div>
     )
 }

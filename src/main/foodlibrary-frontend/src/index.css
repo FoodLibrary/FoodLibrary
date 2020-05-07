@@ -5,7 +5,6 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #fffde5;
 
 }
 
@@ -15,9 +14,13 @@ code {
 }
 
 @font-face {
-    font-family: 'Cafe24Oneprettynight';
+    font-family: 'NanumBarunGothic';
     font-style: normal;
-    src: url("../src/util/Cafe24Oneprettynight.ttf") format('truetype');
+    src: url("../src/util/NanumBarunGothic.ttf") format('truetype');
+}
+
+body {
+    font-family: NanumBarunGothic;
 }
 
 .TitleButton {

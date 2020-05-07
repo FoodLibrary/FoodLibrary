@@ -1,30 +1,24 @@
-.rankingButton {
-    border-color: #a6d149;
-    background-color: #a6d149;
-    color: white;
-    font-family: 'Cafe24Oneprettynight';
-    font-weight: bold;
+.rankingToggleMenu {
+    padding-left: 15rem;
+    padding-top: 1.2rem;
+
 }
 
-.rankingToggleMenu {
-    margin-right: 4vh;
+.rankingButton {
+    border: 1px solid #006edc;
+    background-color: #006edc;
+    color: white;
+    height: 3.1rem;
+    border-radius: 10px;
 }
 
 .rankingToggle {
-    width: 300px;
-    color: #8b8b8b;
-    border-color: #a6d149;
-    text-align: left;
-    background-color: #fffde5;
+    border: 1px solid #006edc;
+    background-color: white;
+    color: dimgray;
+    height: 3.1rem;
+    width: 20rem;
+    margin-right: 1.5rem;
+    border-radius: 10px;
 }
 
-.rankingMenu {
-    width: 300px;
-    color: #8b8b8b;
-}
-
-@media (max-width:1600px) {
-    .rankingToggleMenu {
-        display: none;
-    }
-}
