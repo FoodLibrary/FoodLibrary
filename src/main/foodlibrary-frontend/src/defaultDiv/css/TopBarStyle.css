@@ -1,6 +1,4 @@
 #topBar {
-    font-family: Cafe24Oneprettynight;
-    color: #a6d149;
     position: sticky;
     top: 0;
 }
@@ -8,7 +6,6 @@
 #logoImg {
     padding-bottom: 0.5vh;
     padding-right: 0.5vh;
-
     padding-left: 1vh;
     max-width: 6vh;
     max-height: 6vh;
@@ -19,8 +16,6 @@
 
 #title {
     font-size: 3.5vh;
-    color: #a6d149 ;
-    font-family: Cafe24Oneprettynight;
 }
 
 .categoryImgArea {
@@ -28,8 +23,6 @@
     padding-right: 1vh;
     max-width: 4vh;
     max-height: 4vh;
-    background-color: #fffde5;
-    border: #fffde5;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     outline: none;
 }
@@ -45,13 +38,11 @@
 }
 
 .searchButton {
-    background-color: #fffde5;
     border: 1px solid #a6d149;
 }
 
 .searchButton:hover {
-    background-color: #a6d149;
-    border: 1px solid #a6d149;
+    border: 1px solid;
 }
 
 #searchButton {
@@ -60,11 +51,8 @@
 }
 
 #searchArea {
-    border: 1px solid #a6d149;
-    background-color: #fffde5;
     max-width: 30vw;
     min-width: 30vw;
-    font-family: Cafe24Oneprettynight;
 }
 
 @media (max-width:1600px) {
@@ -85,17 +73,12 @@
 
 .memberImage {
     max-width: 5vh;
-    border: 2px solid #a6d149;
     border-radius: 25px;
 }
 
 #loginButton {
-    font-family: Cafe24Oneprettynight;
     max-width: 20vw;
-    background-color: #a6d149;
     border-radius: 25px;
-    color: white;
-
 }
 
 #login {

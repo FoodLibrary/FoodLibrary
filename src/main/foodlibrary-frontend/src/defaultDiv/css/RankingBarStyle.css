@@ -1,8 +1,4 @@
 .rankingButton {
-    border-color: #a6d149;
-    background-color: #a6d149;
-    color: white;
-    font-family: 'Cafe24Oneprettynight';
     font-weight: bold;
 }
 
@@ -12,18 +8,14 @@
 
 .rankingToggle {
     width: 300px;
-    color: #8b8b8b;
-    border-color: #a6d149;
     text-align: left;
-    background-color: #fffde5;
 }
 
 .rankingMenu {
     width: 300px;
-    color: #8b8b8b;
 }
 
-@media (max-width:1600px) {
+@media (max-width: 1px) {
     .rankingToggleMenu {
         display: none;
     }

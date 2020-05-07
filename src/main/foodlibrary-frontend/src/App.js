@@ -10,11 +10,40 @@ import Ranking from './RankingPage/Ranking';
 function App() {
     return (
         <div>
-            <TopBar/>
-            <Ranking />
+            <Ranking/>
         </div>
     )
 }
+
+/*
+//검색 결과 화면
+import ResultFiltering from './SearchResultPage/js/ResultFiltering';
+import SearchResult from './SearchResultPage/js/SearchResult';
+
+function App() {
+    return (
+        <div>
+            <ResultFiltering/>
+            <SearchResult/>
+        </div>
+    )
+}
+
+*/
+
+
+/*
+//메인 화면
+import Main from './MainPage/Main';
+
+function App() {
+    return (
+        <div>
+            <Main/>
+        </div>
+    )
+}
+*/
 
 /*
 //상품상세화면
@@ -85,37 +114,6 @@ function App() {
     )
 }
 */
-
-/*
-//메인 화면
-import Main from './MainPage/Main';
-
-function App() {
-    return (
-        <div>
-            <Main/>
-        </div>
-    )
-}
-*/
-
-/*
-//검색 결과 화면
-import './SearchResultPage/css/ResultIndex.css';
-import ResultFiltering from './SearchResultPage/js/ResultFiltering';
-import SearchResult from './SearchResultPage/js/SearchResult';
-
-function App() {
-    return (
-        <div>
-            <TopBar/>
-            <ResultFiltering />
-            <SearchResult />
-        </div>
-    )
-}
-*/
-
 
 /*
 //리뷰 상세 화면

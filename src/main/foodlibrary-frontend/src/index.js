@@ -4,10 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'reactstrap';
 import './index.css';
-import TopBar from "./defaultDiv/js/TopBar";
 
-
-import Main from './MainPage/Main'
 import App from "./App";
 
 ReactDOM.render(
