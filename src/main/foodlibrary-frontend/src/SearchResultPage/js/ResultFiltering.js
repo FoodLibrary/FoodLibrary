@@ -26,10 +26,7 @@ class ResultFiltering extends Component {
                 <Container>
                     <Row className="ResultFiltering">
                         <button className="ResultFilteringButton" onClick={this.handle}>
-                                <img
-                                    src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/117F0361-1F9E-40CD-82A1-C56C3E114CEF.png"
-                                    className="ResultFilteringLogo"/>
-                                검색어 필터링</button>
+                            검색어 필터링</button>
                     </Row>
                     <Row>
                     {this.state.hidden && <table className="Filtering" content="width= device-width">
