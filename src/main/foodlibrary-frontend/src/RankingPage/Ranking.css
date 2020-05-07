@@ -1,79 +1,30 @@
-body {
-    background-color:  #fffde5;
-    font-family: 'NanumPen', cursive;
+.ranking{
 }
-@font-face{
-    font-family:NanumPen;
-    src:url('../util/Cafe24Oneprettynight.ttf');
+.rankingSub{
+    width : 1100px;
+    margin : 0;
+    padding : 0;
 }
-hr{
-    color : #a6d149;
-    border :1px solid ;
-    margin: 0;
-}
-
 .rankingLogo{
-    text-align: center;
-    margin-bottom: 0;
-    font-size: 5vh;
-    color: #a6d149;
-}
-.rankingImage{
-    width : 5vh;
-    height : 5vh;
-}
-.rankingKind{
-    text-align: center;
-}
-.resultRanking{
-    border: 0;
-    padding: 0;
-    background-color :#fffde5;
-    font-family: 'NanumPen', cursive;
-    font-size: 2vh;
-    color : #a6d149;
+    margin-top : 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
-.reviewRanking{
-    border: 0;
-    padding: 0;
-    background-color :#fffde5;
-    font-family: 'NanumPen', cursive;
-    font-size: 2vh;
-    color : #a6d149;
+.kindOfRanking{
+    font-size: 15px;
 }
 
-.sexRanking{
-    border: 0;
-    padding: 0;
-    background-color :#fffde5;
-    font-family: 'NanumPen', cursive;
-    font-size: 2vh;
-    color : #a6d149;
+.sortToggleMenu {
+    float : right;
 }
 
-.ageRanking{
-    border: 0;
-    padding: 0;
-    background-color :#fffde5;
-    font-family: 'NanumPen', cursive;
-    font-size: 2vh;
-    color : #a6d149;
+.sortToggle {
+    font-size : 13px;
+    color : #111111;
+    border-color : white;
+    background-color : #ffffff;
 }
 
-.kind{
-    margin : 2vh;
-    background-color :#fffde5;
-    font-family: 'NanumPen', cursive;
-    font-size: 3.5vh;
-    color : #a6d149;
-    border-bottom: 1px solid #a6d149;
-}
-
-.nowRanking{
-    width : 3.5vh;
-}
-
-.logoImage{
-    width : 2vh;
+.sortMenu {
 }

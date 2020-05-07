@@ -1,114 +1,99 @@
 import React, {Component} from 'react';
 import './Ranking.css';
-import {Container, Row, Col} from 'reactstrap';
-import {Button} from "react-bootstrap";
+import {Container, Row, Col, ButtonDropdown, ButtonGroup} from 'reactstrap';
+import RankingList from "./RankingList";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import DropdownItem from "react-bootstrap/DropdownItem";
 
 class Ranking extends Component {
 
     constructor(props) {
         super(props);
+        this.toggle = this.toggle.bind(this);
 
         this.state = {
             rankingName: 'resultRanking',
             rankingKind: '실시간 검색 순위',
-            rankingImage: 'https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/6399E055-ACA5-438A-AEFD-406B4F531372.png'
+            dropdownOpen: false,
         }
+
     }
 
     state1 = {
         rankingName: 'resultRanking',
         rankingKind: '실시간 검색 순위',
-        rankingImage: 'https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/6399E055-ACA5-438A-AEFD-406B4F531372.png'
     }
     state2 = {
         rankingName: 'reviewRanking',
         rankingKind: '리뷰량 순위',
-        rankingImage: 'https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/ED33B7B2-771C-4141-AF3A-1FCD3A36AB86.png'
     }
     state3 = {
         rankingName: 'sexRanking',
         rankingKind: '성별 순위',
-        rankingImage: 'https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/06A83087-E0DD-429F-978F-9976D61E7C0A.png'
     }
     state4 = {
         rankingName: 'ageRanking',
         rankingKind: '나이별 순위',
-        rankingImage: 'https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/702B2C61-98FB-4228-8086-F08992A26BFE.png'
     }
     handle = (e) => {
         if (e.target.className === this.state1.rankingName) {
             this.setState({
-                rankingImage: this.state1.rankingImage,
                 rankingKind: this.state1.rankingKind,
                 rankingName: this.state1.rankingName
             });
         } else if (e.target.className === this.state2.rankingName) {
             this.setState({
-                rankingImage: this.state2.rankingImage,
                 rankingKind: this.state2.rankingKind,
                 rankingName: this.state2.rankingName
             });
         } else if (e.target.className === this.state3.rankingName) {
             this.setState({
-                rankingImage: this.state3.rankingImage,
                 rankingKind: this.state3.rankingKind,
                 rankingName: this.state3.rankingName
             });
         } else if (e.target.className === this.state4.rankingName) {
             this.setState({
-                rankingImage: this.state4.rankingImage,
                 rankingKind: this.state4.rankingKind,
                 rankingName: this.state4.rankingName
             });
         }
     }
 
+    toggle() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
     render() {
         return (
-            <Container>
-                <Row className="rankingLogo" >
-                    <Col>
-                        <img
-                            src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/EEEF53B2-9211-440D-853D-15128F3973EB.png"
-                            className="rankingImage"/>
-                        음식 도서관 랭킹
-                    </Col>
-                </Row>
-                <hr/>
-                <Row className={"rankingKind"} xs="4">
-                    <button className={"resultRanking"} id="resultRanking" onClick={this.handle}>
-                        <img
-                            src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/6399E055-ACA5-438A-AEFD-406B4F531372.png"
-                            className="logoImage"/>
-                        실검 순위
-                    </button>
-                    <button className={"reviewRanking"} id="reviewRanking" onClick={this.handle}>
-                        <img
-                            src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/ED33B7B2-771C-4141-AF3A-1FCD3A36AB86.png"
-                            className="logoImage"/>
-                        리뷰량 순위
-                    </button>
-                    <button className={"sexRanking"} id="sexRanking" onClick={this.handle}>
-                        <img
-                            src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/06A83087-E0DD-429F-978F-9976D61E7C0A.png"
-                            className="logoImage"/>
-                        성별 순위
-                    </button>
-                    <button className={"ageRanking"} id="ageRanking" onClick={this.handle}>
-                        <img
-                            src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/702B2C61-98FB-4228-8086-F08992A26BFE.png"
-                            className="logoImage"/>
-                        나이별 순위
-                    </button>
-                </Row>
-                <hr/>
-                <Row className="rankingResult">
-                    <Col className="kind" xs={5.5}>
-                        <img src={this.state.rankingImage} className="nowRanking"/>
-                        {this.state.rankingKind}
-                    </Col>
-                </Row>
+            <Container className="ranking">
+                <div className="rankingSub">
+                    <div className="rankingLogo">
+                        BEST 10
+                    </div>
 
+                    <div className="kindOfRanking">
+                        <a>{this.state.rankingKind}</a>
+                        <ButtonGroup className={"sortToggleMenu"}>
+                            <ButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle caret className={"sortToggle"}>
+                                    실시간 검색어 순위
+                                </DropdownToggle>
+                                <DropdownMenu className={"sortMenu"}>
+                                    <DropdownItem> 실시간 검색어 순위 </DropdownItem>
+                                    <DropdownItem> 리뷰량 순위 </DropdownItem>
+                                    <DropdownItem> 성별 순위 </DropdownItem>
+                                    <DropdownItem> 나이 순위 </DropdownItem>
+                                </DropdownMenu>
+                            </ButtonDropdown>
+                        </ButtonGroup>
+                    </div>
+                    <div>
+                        <RankingList/>
+                    </div>
+                </div>
             </Container>
         );
     }

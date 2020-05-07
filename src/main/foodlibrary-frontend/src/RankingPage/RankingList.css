@@ -1,0 +1,38 @@
+.RankingList {
+    margin: 50px;
+    margin-left: 0;
+    padding : 0;
+}
+
+.RankingList td {
+    border-right: 70px solid white;
+    width : 300px;
+    height: 300px;
+    text-align : center;
+}
+
+.indexAndButtons{
+    width: 50px;
+    font-size: 10px;
+}
+.heartAndThumbImages {
+    width: 30px;
+}
+.indexAndButtonsContainer{
+    width: 30px;
+    font-size : 25px;
+    margin-top : 100px;
+    padding: 0;
+}
+
+.index {
+    text-align: center;
+}
+
+.foodPictureAreaCol {
+    width : 300px;
+    height : 300px;
+}
+
+
+
