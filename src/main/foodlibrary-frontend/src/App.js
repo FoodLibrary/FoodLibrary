@@ -7,11 +7,13 @@ import ProductPage from './ProductPage/js/ProductPage';
 import TopBar from "./defaultDiv/js/TopBar";
 import SignUp from "./SignUpPage/SignUp";
 import ReviewDetail from "./ReviewDetailPage/js/ReviewDetail";
+import MyPage from "./MyPage/MyPage";
 
 function App() {
     return (
         <div>
             <TopBar/>
+            <MyPage/>
         </div>
     )
 }

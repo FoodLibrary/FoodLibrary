@@ -10,8 +10,8 @@ class Filtering extends React.Component {
         return (
             <Container>
                 <Form>
-                    <Row id={"allergyTitle"}>  <Col xs={12} md={12}> <span className={"allergyCheck"} id={"allergyText"}> 내 알레르기 : </span> </Col> </Row>
-                    <Row xs={12} md={12} lg={12} id={"allergyRow"}>
+                    <Row id={"allergyTitle"}>  <Col xs={12} md={12}> <span className={"allergyCheck"} id={"allergyText"}> 내 알레르기 </span> </Col> </Row>
+                    <Row xs={10} md={10} lg={10} id={"allergyRow"}>
                         <Col xs={4} md={3} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
@@ -169,7 +169,7 @@ class Filtering extends React.Component {
                         </Col>
                     </Row>
 
-                    <Row id={"diseaseTitle"}>  <Col xs={12} md={12}> <span className={"diseaseCheck"} id={"diseaseText"}>  내 지병 :  </span> </Col> </Row>
+                    <Row id={"diseaseTitle"}>  <Col xs={12} md={12}> <span className={"diseaseCheck"} id={"diseaseText"}>  내 지병  </span> </Col> </Row>
                     <Row xs={12} md={12}>
                         <Col xs={4} md={3} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>

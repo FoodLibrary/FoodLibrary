@@ -12,28 +12,15 @@ const imageResources = require('../util/ImageResources.js');
 class MyPage extends React.Component {
     render() {
         return (
-            <Container>
+            <Container id={"myPage"}>
                 <Row>
-                    <Col xs={{size:4, offset:4}} md={{size:4,offset:4}} lg={{size:4,offset:4}}> <span id={"myPageTitle"}> 마이페이지 </span> </Col>
+                    <Col xs={{size:4, offset:3}} md={{size:3,offset:5}} lg={{size:4,offset:4}} xl={{size:3,offset:5}}> <span id={"myPageTitle"}> My Page </span> </Col>
                 </Row>
-                <Row> <Col xs={{size:5, offset:4}} className={"memberImageEdit"}> <span> <img src={imageResources.memberImage} id={"memberImage"}/> </span> </Col> </Row>
+                <hr/>
                 <Row>
-                    <Col xs={{size:3, offset:1}} md={{size:3, offset:3}} className={"ageAndSexInfoText"}> <span id={"ageAndSexInfoText"}> 20대/여자 </span> </Col>
-                    <Col xs={{size:6}} md={{size:3, offset:3}} className={"editMemberInfoButton"}> <span> <Button id={"editMemberInfoButton"}> 회원  정보 수정 </Button> </span> </Col>
+                   <Filtering/>
                 </Row>
-                <Row>
-                    <Button className={"myFilter"}>
-                        <img src={imageResources.myFilter} id={"myFilterLogo"}/>
-                        내 필터링
-                    </Button>
-                </Row>
-                <Filtering/>
-                <Row>
-                    <Button className={"myHeart"}>
-                        <img src={imageResources.myHeart} id={"myHeartLogo"}/>
-                        내 찜목록
-                    </Button>
-                </Row>
+                <Row id={"myHeartTitle"}>  <Col xs={12} md={12}> <span className={"myHeart"} id={"myHeartText"}> 내 찜목록  </span> </Col> </Row>
             </Container>
 
 

@@ -10,25 +10,25 @@
 
 #allergyRow {
     padding-bottom: 3vh;
+
 }
 
 #allergyTitle {
     padding-top:4vh;
     margin-bottom: 2vh;
+    color: #006edc;
 }
 
 #allergyText {
-    font-size: 2vh;
+    font-size: 2.5vh;
+
 }
 
 #diseaseTitle {
     margin-bottom: 2vh;
+    color: #006edc;
 }
 
 #diseaseText {
-    font-size: 2.5vh;
-}
-
-#allergyText {
     font-size: 2.5vh;
 }

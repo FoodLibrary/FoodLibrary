@@ -1,0 +1,43 @@
+#myPage {
+    padding-top: 15vh;
+}
+#myPageTitle {
+    font-size: 4rem;
+    align-content: center;
+    font-family: NanumBarunGothic;
+    color: #006edc;
+    margin-left: -2vh;
+}
+
+.myFilter {
+    color: #006edc;
+    background-color: white;
+    border: 1px solid #006edc;
+    font-family: NanumBarunGothic;
+    font-size: 2.5vh;
+    border-radius: 30px;
+    padding: 0.5vh 3vh 0.5vh 3vh;
+    margin-left: 2vh;
+    margin-top: 4vh;
+}
+
+
+.myHeart {
+    color: #006edc;
+    font-family: NanumBarunGothic;
+    font-size: 2vh;
+}
+.saveInfo {
+    margin-bottom: 0;
+}
+
+#myHeartTitle {
+    padding-top:4vh;
+    margin-bottom: 2vh;
+    color: #006edc;
+}
+
+#myHeartText {
+    font-size: 2.5vh;
+
+}
