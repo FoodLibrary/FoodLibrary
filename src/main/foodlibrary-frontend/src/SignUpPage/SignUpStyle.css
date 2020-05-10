@@ -1,0 +1,57 @@
+#signUp {
+    padding-top: 2vh;
+}
+
+#signUpTitleArea {
+    text-align: center;
+    padding-bottom: 4vh;
+}
+
+#signUpTitle {
+    text-align: center;
+    font-family: NanumBarunGothic;
+    font-size: 4vh;
+    color: #006edc;
+}
+
+#idInput {
+    border: 1px solid #006edc;
+}
+
+.signUpText {
+    font-size: 2vh;
+    color: dimgray;
+}
+
+#checkDup {
+    background-color: white;
+    border: 1px solid #006edc;
+    font-family: NanumBarunGothic;
+    color: #006edc;
+}
+
+#passwordInput {
+    border : 1px solid #006edc;
+}
+
+#checkPassword {
+    border: 1px solid #006edc;
+}
+
+#inputName {
+    border: 1px solid #006edc;
+}
+
+#inputEmail {
+    border: 1px solid #006edc;
+}
+
+#inputBirthDay {
+    border: 1px solid #006edc;
+}
+
+#signUpButton {
+    border: 1px solid #006edc;
+    color: #006edc;
+    background-color: white;
+}
