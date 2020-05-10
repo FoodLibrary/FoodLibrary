@@ -1,0 +1,21 @@
+#editMemberInfoArea {
+    text-align: center;
+    padding-bottom: 4vh;
+}
+
+#editMemberInfo  {
+    padding-top: 2vh;
+}
+
+#editMemberInfoTitle {
+    text-align: center;
+    font-family: NanumBarunGothic;
+    font-size: 4vh;
+    color: #006edc;
+}
+
+#editMemberInfoButton {
+    border: 1px solid #006edc;
+    color: #006edc;
+    background-color: white;
+}

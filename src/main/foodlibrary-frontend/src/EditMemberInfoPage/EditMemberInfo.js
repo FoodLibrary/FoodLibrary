@@ -10,58 +10,71 @@ const imageResources = require('../util/ImageResources.js');
 class EditMemberInfo extends React.Component {
     render() {
         return (
-            <Container>
-                <Row className={"signUpTitleArea"}>
-                    <Col xs={12} id={"signUpTitle"}>
-                        <span > 회원 정보 수정 </span>
+            <Container id={"editMemberInfo"}>
+                <Row >
+                    <Col xl={12} id={"editMemberInfoArea"}>
+                        <span id={"editMemberInfoTitle"}> 회원 정보 수정 </span>
                     </Col>
                 </Row>
-                <Form id={"signUpForm"}>
-                    <FormGroup row xs={3}>
-                        <Col xs={4} className={"signUpText"}> <Label  id={"userId"}> 아이디 : </Label> </Col>
-                        <Col xs={8} > UserId </Col>
+                <Form id={"editMemberInfoForm"} >
+                    <FormGroup row >
+                        <Col xl={{size:1, offset:2}}  lg={{size:1, offset:2}}  md={{size:1, offset:2}}  sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label  id={"id"}> 아이디 </Label> </Col>
+                        <Col xl={4} lg={5} md={5} sm={5} xs={8}  className={"idInputCol"}> <Input type="text" name="id" id="idInput"/> </Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={4}> <Button id={"checkDup"}> 중복확인 </Button> </Col>
                     </FormGroup>
-
                     <FormGroup row>
-                        <Col xs={4}> <Label for="examplePassword" className={"passwordInput"}>비밀번호 : </Label> </Col>
-                        <Col xs={8}>
+                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 </Label> </Col>
+                        <Col xl={4} lg={5} md={5} sm={5} xs={12} >
                             <Input valid type="password" name="password" id="passwordInput" />
                         </Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
-
-                    <FormGroup row xs={2}>
-                        <Col xs={4}> <Label for="examplePassword" className={"checkPassword"}>비밀번호 확인 : </Label> </Col>
-                        <Col xs={8}>
+                    <FormGroup row>
+                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 확인</Label> </Col>
+                        <Col xl={4} lg={5} md={5} sm={5} xs={12}>
                             <Input valid type="password" name="password" id="checkPassword"  />
                         </Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
-
+                    <FormGroup row>
+                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputName"}> 이름 </Label> </Col>
+                        <Col  xl={4} lg={5} md={5} sm={5} xs={12}> <Input type="text" name="userName" id="inputName" /></Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    </FormGroup>
+                    <FormGroup row>
+                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12}  className={"signUpText"}> <Label className={"inputEmail"}>E-mail </Label> </Col>
+                        <Col xl={4} lg={5} md={5} sm={5} xs={12}> <Input type="email" name="email" id="inputEmail"/> </Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    </FormGroup>
+                    <FormGroup row >
+                        <Col xl={{size:3, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12}  className={"signUpText"}> <Label className={"inputSex"}> 성별 : </Label> </Col>
+                        <Col xl={2} lg={{size:3, offset:1}} md={{size:3, offset:1}} sm={{size:3, offset:1}} xs={{size:5, offset:3}} className={"signUpText"}> <Input type="radio" /> 남자 </Col>
+                        <Col xl={2} lg={{size:3, offset:0}} md={{size:3, offset:0}} sm={{size:3, offset:0}} xs={{size:3, offset:0}} className={"signUpText"}> <Input type="radio" /> 여자 </Col>
+                        <Col xl={3} lg={2} xs={3} > </Col>
+                    </FormGroup>
                     <FormGroup row xs={2}>
-                        <Col xs={4}> <Label className={"inputName"}> 이름 : </Label> </Col>
-                        <Col xs={8}> UserName</Col>
-                    </FormGroup>
-                    <FormGroup row xs={2}>
-                        <Col xs={4}> <Label className={"inputEmail"}>E-mail : </Label> </Col>
-                        <Col xs={8}> <Input type="email" name="email" id="inputEmail"/> </Col>
-                    </FormGroup>
-                    <FormGroup row xs={3}>
-                        <Col xs={5}> <Label className={"inputSex"}> 성별 : </Label> </Col>
-                        <Col xs={3}> <Input type="radio" disabled/> 남자 </Col>
-                        <Col xs={3}> <Input type="radio" checked disabled/> 여자 </Col>
-                    </FormGroup>
-                    <FormGroup row xs={2}>
-                        <Col xs={4}> <Label className={"inputBirthDay"}>생년 월일 : </Label> </Col>
-                        <Col  xs={8}>
-                            User Birthday
+                        <Col xl={{size:3, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputBirthDay"}>생년 월일</Label> </Col>
+                        <Col xl={4} lg={5} md={5} sm={5} xs={12}>
+                            <Input
+                                type="date"
+                                name="date"
+                                id="inputBirthDay" />
                         </Col>
+                        <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    </FormGroup>
+                    <hr/>
+                    <FormGroup row>
+                        <Col xl={{size:4, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"saveInfo"}> 내 정보 저장</Label> </Col>
                     </FormGroup>
 
                     <FormGroup row>
-                        <Col sm={12}> <Label className={"saveInfo"}> 내 정보 저장 :  </Label> </Col>
+                        <Filtering/>
                     </FormGroup>
-                    <Row> <Filtering/> </Row>
-                    <FormGroup row xs={1}>
-                        <Col xs={{size: 8, offset:3}} id={"signUpButtonArea"}> <Button className={"signUpButton"}> 회원 정보 수정 </Button> </Col>
+
+                    <FormGroup row>
+                        <Col xs={{size:4, offset:4}} sm={{size:4, offset:4}} md={{size:4, offset:4}} lg={{size:5, offset:5}}>
+                            <Button id={"editMemberInfoButton"}> 회원 정보 수정 </Button>
+                        </Col>
                     </FormGroup>
                 </Form>
             </Container>
