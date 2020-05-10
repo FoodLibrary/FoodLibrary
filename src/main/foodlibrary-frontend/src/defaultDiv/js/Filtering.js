@@ -10,9 +10,13 @@ class Filtering extends React.Component {
         return (
             <Container>
                 <Form>
-                    <Row id={"allergyTitle"}>  <Col xs={12} md={12}> <span className={"allergyCheck"} id={"allergyText"}> 내 알레르기 </span> </Col> </Row>
-                    <Row xs={10} md={10} lg={10} id={"allergyRow"}>
-                        <Col xs={4} md={3} lg={2}>
+                    <Row id={"allergyTitle"}>
+                        <Col xs={12} sm={12} md={{size:3, offset:2}} lg={{size:2, offset:2}}>
+                            <span className={"allergyCheck"} id={"allergyText"}> [ 내 알레르기 ] </span>
+                        </Col>
+                    </Row>
+                    <Row xs={12} sm={2} md={12} lg={12} id={"allergyRow"}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -20,7 +24,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -28,7 +32,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -36,7 +40,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -44,7 +48,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -52,7 +56,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -60,7 +64,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -68,7 +72,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -76,7 +80,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -84,7 +88,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -92,7 +96,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -100,7 +104,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -108,7 +112,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -116,7 +120,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -125,7 +129,7 @@ class Filtering extends React.Component {
                             </FormGroup>
                         </Col>
 
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -133,7 +137,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -141,7 +145,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -149,7 +153,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -159,7 +163,7 @@ class Filtering extends React.Component {
 
                         </Col>
 
-                        <Col xs={5} md={3} lg={2}>
+                        <Col xs={5} sm={4} md={2} lg={2}>
                             <FormGroup check inline className={"allergyCheck"}>
                                 <Label check className={"allergy"}>
                                     <Input type="checkbox" />
@@ -169,9 +173,13 @@ class Filtering extends React.Component {
                         </Col>
                     </Row>
 
-                    <Row id={"diseaseTitle"}>  <Col xs={12} md={12}> <span className={"diseaseCheck"} id={"diseaseText"}>  내 지병  </span> </Col> </Row>
-                    <Row xs={12} md={12}>
-                        <Col xs={4} md={3} lg={2}>
+                    <Row id={"diseaseTitle"}>
+                        <Col xs={12} sm={4} md={{size:3, offset:2}} lg={{size:2, offset:2}}>
+                            <span className={"diseaseCheck"} id={"diseaseText"}>  [ 내 지병 ]  </span>
+                        </Col>
+                    </Row>
+                    <Row  xs={12} sm={2} md={12} lg={12}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -179,7 +187,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col  xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -187,7 +195,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4}  md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -195,7 +203,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -203,7 +211,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -211,7 +219,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -219,7 +227,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -227,7 +235,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -235,7 +243,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={{size:2, offset:2}} lg={{size:2, offset:2}}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
@@ -243,7 +251,7 @@ class Filtering extends React.Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col xs={4} md={3} lg={2}>
+                        <Col xs={4} sm={3} md={2} lg={2}>
                             <FormGroup check inline className={"diseaseCheck"}>
                                 <Label check className={"disease"}>
                                     <Input type="checkbox" />
