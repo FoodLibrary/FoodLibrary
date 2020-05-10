@@ -22,9 +22,6 @@ import RankingBar from "./RankingBar";
 const imageResources = require('../../util/ImageResources.js');
 
 const TopBar  = (props) => {
-
-
-
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
         return (
@@ -40,10 +37,6 @@ const TopBar  = (props) => {
                         <Button id={"loginButton"}> Login </Button>
                         <Button id={"myPageButton"}> MyPage </Button>
                     </Nav>
-
-
-
-
                     <Collapse isOpen={!collapsed} navbar>
                         <Nav navbar>
                             <NavItem>
