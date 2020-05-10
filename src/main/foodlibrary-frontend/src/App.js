@@ -8,12 +8,13 @@ import TopBar from "./defaultDiv/js/TopBar";
 import SignUp from "./SignUpPage/SignUp";
 import ReviewDetail from "./ReviewDetailPage/js/ReviewDetail";
 import MyPage from "./MyPage/MyPage";
+import EditMemberInfo from "./EditMemberInfoPage/EditMemberInfo";
 
 function App() {
     return (
         <div>
             <TopBar/>
-            <MyPage/>
+            <EditMemberInfo/>
         </div>
     )
 }
