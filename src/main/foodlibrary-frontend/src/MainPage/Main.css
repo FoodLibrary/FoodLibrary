@@ -1,0 +1,39 @@
+#title{
+    width: 60vh;
+    margin-left: 4vh;
+    margin-top: 15vh;
+}
+
+@media (max-width: 1000px) {
+    #title{
+        width: 40vh;
+        margin-left: 2vh;
+        margin-top: 20vh;
+    }
+}
+
+#mainSearchButton {
+    width: 1.5vh;
+    height: 1.5vh;
+}
+
+#searchArea {
+    margin-top: 2vh;
+}
+
+.mainSearchButton {
+    background-color: white;
+    border: 1px solid #006edc;
+}
+
+#mainSearchArea {
+    border: 1px solid #006edc;
+}
+
+#filteringDropDown {
+    border: 1px solid #006edc;
+    border-radius: 30px;
+    margin-top: 2vh;
+    margin-right: 1vh;
+    font-family: NanumBarunGothic;
+}

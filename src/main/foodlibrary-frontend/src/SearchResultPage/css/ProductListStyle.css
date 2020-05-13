@@ -1,0 +1,75 @@
+#productImg {
+    border: 1px solid dimgray;
+    height: 30vh;
+    width: 30vh;
+}
+
+.productListImg {
+    margin-top: 1vh;
+}
+
+#productManufacturer {
+    font-family: NanumBarunGothic;
+    font-size: 1.2vh;
+    padding-top: 0.8vh;
+    color: dimgray;
+}
+
+#productName {
+    font-family: NanumBarunGothic;
+    font-size: 2vh;
+    margin-left: 0.2vh;
+}
+
+#manufacturerAndName {
+    margin-top: 1vh;
+    text-align: center;
+}
+
+#allergyArea {
+    margin-top: 0.5vh;
+    text-align: center;
+    font-size: 1.2vh;
+    margin-left: 1.1vh;
+}
+
+#diseaseArea {
+    margin-top: 1vh;
+    text-align: center;
+    font-size: 1.2vh;
+    margin-left: 1.1vh;
+}
+
+#likeButton {
+    position: absolute;
+    top: 24.5vh;
+    right: -6.6vh;
+    background-color:  rgba(0,0,0,0);
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+}
+
+#likeButtonImage {
+    width: 4vh;
+    height: 4vh;
+}
+
+#heartButton {
+    position: absolute;
+    top: 24.5vh;
+    right: -1vh;
+    background-color: rgba(0,0,0,0);
+    border-radius: 50px;
+    border: 0px;
+    outline: 0px;
+}
+
+button {
+    outline: none;
+}
+
+#heartButtonImage {
+    width: 4.5vh;
+    height: 4.5vh;
+}

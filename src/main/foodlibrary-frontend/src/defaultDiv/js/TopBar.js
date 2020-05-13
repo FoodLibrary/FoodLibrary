@@ -14,8 +14,6 @@ import {
 } from 'reactstrap';
 import '../css/TopBarStyle.css';
 import Input from "reactstrap/es/Input";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import RankingBar from "./RankingBar";
 
@@ -50,20 +48,6 @@ const TopBar  = (props) => {
                     </Collapse>
                 </Navbar>
             </div>
-            // <Navbar expand="md" className={"topBar"}>
-            //     <button className={"categoryImgArea"}> <img src={imageResources.categoryImg} className={"categoryImgArea"}/> </button>
-            //     <Navbar.Brand href="#home" className={"title"}> <img src={imageResources.logoImg} id={"logoImg"}/> <span id={"title"}> 음식도서관 </span> </Navbar.Brand>
-            //
-            //     <Navbar.Collapse id="basic-navbar-nav">
-            //         <Form inline>
-            //             <FormControl type="text" placeholder="Search" className="mr-sm-2" id={"searchArea"} />
-            //             <Button className={"searchButton"}><img src={imageResources.searchButtonImg} id={"searchButton"}/></Button>
-            //         </Form>
-            //     </Navbar.Collapse>
-            //     <Nav> <RankingBar/> </Nav>
-            //         <Nav.Link id={"loginButton"}> <span id={"login"}> 로그인 </span> </Nav.Link>
-            //         <Nav.Link> <span id={"memberImageArea"}> <img src={imageResources.notMemberImage} className={"memberImage"}/> </span> </Nav.Link>
-            // </Navbar>
         );
 
 }
