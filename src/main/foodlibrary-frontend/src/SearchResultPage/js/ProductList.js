@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {Container, Row, Col, Label} from 'reactstrap';
 import '../css/ProductListStyle.css';
-import {Chip} from 'react-md'
-
-const imageResources = require('../../util/ImageResources.js');
-
+import {Chip} from 'react-md';
 
 const ProductList = (props) => {
+
+    const imageResources = require('../../util/ImageResources.js');
+
+
     const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
     const[thumbColor, setColorThumb] = useState(imageResources.thumb);
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
     const[heartColor, setColorHeart] = useState(imageResources.heart);
+
     function thumbButtonClick() {
         setEmptyThumb(thumbEmpty => thumbColor);
         setColorThumb(thumbColor => thumbEmpty);
@@ -23,6 +25,7 @@ const ProductList = (props) => {
         setEmptyHeart(heartEmpty => heartColor);
         setColorHeart(heartColor => heartEmpty);
     }
+
     return (
 
         <Container>
@@ -45,26 +48,26 @@ const ProductList = (props) => {
                     <Row>
                         <Col id={"manufacturerAndName"} >
                             <span id={"productManufacturer"}> [뚜레쥬르] </span>
-                            <span id={"productName"}> 까르보나라 불닭볶음면 </span>
+                            <span id={"productName"}> 참 맛있는 식빵 </span>
                         </Col>
                     </Row>
 
                 </Col>
             </Row>
-
             <Row >
                 <Col xl={{size:4, offset:1}}>
                     <Row>
                         <Col xl={4} id={"allergyArea"} > 알러지  유발 요소  </Col>
-                        <Col >  </Col>
+                        <Col xl={7} id={"allergyChipArea"}>
+                            <Chip className={"allergyChip"} label="대두 " />
+                            <Chip className={"allergyChip"} label="밀  " />
+                        </Col>
                     </Row>
                     <Row>
-                        <Col xl={4} id={"diseaseArea"} > 이 병이 있다면 피하세요 </Col>
-                        <Col >
-                            <div className="chips__list">
-                                <Chip label="Hello, World" />
-
-                            </div>
+                        <Col xl={4} id={"diseaseArea"} > 지병 위험군  </Col>
+                        <Col xl={7} id={"diseaseChipArea"}>
+                            <Chip className={"diseaseChip"} label="고혈압" />
+                            <Chip className={"diseaseChip"} label="당뇨" />
                         </Col>
                     </Row>
                 </Col>

@@ -4,8 +4,7 @@ import {Container, Row, Col, Label} from 'reactstrap';
 import ProductList from "./ProductList";
 
 
-class SearchResult extends Component {
-    render() {
+function SearchResult(props) {
         return (
             <Container>
                 <Row className="searchResult" >
@@ -33,7 +32,6 @@ class SearchResult extends Component {
                 </Row>
             </Container>
         );
-    }
 }
 
 export default SearchResult;

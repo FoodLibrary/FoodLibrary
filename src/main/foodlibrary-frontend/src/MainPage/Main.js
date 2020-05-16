@@ -30,11 +30,8 @@ const Main  = (props) => {
     return (
         <div>
             <Navbar id={"topBar"}>
-
                 <NavbarToggler onClick={toggleNavbar} id={"navBar"} > <img id={"categoryImg"} src={imageResources.categoryImg}/> </NavbarToggler>
-
                 <Nav>
-                    <RankingBar/>
                     <Button id={"loginButton"}> Login </Button>
                     <Button id={"myPageButton"}> MyPage </Button>
                 </Nav>

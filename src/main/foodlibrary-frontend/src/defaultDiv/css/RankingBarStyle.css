@@ -1,24 +1,38 @@
 .rankingToggleMenu {
-    padding-left: 15rem;
-    padding-top: 1.2rem;
-
+    padding-left: 45rem;
+    padding-top: 1.2vh;
+    color: #006edc;
 }
 
 .rankingButton {
     border: 1px solid #006edc;
     background-color: #006edc;
     color: white;
-    height: 3.1rem;
+    height: 5vh;
+    width: 7vh;
     border-radius: 10px;
+    margin-left: 10vh;
 }
 
 .rankingToggle {
     border: 1px solid #006edc;
     background-color: white;
+    color: #006edc;
+    height: 5vh;
+    width: 30vh;
+    margin-right: 1.5vh;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#rankingToggle {
     color: dimgray;
-    height: 3.1rem;
-    width: 20rem;
-    margin-right: 1.5rem;
+    width: 30vh;
     border-radius: 10px;
 }
 
+@media (max-width: 2200px) {
+    .rankingToggleMenu, .rankingButton {
+        position: absolute;
+    }
+
+}

@@ -5,8 +5,7 @@ import Row from "react-bootstrap/Row";
 import '../css/FilteringStyle.css';
 const imageResources = require('../../util/ImageResources.js');
 
-class Filtering extends React.Component {
-    render() {
+function Filtering (props){
         return (
             <Container>
                 <Form>
@@ -264,7 +263,7 @@ class Filtering extends React.Component {
 
             </Container>
         );
-    }
+
 }
 
 export default Filtering;

@@ -1,13 +1,15 @@
 #topBar {
-    width: 2050px;
-    margin-top: 0.5rem;
+    margin-top: 1vh;
 }
 
+#collapse {
+    margin-left: 2vh;
+    margin-top: 1vh;
+}
 
 #categoryImg {
-    width: 3.5rem;
-    height: 4rem;
-    margin-top: 0rem
+    width: 5vh;
+    height: 5.5vh;
 }
 
 #navBar {
@@ -15,85 +17,74 @@
 }
 
 #logo {
-    width: 23rem;
-    height: 4rem;
-    padding-left: 1rem;
-    margin-top: 0.1rem;
+    margin-left: 1vh;
+    margin-top: 0.5vh;
+    width: 25vh;
+    height: 4.8vh;
 }
 
 #searchButtonImg {
-    width: 2rem;
-    height: 2.2rem;
+    width: 3vh;
+    height: 3.3vh;
 
 }
 
 #searchButton {
-    margin-top: 1.3rem;
+    margin-left: 47vh;
+    margin-top: 1.2vh;
     border: 1px solid #006edc;
-    margin-left: 1rem;
     background-color: white;
     border-radius:10px;
 }
 
 #searchInput {
-    margin-top: 1.3rem;
+    margin-left: 0.5vh;
+    margin-top: 1.2vh;
+    width: 45vh;
+    height: 4.5vh;
     border: 1px solid #006edc;
-    width: 30rem;
-    height: 3rem;
-    margin-left: 1.5rem;
     border-radius: 10px;
-
 }
 
 #loginButton {
-    padding-right: 0.5rem;
-    padding-top: 0.5rem;
+    padding: 0.5vh 2.2vh;
+    margin-top: 1.5vh;
     text-align: center;
-    margin-top: 1.1rem;
-    margin-left: 0.5rem;
     border: 1px solid #006edc;
-    height: 3.3rem;
-    width: 10rem;
     background-color: white;
     border-radius: 10px;
     color: #006edc;
     font-family: NanumBarunGothic;
-    font-size: 1.5rem;
+    font-size: 2.2vh;
     letter-spacing: 4px;
-
+    margin-left: 79.5rem;
 }
 
 #memberImageArea {
-    margin-top: 0.3rem;
-    margin-left: 0.8rem;
-    height: 5rem;
     border: white;
     background-color: white;
 }
 
 .memberImage {
-    height: 4rem;
     border-radius: 30px;
     border: 2px solid #006edc;
 }
 
 #myPageButton {
-    padding-right: 0.5rem;
-    padding-top: 0.5rem;
+    margin-top: 1.5vh;
+    margin-left: 89rem;
     text-align: center;
-    margin-top: 1.1rem;
-    margin-left: 0.5rem;
     border: 1px solid #006edc;
-    height: 3.3rem;
-    width: 10rem;
     background-color: white;
     border-radius: 10px;
     color: #006edc;
     font-family: NanumBarunGothic;
-    font-size: 1.5rem;
+    font-size: 2.2vh;
     letter-spacing: 4px;
 }
 
-#myPage {
-
+@media (max-width: 2200px) {
+    #myPageButton, #loginButton, #searchButton, #searchInput {
+        position: absolute;
+    }
 }
