@@ -1,0 +1,44 @@
+#resultTitle {
+    font-family: NanumBarunGothic;
+    font-size: 3rem;
+    padding-top: 2rem;
+    color: #006edc;
+}
+
+hr {
+    border: 0.1px solid #006edc;
+    width: 72rem;
+}
+
+.classificationRow {
+    font-family: NanumBarunGothic;
+    font-size: 1rem;
+}
+
+.selectSort {
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+    font-family: NanumBarunGothic;
+    border: 1px solid #006edc;
+    width: 4.5rem;
+    height: 1.7rem;
+}
+
+#sortTitle {
+    font-size: 0.8rem;
+    margin-top: 0.6rem;
+    margin-left: 3.9rem;
+}
+
+#sort {
+   margin-top: -2rem;
+}
+
+#productCount{
+    color: #006edc;
+    font-weight: bold;
+}
+
+#productResultMessage {
+    margin-left: 2rem;
+}

@@ -1,11 +1,24 @@
-import React, {Component} from 'react';
-import {Container, Row, Col, FormGroup, Label, Input} from 'reactstrap';
-
+import React, {Component, useState} from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
 import '../css/ResultFiltering.css';
 import '../../defaultDiv/css/FilteringStyle.css';
+import axios from 'axios';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
-class ResultFiltering extends Component {
-    constructor(props) {
+
+export default function  ResultFiltering(){
+
+
+
+    return (
+        <div></div>
+    );
+}
+
+
+
+/*constructor(props) {
         super(props);
         this.state = {
             hidden: false,
@@ -224,6 +237,4 @@ class ResultFiltering extends Component {
     )
         ;
     }
-}
-
-export default ResultFiltering;
+* */

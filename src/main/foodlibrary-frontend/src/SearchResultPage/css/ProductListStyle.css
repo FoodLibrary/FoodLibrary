@@ -1,7 +1,7 @@
 #productImg {
-    border: 1px solid dimgray;
     height: 30vh;
     width: 30vh;
+    border: 1px solid gray;
 }
 
 .productListImg {
@@ -23,6 +23,7 @@
 
 #manufacturerAndName {
     margin-top: 1vh;
+    margin-bottom: 1vh;
     text-align: center;
 }
 
@@ -30,20 +31,16 @@
     margin-top: 0.5vh;
     text-align: left;
     font-size: 1.2vh;
-    margin-left: 1.1vh;
 }
 
 #diseaseArea {
     margin-top: 1vh;
     text-align: left;
     font-size: 1.2vh;
-    margin-left: 1.1vh;
 }
 
 #likeButton {
-    position: absolute;
-    top: 24.5vh;
-    right: -6.6vh;
+    margin-bottom: 1vh;
     background-color:  rgba(0,0,0,0);
     border-radius: 50px;
     border: 0;
@@ -51,14 +48,13 @@
 }
 
 #likeButtonImage {
-    width: 4vh;
-    height: 4vh;
+    width: 3vh;
+    height: 3vh;
+    padding-bottom: 0.01vh;
 }
 
 #heartButton {
-    position: absolute;
-    top: 24.5vh;
-    right: -1vh;
+    padding-top: 1vh;
     background-color: rgba(0,0,0,0);
     border-radius: 50px;
     border: 0px;
@@ -70,30 +66,34 @@ button {
 }
 
 #heartButtonImage {
-    width: 4.5vh;
-    height: 4.5vh;
+    padding-top: 0.2vh;
+    padding-bottom: -0.3vh;
+    width: 3.5vh;
+    height: 3.5vh;
 }
 
 .allergyChip {
-    border: 1px solid brown;
-    margin: 3px;
-    border-radius: 30px;
-    font-family: NanumBarunGothic;
-    font-size: 1vh;
-    color: white;
-    background-color: brown;
-    text-align: center;
-    vertical-align: center;
+    border: 1px solid indianred !important;
+    margin: 3px !important;
+    border-radius: 30px !important;
+    font-family: NanumBarunGothic !important;
+    font-size: 1vh !important;
+    color: white !important;
+    background-color: indianred !important;
+    text-align: center !important;
+    vertical-align: center !important;
 }
 
 .diseaseChip {
-    border: 1px solid brown;
-    margin: 2px;
-    border-radius: 30px;
-    font-family: NanumBarunGothic;
-    font-size: 1vh;
-    color: white;
-    background-color: brown;
+    border: 1px solid indianred !important;
+    margin: 3px !important;
+    border-radius: 30px !important;
+    font-family: NanumBarunGothic !important;
+    font-size: 1vh !important;
+    color: white !important;
+    background-color: indianred !important;
+    text-align: center !important;
+    vertical-align: center !important;
 }
 
 #diseaseChipArea {
@@ -102,4 +102,9 @@ button {
 
 #allergyChipArea {
     padding-top: 0.2vh;
+}
+
+#productResult {
+    margin-top: 2vh;
+    margin-left: 1vh
 }

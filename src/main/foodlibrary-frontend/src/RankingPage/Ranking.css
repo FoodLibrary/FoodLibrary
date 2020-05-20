@@ -1,0 +1,71 @@
+#rankingTitle {
+    font-family: NanumBarunGothic;
+    font-size: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: #006edc;
+}
+
+
+#resultRanking {
+    width: 18.15rem;
+    height: 3rem;
+    text-align: center;
+}
+
+#resultRanking:hover{
+    border:1px solid #006edc;
+    background-color: rgba(0,110,220,30);
+    color: white;
+    border-radius: 4px;
+}
+
+#reviewRanking {
+    width: 17.9rem;
+    height: 3rem;
+    text-align: center;
+}
+
+#reviewRanking:hover {
+    border:1px solid #006edc;
+    background-color: rgba(0,110,220,30);
+    color: white;
+    border-radius: 4px;
+}
+
+#sexRanking {
+    width: 17.9rem;
+    height: 3rem;
+    text-align: center;
+}
+#sexRanking:hover {
+    border:1px solid #006edc;
+    background-color: rgba(0,110,220,30);
+    color: white;
+    border-radius: 4px;
+}
+
+#ageRanking {
+    width: 17.9rem;
+    height: 3rem;
+    text-align: center;
+}
+
+#ageRanking:hover{
+    border:1px solid #006edc;
+    background-color: rgba(0,110,220,30);
+    color: white;
+    border-radius: 4px;
+}
+
+.rankingTab {
+    border : 1px solid #006edc;
+    font-family: NanumBarunGothic;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 72rem;
+    height: 3rem;
+}
+.activeTab {
+    background-color:#61dafb ;
+}

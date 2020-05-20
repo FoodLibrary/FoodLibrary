@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, ButtonGroup, Row, ButtonDropdown} from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, ButtonGroup, Col, ButtonDropdown} from 'reactstrap';
 import '../css/RankingBarStyle.css';
 import TopBar from "./TopBar";
 import Container from "reactstrap/es/Container";
@@ -11,7 +11,7 @@ const RankingBar = (props) => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
             <Container>
-                <Row>
+                <Col xl={{size:1, offset:5}}>
                     <ButtonGroup className={"rankingToggleMenu"}>
                         <Button className={"rankingButton"}>랭킹</Button>
                         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -25,7 +25,7 @@ const RankingBar = (props) => {
                             </DropdownMenu>
                         </Dropdown>
                     </ButtonGroup>
-                </Row>
+                </Col>
 
             </Container>
 

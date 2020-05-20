@@ -27,7 +27,7 @@ public class ProductService {
     }
 
     public List<Product> getProducts(){
-        System.out.println(repository.findAll().toString());
+        // System.out.println(repository.findAll().toString());
         return repository.findAll();
     }
 
@@ -35,11 +35,11 @@ public class ProductService {
         System.out.println(repository.findById(id).orElse(null).toString());
         return repository.findById(id).orElse(null);
     }
-/*
-    public Product getProductByName(String name){
-        return repository.findByName(name);
-    }
-*/
+    /*
+        public Product getProductByName(String name){
+            return repository.findByName(name);
+        }
+    */
     public String deleteProduct(String id){
         repository.deleteById(id);
         return "product removed" + id;
@@ -59,5 +59,9 @@ public class ProductService {
         existingProduct.setZzimcount(product.getZzimcount());
 
         return repository.save(existingProduct);
+    }
+
+    public List<Product> getProductsAsSearch(String name){
+        return repository.findByPrdlstnmContaining(name);
     }
 }
