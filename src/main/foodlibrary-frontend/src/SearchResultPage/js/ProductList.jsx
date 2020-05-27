@@ -15,6 +15,8 @@ const ProductList = (props) => {
 
     const [searchResults, setResults]  = useState(props);
 
+    const allergyResult = searchResults.allergy.split(",");
+
     useEffect(() => {
         setResults(props);
     }, [props]);
@@ -34,11 +36,11 @@ const ProductList = (props) => {
 
     return (
 
-        <Container>
-            <Row xl={1} >
+            <Row>
                 <Col xl={12} >
                     <Row id={"productResult"}>
-                        <img src={"https://www.tlj.co.kr:7008/data/product/2019-10-31_event(1).jpg"} id={"productImg"}/>
+                        <img src={searchResults.img}  id={"productImg"}/>
+
                     </Row>
                     {/*<Row>*/}
                     {/*    <button id={"heartButton"} onClick={heartButtonClick} >*/}
@@ -52,16 +54,15 @@ const ProductList = (props) => {
                         <Col xl={12}>
                             <span id={"productManufacturer"}> [{searchResults.manufacture}] </span>
                             <span id={"productName"}> {searchResults.prdlstnm}  </span>
+
                         </Col>
                     </Row>
                     <Row>
                         <Col xl={4} id={"allergyArea"} > 알러지 성분</Col>
                         <Col xl={8} id={"allergyChipArea"}>
-                            <Chip className={"allergyChip"} label="대두 " />
-                            <Chip className={"allergyChip"} label="밀  " />
-                            <Chip className={"allergyChip"} label="오징어  " />
-                            <Chip className={"allergyChip"} label="아황산류  " />
-                            <Chip className={"allergyChip"} label="아황산류  " />
+                            {allergyResult.map((result,index) => (
+                                <Chip className={"allergyChip"} label={result}/>
+                            ))}
                         </Col>
                     </Row>
 
@@ -74,7 +75,8 @@ const ProductList = (props) => {
                     </Row>
                 </Col>
             </Row>
-        </Container>
+
+
     );
 }
 

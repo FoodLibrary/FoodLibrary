@@ -4,9 +4,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
 
-class StartPoint extends Component {
-
-    render() {
+const StartPoint = () =>{
         return (
             <Container>
                 <Row className={"Row"} xs={2} md={2}>
@@ -40,7 +38,6 @@ class StartPoint extends Component {
                 <hr/>
             </Container>
         );
-    }
 
 }
 

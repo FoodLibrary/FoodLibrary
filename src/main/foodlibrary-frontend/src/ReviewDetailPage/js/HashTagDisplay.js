@@ -3,9 +3,7 @@ import '../css/HashTagDisplay.css';
 import { Container, Row, Col, Button } from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
-class HashTagDisplay extends Component {
-
-    render() {
+const HashTagDisplay = () => {
         return (
             <Container>
                 <Row className={"Row"} xs={2} md={2}>
@@ -56,7 +54,6 @@ class HashTagDisplay extends Component {
                 <hr/>
             </Container>
         );
-    }
 
 }
 

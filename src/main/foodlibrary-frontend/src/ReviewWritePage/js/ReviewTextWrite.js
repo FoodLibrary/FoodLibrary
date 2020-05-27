@@ -4,8 +4,7 @@ import { Container, Row, Col, Label, Input, FormGroup } from 'reactstrap';
 import ImageResources from "../../util/ImageResources";
 
 
-class ReviewTextWrite extends Component {
-    render() {
+const ReviewTextWrite = () => {
         return (
             <Container className={"Row"}>
                 <Row xs={1} md={1}>
@@ -43,7 +42,7 @@ class ReviewTextWrite extends Component {
                 <hr />
             </Container>
         );
-    }
+
 }
 
 export default ReviewTextWrite;

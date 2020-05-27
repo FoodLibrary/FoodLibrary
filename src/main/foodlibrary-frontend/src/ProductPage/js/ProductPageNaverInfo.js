@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 import '../css/ProductPageNaverInfo.css';
 import { Col, Row } from 'reactstrap';
 
-class ProductPageNaverInfo extends Component{
-    render(){
+const ProductPageNaverInfo = () =>{
         return(
             <Col className="ProductPageNaverInfoCol">
                 <Row md="2" xs="2">
@@ -19,6 +18,6 @@ class ProductPageNaverInfo extends Component{
                 </Row>
             </Col>
         );
-    }
+    
 }
 export default ProductPageNaverInfo;

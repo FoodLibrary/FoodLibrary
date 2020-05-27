@@ -4,8 +4,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
 
-class StarPoint extends Component {
-    render() {
+const StarPoint = () => {
         return (
             <Container>
                 <Row className={"Row"} xs={2} md={2}>
@@ -39,8 +38,6 @@ class StarPoint extends Component {
                 <hr/>
             </Container>
         );
-    }
-
 }
 
 export default StarPoint;

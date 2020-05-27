@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import '../css/ProductPageMemberInfo.css';
 import { Col, Row } from 'reactstrap';
 
-class ProductPageMemberInfo extends Component {
-    render() {
+const ProductPageMemberInfo = () => {
         return (
             <Col className="ProductPageMemberInfoframe1">
                 <Row md="2" xs="2">
@@ -36,7 +35,7 @@ class ProductPageMemberInfo extends Component {
                 </Row>
             </Col>
         );
-    }
+
 }
 
 export default ProductPageMemberInfo;

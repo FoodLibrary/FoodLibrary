@@ -1,9 +1,9 @@
 import http from "../http-common"
-import {useEffect, useState} from "react";
 
-const findByProductName = searchProduct => {
-    return http.get(`/searchproduct/${searchProduct}`);
+const findByProductName = (searchProduct, allergy) => {
+    return http.post(`/searchproduct/${searchProduct}`, allergy);
 };
+
 
 export default {
     findByProductName

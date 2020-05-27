@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import '../css/LoginPageLogo.css';
 
-class LoginPageLogo extends Component{
-    render(){
+const LoginPageLogo = () => {
         return(
             <Container>
                 <Row>
@@ -14,7 +13,7 @@ class LoginPageLogo extends Component{
                 </Row>
             </Container>
         );
-    }
+
 }
 
 export default LoginPageLogo;

@@ -7,33 +7,62 @@ import {
     Nav,
     NavItem,
     NavLink,
+    ButtonDropdown,
+    Button, Container, Row, Col, DropdownToggle, DropdownMenu, DropdownItem, Form, Input
 } from 'reactstrap';
 import './Main.css';
-import Input from "reactstrap/es/Input";
-import Button from "react-bootstrap/Button";
-import RankingBar from "../defaultDiv/js/RankingBar";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import FormControl from "react-bootstrap/FormControl";
-import ButtonDropdown from "reactstrap/es/ButtonDropdown";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
+import Route from "react-router-dom/es/Route";
+import {Link} from "react-router-dom";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
+import SearchService from "../services/SearchService";
+import SearchResult from "../SearchResultPage/js/SearchResult";
+import TopBar from "../defaultDiv/js/TopBar";
 
 const imageResources = require('../util/ImageResources.js');
 
-const Main  = (props) => {
+const Main = () => {
     const [collapsed, setCollapsed,dropdownOpen, setOpen] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
+
+
+    let [selectedAllergy, setSelectedAllergy] = useState([]);
+    const [searchProduct, setSearchProduct] = useState("");
+    const [searchResults, setResults] = useState([]);
+
+    const onChangeSearchProduct = e => {
+        const searchProduct = e.target.value;
+        setSearchProduct(searchProduct);
+    };
+
+    const findByProductName = () => {
+        SearchService.findByProductName(searchProduct, selectedAllergy)
+            .then(response => {
+                setResults(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const onChangeAllergyInput = (event, value) => {
+        setSelectedAllergy(value);
+        console.log(value);
+    };
+
     const toggle = () => setOpen(!dropdownOpen);
     return (
         <div>
             <Navbar id={"topBar"}>
                 <NavbarToggler onClick={toggleNavbar} id={"navBar"} > <img id={"categoryImg"} src={imageResources.categoryImg}/> </NavbarToggler>
                 <Nav>
-                    <Button id={"loginButton"}> Login </Button>
-                    <Button id={"myPageButton"}> MyPage </Button>
+                    <Button id={"loginButton"}>
+                        <Link to={"/login"}>  Login </Link>
+                    </Button>
+                    <Button id={"myPageButton"}>
+                        <Link to={"/myPage"}> MyPage </Link>
+                    </Button>
                 </Nav>
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
@@ -57,31 +86,50 @@ const Main  = (props) => {
                     <Col xl={{size:1, offset:2}}></Col>
                 </Row>
                 <Row id={"searchArea"}>
-                    <Col xs={10} sm={{size:8,offset:1}} md={{size:7,offset:2}} lg={{size:7,offset:2}}> <FormControl type="text" placeholder="Search" className="mr-sm-2" id={"mainSearchArea"} /> </Col>
+                    <Col xs={10} sm={{size:8,offset:1}} md={{size:7,offset:2}} lg={{size:7,offset:2}}>
+                        <Input type="text" placeholder="검색할 식품을 입력하세요." className="mr-sm-2" id={"mainSearchArea"} value={searchProduct}  onChange={onChangeSearchProduct}/> </Col>
+
                     <Col xs={2} sm={3} md={4} lg={3}>
-                        <Button className={"mainSearchButton"}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Button>
+                        <Route>
+                            <Button className={"mainSearchButton"} onClick={findByProductName}>
+                                <Link to={"/searchResult"}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
+                            </Button>
+
+                        </Route>
                     </Col>
                 </Row>
+
                 <Row>
-                    <Col sm={{size:8, offset:1}} md={{size:7, offset:2}} lg={{size:7, offset:2}} xl={{size:7, offset:2}}>
-                        <ButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggle} >
-                            <DropdownToggle caret id={"filteringDropDown"}>
-                                검색어 필터링
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem header>Header</DropdownItem>
-                                <DropdownItem disabled>Action</DropdownItem>
-                                <DropdownItem>Another Action</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Another Action</DropdownItem>
-                            </DropdownMenu>
-                        </ButtonDropdown>
+                    <Col xl={{size:3, offset:2}}>
+                        <Autocomplete
+                            multiple
+                            className={"allergyFilteringMain"}
+                            size="small"
+                            options={allergy}
+                            getOptionLabel={(option) => option.allergy}
+                            onChange={onChangeAllergyInput}
+                            onInputChange={onChangeAllergyInput}
+                            onClick={onChangeAllergyInput}
+                            renderInput={allergy => (
+                                <TextField {...allergy} variant="outlined" label={"알러지 유발 요소"}/>
+                            )}
+                        />
                     </Col>
-                    <Col sm={1} md={2} lg={2} xl={2}></Col>
-
+                    <Col xl={3}>
+                        <Autocomplete
+                            multiple
+                            className={"diseaseFilteringMain"}
+                            size="small"
+                            options={disease}
+                            getOptionLabel={(option) => option.disease}
+                            renderInput={disease => (
+                                <TextField {...disease} variant="outlined" label={"질병 정보"}/>
+                            )}
+                        />
+                    </Col>
                 </Row>
-
             </Container>
+
         </div>
     );
 
@@ -90,21 +138,34 @@ const Main  = (props) => {
 export default Main;
 
 
-/*
-* <Container className ="main">
-                    <Navbar.Brand href="#home" className={"title"}> <img src={imageResources.logoImg} id={"logoImg"}/> <span id={"title"}> 음식도서관 </span> </Navbar.Brand>
+const allergy = [
+    {allergy: '새우'},
+    {allergy: '굴'},
+    {allergy: '게'},
+    {allergy: '복숭아'},
+    {allergy: '홍합'},
+    {allergy: '오징어'},
+    {allergy: '전복'},
+    {allergy: '고등어'},
+    {allergy: '전복'},
+    {allergy: '고등어'},
+    {allergy: '조개류'},
+    {allergy: '토마토'},
+    {allergy: '메밀'},
+    {allergy: '밀'},
+    {allergy: '대두'},
+    {allergy: '호두'},
+    {allergy: '땅콩'},
+    {allergy: '난류(가금류)'},
+    {allergy: '우유'},
+    {allergy: '쇠고기'},
+    {allergy: '돼지고기'},
+    {allergy: '아황산류'},
+];
 
-                    <Navbar id="basic-navbar-nav">
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" id={"mainSearchArea"} />
-                            <Button className={"mainSearchButton"}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Button>
-                    </Navbar>
-                    <ButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggle} className ={"FilteringDropdown"}>
-                        <DropdownToggle caret className={"FilteringToggle"}>
-                            검색어 필터링
-                        </DropdownToggle>
-                        <DropdownMenu className={"FilteringMenu"}>
 
-                        </DropdownMenu>
-                    </ButtonDropdown>
-                </Container>
-* */
+const disease = [
+    {disease: '당뇨'},
+    {disease: '고혈압 '},
+    {disease: '비만'}
+];

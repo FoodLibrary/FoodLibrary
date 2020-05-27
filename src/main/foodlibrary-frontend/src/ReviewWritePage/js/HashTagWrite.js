@@ -3,8 +3,7 @@ import '../css/HashTagWrite.css';
 import {Container, Row, Col, FormGroup, Input, Button} from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
-class HashTagWrite extends Component {
-    render() {
+const HashTagWrite = () => {
         return (
                 <Container>
                     <Row className={"Row"} xs={2} md={2}>
@@ -62,7 +61,7 @@ class HashTagWrite extends Component {
                     <hr/>
                 </Container>
         );
-    }
+
 
 }
 

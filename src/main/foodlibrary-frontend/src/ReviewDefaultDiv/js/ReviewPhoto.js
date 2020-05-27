@@ -3,9 +3,7 @@ import '../css/ReviewPhoto.css';
 import {Container, Row, Col, Button} from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
-class PhotoDisplay extends Component {
-
-    render() {
+const PhotoDisplay = () => {
         return (
             <Container>
                 <Row className={"Row"} xs={2} md={2}>
@@ -33,8 +31,6 @@ class PhotoDisplay extends Component {
                 <hr/>
             </Container>
         );
-    }
-
 }
 
 export default PhotoDisplay;

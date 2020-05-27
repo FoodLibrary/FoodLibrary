@@ -1,11 +1,10 @@
 import React from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {Container} from "react-bootstrap";
-import Row from "react-bootstrap/Row";
+import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 import '../css/FilteringStyle.css';
 const imageResources = require('../../util/ImageResources.js');
 
-function Filtering (props){
+const Filtering = () =>{
         return (
             <Container>
                 <Form>

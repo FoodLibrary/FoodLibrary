@@ -1,6 +1,6 @@
 #title{
     width: 60vh;
-    margin-left: 4vh;
+    margin-left: 1vh;
     margin-top: 15vh;
 }
 
@@ -30,10 +30,15 @@
     border: 1px solid #006edc;
 }
 
-#filteringDropDown {
-    border: 1px solid #006edc;
-    border-radius: 30px;
-    margin-top: 2vh;
-    margin-right: 1vh;
-    font-family: NanumBarunGothic;
+
+.allergyFilteringMain {
+    width: 19rem;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+.diseaseFilteringMain {
+    width: 19rem;
+    margin-top: 1rem;
+    margin-left: 2.5rem;
 }

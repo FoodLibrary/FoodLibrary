@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 import '../css/LoginPageFoot.css';
 import {Container, Row, Col} from 'reactstrap';
 
-class LoginPageFoot extends Component{
-    render(){
+const LoginPageFoot = () => {
         return(
             <Container>
                 <Row className="LoginPageFootRow" >
@@ -28,7 +27,7 @@ class LoginPageFoot extends Component{
                 </Row>
             </Container>
         );
-    }
+
 }
 
 export default LoginPageFoot;

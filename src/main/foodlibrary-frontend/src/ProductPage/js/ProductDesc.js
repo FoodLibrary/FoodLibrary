@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import '../css/ProductDesc.css';
 import { Container, Row, Col } from 'reactstrap';
 
-class ProdcutDesc extends Component {
+const ProdcutDesc = () => {
 
-    render() {
         var rawmtrl = this.props.rawmtrl;
         var manufacture = this.props.manufacture;
         var allergy = this.props.allergy;
@@ -55,7 +54,7 @@ class ProdcutDesc extends Component {
                 <hr></hr>
                 </Container>
         );
-    }
+
 }
 
 export default ProdcutDesc;

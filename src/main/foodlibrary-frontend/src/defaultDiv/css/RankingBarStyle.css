@@ -1,5 +1,4 @@
 .rankingToggleMenu {
-    margin-left: 46rem;
     padding-top: 1.2vh;
     color: #006edc;
 }
@@ -11,7 +10,6 @@
     height: 5vh;
     width: 7vh;
     border-radius: 10px;
-    margin-left: 10vh;
 }
 
 .rankingToggle {
@@ -28,11 +26,4 @@
     color: dimgray;
     width: 30vh;
     border-radius: 10px;
-}
-
-@media (max-width: 2200px) {
-    .rankingToggleMenu, .rankingButton {
-        position: absolute;
-    }
-
 }

@@ -3,8 +3,7 @@ import '../css/OriginInfo.css';
 import {Container, Row, Col, Button} from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
-class OriginInfo extends Component {
-    render() {
+const OriginInfo = () => {
         return (
             <Container>
                 <Row className={"Row"} xs={1} md={2}>
@@ -23,7 +22,7 @@ class OriginInfo extends Component {
                 <hr/>
             </Container>
         );
-    }
+
 
 }
 

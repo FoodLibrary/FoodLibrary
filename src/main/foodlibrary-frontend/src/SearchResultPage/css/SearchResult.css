@@ -1,8 +1,9 @@
-#resultTitle {
+#ResultTitle {
     font-family: NanumBarunGothic;
     font-size: 3rem;
     padding-top: 2rem;
     color: #006edc;
+    text-align: center;
 }
 
 hr {
@@ -13,10 +14,11 @@ hr {
 .classificationRow {
     font-family: NanumBarunGothic;
     font-size: 1rem;
+    margin-top: 1rem;
+    width: 100rem;
 }
 
 .selectSort {
-    margin-top: 0.3rem;
     font-size: 0.7rem;
     font-family: NanumBarunGothic;
     border: 1px solid #006edc;
@@ -24,14 +26,10 @@ hr {
     height: 1.7rem;
 }
 
-#sortTitle {
-    font-size: 0.8rem;
-    margin-top: 0.6rem;
-    margin-left: 3.9rem;
-}
-
-#sort {
-   margin-top: -2rem;
+#sortingSelect {
+    text-align: right;
+    margin-left: 0rem;
+    padding-right: 0rem;
 }
 
 #productCount{
@@ -39,6 +37,9 @@ hr {
     font-weight: bold;
 }
 
-#productResultMessage {
-    margin-left: 2rem;
+#sortingTitle {
+    text-align: right;
+    padding-right: 0px;
+    padding-left: 3rem;
+    margin-left: 12rem;
 }

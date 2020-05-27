@@ -3,8 +3,7 @@ import '../../ReviewDefaultDiv/css/ReviewPageTitle.css';
 import {Container, Row, Col} from 'reactstrap';
 
 
-class ReviewWriteTitle extends Component {
-    render() {
+const ReviewWriteTitle = () =>  {
         return (
             <Container>
                 <Row className={"Row"} xs={1}>
@@ -15,7 +14,7 @@ class ReviewWriteTitle extends Component {
                 <hr/>
             </Container>
         );
-    }
+
 
 }
 

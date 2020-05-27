@@ -3,8 +3,7 @@ import '../css/ProductPageNaver.css';
 import ProductPageNaverInfo from './ProductPageNaverInfo';
 import { Container, Col,Row } from 'reactstrap';
 
-class ProductPageNaver extends Component{
-    render(){
+const ProductPageNaver = () =>{
         return(
             <Container>
             <Container className="ProductPageNaverframe1">
@@ -32,7 +31,7 @@ class ProductPageNaver extends Component{
             <hr></hr>
             </Container>
         );
-    }
+
 }
 
 export default ProductPageNaver;

@@ -4,18 +4,31 @@ import '../src/App.css';
 import 'reactstrap';
 import Main from "./MainPage/Main";
 import TopBar from "./defaultDiv/js/TopBar";
-import SearchResult from "./SearchResultPage/js/SearchResult";
-import ProductList from "./SearchResultPage/js/ProductList";
-import Ranking from "./RankingPage/Ranking";
-import RankingBar from "./defaultDiv/js/RankingBar";
-import ResultFiltering from "./SearchResultPage/js/ResultFiltering";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    BrowserRouter as browserHistory,
+    BrowserRouter as IndexRoute,
+    Switch,
+} from 'react-router-dom';
+import SearchResultRouter from "./SearchResultPage/js/SearchResultRouter";
+import LoginPage from "./LoginPage/js/LoginPage";
+import MyPageRouter from "./MyPage/MyPageRouter";
 
 function App() {
     return (
         <div>
-            <TopBar/>
-
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={Main}/>
+                    <Route path="/searchResult" component={SearchResultRouter}/>
+                    <Route path="/login" component={LoginPage}/>
+                    <Route path="/myPage" component={MyPageRouter}/>
+                </Switch>
+            </Router>
         </div>
+
     );
 }
 

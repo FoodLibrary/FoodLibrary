@@ -4,8 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
 
-class ReviewDisplay extends Component {
-    render() {
+const ReviewDisplay = () =>{
         return (
             <Container className={"Row"}>
                 <Row xs={1} md={1}>
@@ -47,7 +46,6 @@ class ReviewDisplay extends Component {
                 <hr/>
             </Container>
         );
-    }
 
 }
 

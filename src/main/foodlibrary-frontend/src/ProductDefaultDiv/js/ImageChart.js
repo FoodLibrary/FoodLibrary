@@ -4,9 +4,7 @@ import {Container, Row, Col, Table} from 'reactstrap';
 import ImageResources from '../../util/ImageResources';
 
 /*ImageResources.productImage*/
-class ImageChart extends Component {
-
-    render() {
+const ImageChart = () => {
         var img = this.props.img;
         var nutrient = this.props.nutrient;
         var nutrientlist = [];
@@ -137,7 +135,7 @@ class ImageChart extends Component {
             </Container>
             </Container>
         );
-    }
+
 }
 
 export default ImageChart;

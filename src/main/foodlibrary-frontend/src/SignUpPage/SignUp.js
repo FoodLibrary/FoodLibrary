@@ -1,14 +1,12 @@
 import React from 'react';
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
+import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Filtering from "../defaultDiv/js/Filtering";
 import './SignUpStyle.css';
+
 const imageResources = require('../util/ImageResources.js');
 
-class SignUp extends React.Component {
-    render() {
+const SignUp  = () =>  {
         return (
             <Container id={"signUp"}>
                 <Row >
@@ -18,42 +16,42 @@ class SignUp extends React.Component {
                 </Row>
                 <Form id={"signUpForm"} >
                     <FormGroup row >
-                            <Col xl={{size:1, offset:2}}  lg={{size:1, offset:2}}  md={{size:1, offset:2}}  sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label  id={"id"}> 아이디 </Label> </Col>
-                            <Col xl={4} lg={5} md={5} sm={5} xs={8}  className={"idInputCol"}> <Input type="text" name="id" id="idInput"/> </Col>
+                            <Col xl={{size:1, offset:2}}  lg={{size:2, offset:2}}  md={2}  sm={{size:2, offset:2}} xs={12} className={"signUpText"}> <Label  id={"id"}> 아이디 </Label> </Col>
+                            <Col xl={{size:4, offset:1}} lg={5} md={5} sm={5} xs={8}  className={"idInputCol"}> <Input type="text" name="id" id="idInput"/> </Col>
                             <Col xl={4} lg={3} md={3} sm={3} xs={4}> <Button id={"checkDup"}> 중복확인 </Button> </Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 </Label> </Col>
+                        <Col xl={{size:2, offset:2}} lg={{size:2, offset:2}} md={2} sm={{size:2, offset:2}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 </Label> </Col>
                         <Col xl={4} lg={5} md={5} sm={5} xs={12} >
                             <Input valid type="password" name="password" id="passwordInput" />
                         </Col>
                         <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 확인</Label> </Col>
+                        <Col xl={{size:2, offset:2}} lg={{size:2, offset:2}} md={2} sm={{size:2, offset:2}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호 확인</Label> </Col>
                         <Col xl={4} lg={5} md={5} sm={5} xs={12}>
                             <Input valid type="password" name="password" id="checkPassword"  />
                         </Col>
                         <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputName"}> 이름 </Label> </Col>
+                        <Col xl={{size:2, offset:2}} lg={{size:2, offset:2}} md={2} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputName"}> 이름 </Label> </Col>
                         <Col  xl={4} lg={5} md={5} sm={5} xs={12}> <Input type="text" name="userName" id="inputName" /></Col>
                         <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Col xl={{size:1, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12}  className={"signUpText"}> <Label className={"inputEmail"}>E-mail : </Label> </Col>
+                        <Col xl={{size:2, offset:2}} lg={{size:2, offset:2}} md={2} sm={{size:2, offset:2}} xs={12}  className={"signUpText"}> <Label className={"inputEmail"}>E-mail : </Label> </Col>
                         <Col xl={4} lg={5} md={5} sm={5} xs={12}> <Input type="email" name="email" id="inputEmail"/> </Col>
                         <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                     </FormGroup>
                     <FormGroup row >
                         <Col xl={{size:3, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12}  className={"signUpText"}> <Label className={"inputSex"}> 성별 : </Label> </Col>
-                        <Col xl={2} lg={{size:3, offset:1}} md={{size:3, offset:1}} sm={{size:3, offset:1}} xs={{size:5, offset:3}} className={"signUpText"}> <Input type="radio" /> 남자 </Col>
+                        <Col xl={2} lg={{size:3, offset:0}} md={{size:3, offset:1}} sm={{size:3, offset:1}} xs={{size:5, offset:3}} className={"signUpText"}> <Input type="radio" /> 남자 </Col>
                         <Col xl={2} lg={{size:3, offset:0}} md={{size:3, offset:0}} sm={{size:3, offset:0}} xs={{size:3, offset:0}} className={"signUpText"}> <Input type="radio" /> 여자 </Col>
                         <Col xl={3} lg={2} xs={3} > </Col>
                     </FormGroup>
                     <FormGroup row xs={2}>
-                        <Col xl={{size:3, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputBirthDay"}>생년 월일 : </Label> </Col>
+                        <Col xl={{size:2, offset:2}} lg={{size:1, offset:2}} md={{size:1, offset:2}} sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label className={"inputBirthDay"}>생년 월일 : </Label> </Col>
                         <Col xl={4} lg={5} md={5} sm={5} xs={12}>
                             <Input
                                 type="date"
@@ -81,7 +79,7 @@ class SignUp extends React.Component {
 
 
         );
-    }
+
 }
 
 export default SignUp;

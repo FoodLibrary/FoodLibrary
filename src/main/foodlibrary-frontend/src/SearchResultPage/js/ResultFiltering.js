@@ -8,9 +8,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 
 export default function  ResultFiltering(){
-
-
-
     return (
         <div></div>
     );

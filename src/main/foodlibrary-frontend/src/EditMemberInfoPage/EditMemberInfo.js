@@ -5,10 +5,10 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Filtering from "../defaultDiv/js/Filtering";
 import './EditMemberInfo.css';
+
 const imageResources = require('../util/ImageResources.js');
 
-class EditMemberInfo extends React.Component {
-    render() {
+const EditMemberInfo = () => {
         return (
             <Container id={"editMemberInfo"}>
                 <Row >
@@ -79,7 +79,7 @@ class EditMemberInfo extends React.Component {
                 </Form>
             </Container>
         );
-    }
+
 }
 
 export default EditMemberInfo;

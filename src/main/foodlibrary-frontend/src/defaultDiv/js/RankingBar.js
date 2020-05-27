@@ -11,7 +11,7 @@ const RankingBar = (props) => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
             <Container>
-                <Col xl={{size:1, offset:5}}>
+                <Col xl={{size:1, offset:4}}>
                     <ButtonGroup className={"rankingToggleMenu"}>
                         <Button className={"rankingButton"}>랭킹</Button>
                         <Dropdown isOpen={dropdownOpen} toggle={toggle}>

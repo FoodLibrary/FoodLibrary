@@ -84,12 +84,44 @@ public class ProductController {
         return service.deleteProduct(id);
     }
 
-    @RequestMapping(value = "/searchproduct/{name}",method = {RequestMethod.GET, RequestMethod.POST})
-    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name) {
+    @RequestMapping(value = "/searchproduct/{name}", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @RequestBody String allergy) {
         List<Product> products = service.getProductsAsSearch(name);
-        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-    }
+        List<Product> tmpProducts = new ArrayList<Product>();
+        String allergys = allergy.toString();
 
+        if (allergy.equals("\\[]")) {
+            return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+        }
+        else {
+            //불 필요한 단어 삭제
+            String tmp = allergys.replaceAll("\\{\"allergy\":\"","");
+            String tmp4 = tmp.replaceAll("\\[","");
+            tmp = tmp4.replaceAll("\\]","");
+            tmp4 = tmp.replaceAll("\"\\}","");
+
+            //삭제 후 단어 나누기
+            String[] replaceAllergy = tmp4.split(",");
+
+            //입력받은 알러지와 상품의 알러지 비교
+            for (int i = 0; i < products.size(); i++) {
+                String[] productAllergy = products.get(i).getAllergy().split(",");
+                boolean check = true;
+                for (int j = 0; j < productAllergy.length; j++) {
+                    for (int z = 0; z < replaceAllergy.length; z++) {
+                        if (productAllergy[j].equals(replaceAllergy[z])) {
+                            check = false;
+                        }
+                    }
+                }
+                if (check == true) {
+                    tmpProducts.add(products.get(i));
+                }
+            }
+            return new ResponseEntity<List<Product>>(tmpProducts, HttpStatus.OK);
+        }
+        //System.out.println(products.toString());
+    }
 }
 
 

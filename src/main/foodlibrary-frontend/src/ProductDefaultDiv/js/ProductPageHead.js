@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 import {Container,Row,Col} from 'reactstrap';
 import '../css/ProductPageHead.css';
 
-class ProductPageHead extends Component{
-    render(){
+const ProductPageHead = () => {
         var title = this.props.prdlstnm;
         return(
             <Container>
@@ -26,7 +25,7 @@ class ProductPageHead extends Component{
                 
             </Container>
         );
-    }
+
 }
 
 export default ProductPageHead;

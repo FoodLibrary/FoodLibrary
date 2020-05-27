@@ -1,16 +1,13 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Filtering from "../defaultDiv/js/Filtering";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import './MyPageStyles.css';
 
 const imageResources = require('../util/ImageResources.js');
 
 
-class MyPage extends React.Component {
-    render() {
+const MyPage = () =>  {
         return (
             <Container id={"myPage"}>
                 <Row>
@@ -23,9 +20,8 @@ class MyPage extends React.Component {
                 <Row id={"myHeartTitle"}>  <Col xs={12} md={12}> <span className={"myHeart"} id={"myHeartText"}> 내 찜목록  </span> </Col> </Row>
             </Container>
 
-
         );
-    }
+
 }
 
 export default MyPage;

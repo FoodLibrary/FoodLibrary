@@ -3,15 +3,16 @@ import LoginPageLogo from './LoginPageLogo';
 import LoginPageFoot from './LoginPageFoot'
 import '../css/LoginPage.css';
 import { Container } from 'reactstrap';
+import TopBar from "../../defaultDiv/js/TopBar";
 
-class LoginPage extends Component {
-  render(){
+const LoginPage = () => {
     return (
-      <Container className="LoginPage">
+      <div className="LoginPage">
+          <TopBar/>
           <LoginPageLogo/>
           <LoginPageFoot/>
-      </Container>
+      </div>
     );
-  }
+
 }
 export default LoginPage;

@@ -3,8 +3,7 @@ import '../css/ProductPageMember.css'
 import { Container, Row, Col } from 'reactstrap';
 import ProductPageMemberInfo from './ProductPageMemberInfo';
 
-class PRoductPageMember extends Component {
-    render() {
+const PRoductPageMember = () => {
         return (
             <Container>
                 <Container className="ProductPageMemberframe">
@@ -42,7 +41,7 @@ class PRoductPageMember extends Component {
                 <hr></hr>
                 </Container>
         );
-    }
+
 }
 //더보기 버튼만 유일하게 width:100% %를 사용함 ㅈㅅㅈㅅ
 export default PRoductPageMember;

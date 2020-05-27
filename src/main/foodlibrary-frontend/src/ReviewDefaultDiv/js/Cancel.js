@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import '../css/Cancel.css';
 import {Container, Row, Col, Button} from 'reactstrap';
 
-class Cancel extends Component {
-
-    render() {
+const Cancel = () => {
         return (
             <Container>
                 <Row>
@@ -16,8 +14,6 @@ class Cancel extends Component {
                 </Row>
             </Container>
         );
-    }
-
 }
 
 export default Cancel;
