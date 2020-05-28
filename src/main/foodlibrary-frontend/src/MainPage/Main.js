@@ -92,9 +92,8 @@ const Main = () => {
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
                             <Button className={"mainSearchButton"} onClick={findByProductName}>
-                                <Link to={"/searchResult"}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
+                                <Link to={`/searchResult/${searchProduct}`}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
                             </Button>
-
                         </Route>
                     </Col>
                 </Row>

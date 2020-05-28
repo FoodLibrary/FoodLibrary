@@ -26,12 +26,15 @@ import LoginPage from "../../LoginPage/js/LoginPage";
 
 const imageResources = require('../../util/ImageResources.js');
 
-const TopBar = (props) => {
+const TopBar = ({match}) => {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
+    const a = match.params;
+    console.log(a);
+
     let [selectedAllergy, setSelectedAllergy] = useState([]);
-    const [searchProduct, setSearchProduct] = useState("");
+    const [searchProduct, setSearchProduct] = useState(match.params.searchKeyword);
     const [searchResults, setResults] = useState([]);
 
     const onChangeSearchProduct = e => {
@@ -45,6 +48,21 @@ const TopBar = (props) => {
     //     console.log(value);
     //
     // };
+
+    useEffect(() => {
+        const searchProduct = match.params.searchKeyword
+
+        console.log(searchProduct);
+        SearchService.findByProductName(searchProduct, selectedAllergy)
+            .then(response => {
+                setResults(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+    });
 
     const findByProductName = () => {
         SearchService.findByProductName(searchProduct, selectedAllergy)
@@ -67,7 +85,7 @@ const TopBar = (props) => {
                     </NavItem>
                     <NavItem>
                         <Button id={"searchButton"} onClick={findByProductName}>
-                            <Link to={"/searchResult"}>
+                            <Link to={`/searchResult/${searchProduct}`}>
                                 <img id={"searchButtonImg"} src={imageResources.searchButtonImg}/>
                             </Link>
                         </Button>
@@ -102,10 +120,6 @@ const TopBar = (props) => {
                 <SearchResult searchResults = {searchResults}/>
 
             </Navbar>
-
-
-
-
         );
 
 }

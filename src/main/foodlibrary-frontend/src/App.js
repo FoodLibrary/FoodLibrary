@@ -22,7 +22,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/searchResult" component={SearchResultRouter}/>
+                    <Route path="/searchResult/:searchKeyword" component={TopBar}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
                 </Switch>
