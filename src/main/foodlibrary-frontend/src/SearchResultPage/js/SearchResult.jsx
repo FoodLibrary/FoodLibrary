@@ -17,12 +17,28 @@ const SearchResult = (props) => {
         console.log(value);
     };
 
-    const [searchResults, setResults]  = useState(props);
+    const [searchProduct, setSearchProduct] = useState(props.searchResults);
+    const [searchResults, setResults]  = useState([]);
+
+    // useEffect(() => {
+    //     setResults(props);
+    //     console.log(searchResults);
+    // }, [props]);
 
     useEffect(() => {
-        setResults(props);
-        console.log(searchResults);
-    }, [props]);
+
+        console.log(searchProduct);
+        SearchService.findByProductName(searchProduct, selectedAllergy)
+            .then(response => {
+                setSearchProduct(props.searchResults);
+                setResults(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+    });
 
     return (
         <Container>
@@ -65,7 +81,7 @@ const SearchResult = (props) => {
 
             <Row className="classificationRow">
                 <Col xl={7} id={"productResultMessage"}>
-                    총 <span id={"productCount"}> {searchResults.searchResults.length} </span>개의 식품이 검색되었습니다.
+                    총 <span id={"productCount"}> {searchResults.length} </span>개의 식품이 검색되었습니다.
                 </Col>
                 <Col xl={1} id={"sortingTitle"}> 정렬 : </Col>
                 <Col xl={1} id={"sortingArea"}>
@@ -79,7 +95,7 @@ const SearchResult = (props) => {
 
             <Row xl={3}>
 
-                    {searchResults.searchResults.map((result, index) => (
+                    {searchResults.map((result, index) => (
                         <ProductList {...result} key={index}/>
                     ))}
 

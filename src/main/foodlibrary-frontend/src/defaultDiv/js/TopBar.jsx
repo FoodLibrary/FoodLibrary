@@ -26,15 +26,15 @@ import LoginPage from "../../LoginPage/js/LoginPage";
 
 const imageResources = require('../../util/ImageResources.js');
 
-const TopBar = ({match}) => {
+const TopBar = (props) => {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
-    const a = match.params;
-    console.log(a);
+    // const a = match.params;
+    // console.log(a);
 
     let [selectedAllergy, setSelectedAllergy] = useState([]);
-    const [searchProduct, setSearchProduct] = useState(match.params.searchKeyword);
+    const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
 
     const onChangeSearchProduct = e => {
@@ -42,27 +42,26 @@ const TopBar = ({match}) => {
         setSearchProduct(searchProduct);
     };
 
-
     // const onChangeAllergyInput = (event, value) => {
     //     setSelectedAllergy(value);
     //     console.log(value);
     //
     // };
 
-    useEffect(() => {
-        const searchProduct = match.params.searchKeyword
-
-        console.log(searchProduct);
-        SearchService.findByProductName(searchProduct, selectedAllergy)
-            .then(response => {
-                setResults(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-
-    });
+    // useEffect(() => {
+    //     const searchProduct = match.params.searchKeyword
+    //
+    //     console.log(searchProduct);
+    //     SearchService.findByProductName(searchProduct, selectedAllergy)
+    //         .then(response => {
+    //             setResults(response.data);
+    //             console.log(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    //
+    // });
 
     const findByProductName = () => {
         SearchService.findByProductName(searchProduct, selectedAllergy)
@@ -117,7 +116,7 @@ const TopBar = ({match}) => {
                     </Nav>
                 </Collapse>
 
-                <SearchResult searchResults = {searchResults}/>
+                {/*<SearchResult searchResults = {searchResults}/>*/}
 
             </Navbar>
         );

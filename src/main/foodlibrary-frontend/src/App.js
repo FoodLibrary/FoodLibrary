@@ -15,6 +15,7 @@ import {
 import SearchResultRouter from "./SearchResultPage/js/SearchResultRouter";
 import LoginPage from "./LoginPage/js/LoginPage";
 import MyPageRouter from "./MyPage/MyPageRouter";
+import SearchResult from "./SearchResultPage/js/SearchResult";
 
 function App() {
     return (
@@ -22,7 +23,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/searchResult/:searchKeyword" component={TopBar}/>
+                    <Route path="/searchResult/:searchKeyword" component={SearchResultRouter}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
                 </Switch>
