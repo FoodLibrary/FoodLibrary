@@ -62,9 +62,10 @@ const TopBar = (props) => {
     //         });
     //
     // });
+    const [inputValue, setInputValue] = useState("좋아요순");
 
     const findByProductName = () => {
-        SearchService.findByProductName(searchProduct, selectedAllergy)
+        SearchService.findByProductName(searchProduct, inputValue, selectedAllergy)
             .then(response => {
                 setResults(response.data);
                 console.log(response.data);

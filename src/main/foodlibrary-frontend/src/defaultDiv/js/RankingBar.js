@@ -3,6 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, ButtonGro
 import '../css/RankingBarStyle.css';
 import TopBar from "./TopBar";
 import Container from "reactstrap/es/Container";
+import {Link} from "react-router-dom";
 
 
 const RankingBar = (props) => {
@@ -13,7 +14,11 @@ const RankingBar = (props) => {
             <Container>
                 <Col xl={{size:1, offset:4}}>
                     <ButtonGroup className={"rankingToggleMenu"}>
-                        <Button className={"rankingButton"}>랭킹</Button>
+                        <Link to={'/ranking'}>
+                            <Button className={"rankingButton"}>
+                                    랭킹
+                            </Button>
+                        </Link>
                         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                             <DropdownToggle caret className={"rankingToggle"}>
                                 실시간 검색어 순위

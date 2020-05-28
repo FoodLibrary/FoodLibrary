@@ -16,6 +16,7 @@ import SearchResultRouter from "./SearchResultPage/js/SearchResultRouter";
 import LoginPage from "./LoginPage/js/LoginPage";
 import MyPageRouter from "./MyPage/MyPageRouter";
 import SearchResult from "./SearchResultPage/js/SearchResult";
+import Ranking from "./RankingPage/Ranking";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/searchResult/:searchKeyword" component={SearchResultRouter}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
+                    <Route path="/ranking" component={Ranking}/>
                 </Switch>
             </Router>
         </div>

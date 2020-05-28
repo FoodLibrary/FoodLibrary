@@ -11,14 +11,15 @@ import SearchService from "../../services/SearchService";
 
 const SearchResult = (props) => {
     let [selectedAllergy, setSelectedAllergy] = useState([]);
+    const [searchProduct, setSearchProduct] = useState(props.searchResults);
+    const [searchResults, setResults] = useState([]);
 
     const onChangeAllergyInput = (event, value) => {
         setSelectedAllergy(value);
         console.log(value);
     };
 
-    const [searchProduct, setSearchProduct] = useState(props.searchResults);
-    const [searchResults, setResults]  = useState([]);
+    const [inputValue, setInputValue] = useState("좋아요순");
 
     // useEffect(() => {
     //     setResults(props);
@@ -26,25 +27,22 @@ const SearchResult = (props) => {
     // }, [props]);
 
     useEffect(() => {
-
-        console.log(searchProduct);
-        SearchService.findByProductName(searchProduct, selectedAllergy)
+        console.log(inputValue)
+        SearchService.findByProductName(searchProduct, inputValue , selectedAllergy)
             .then(response => {
                 setSearchProduct(props.searchResults);
                 setResults(response.data);
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-
     });
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <div id={"ResultTitle"}> 검색 결과 </div>
+                    <div id={"ResultTitle"}> 검색 결과</div>
                 </Col>
             </Row>
 
@@ -85,25 +83,22 @@ const SearchResult = (props) => {
                 </Col>
                 <Col xl={1} id={"sortingTitle"}> 정렬 : </Col>
                 <Col xl={1} id={"sortingArea"}>
-                    <Input type="select" className={"selectSort"}>
-                            <option className={"selectSort"}> 좋아요순</option>
-                            <option className={"selectSort"}> 별점순</option>
-                            <option className={"selectSort"}> 리뷰순</option>
+                    <Input type="select" className={"selectSort"} onChange={e => setInputValue(e.target.value)}
+                           value={inputValue}>
+                        <option className={"selectSort"} value={"좋아요순"}> 좋아요순</option>
+                        <option className={"selectSort"} value={"별점순"}> 별점순</option>
+                        <option className={"selectSort"} value={"리뷰순"}> 리뷰순</option>
                     </Input>
                 </Col>
             </Row>
 
             <Row xl={3}>
 
-                    {searchResults.map((result, index) => (
-                        <ProductList {...result} key={index}/>
-                    ))}
+                {searchResults.map((result, index) => (
+                    <ProductList {...result} key={index}/>
+                ))}
 
             </Row>
-
-
-
-
 
 
         </Container>

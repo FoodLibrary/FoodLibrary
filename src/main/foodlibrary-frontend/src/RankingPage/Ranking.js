@@ -56,32 +56,12 @@ const Ranking = (props) => {
             <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
                     <Row>
-                        <Col xl={4}>
-                            <ProductList/>
-                        </Col>
-                        <Col xl={4}>
 
-                            <ProductList/>
-                        </Col>
-                        <Col xl={4}>
-
-                            <ProductList/>
-                        </Col>
                     </Row>
                 </TabPane>
                 <TabPane tabId="2">
                     <Row>
-                        <Col xl={4}>
-                            <ProductList/>
-                        </Col>
-                        <Col xl={4}>
 
-                            <ProductList/>
-                        </Col>
-                        <Col xl={4}>
-
-                            <ProductList/>
-                        </Col>
                     </Row>
                 </TabPane>
             </TabContent>

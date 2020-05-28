@@ -39,12 +39,22 @@ public class Product {
     @Column(name = "allergy")
     private String allergy;
 
-    @Column(name = "productHashtag")
-    private String productHashtag;
+    @Column(name="disease")
+    private String disease;
+
+    @Column(name = "producthashtag")
+    private String producthashtag;
 
     @Column(name = "likecount")
     private int likecount;
 
     @Column(name = "zzimcount")
     private int zzimcount;
+
+    @Column(name="searchcount")
+    private int searchcount = 0;
+
+
+    @Transient // Entity선선시에 Column으로 쓰지 않는 변수 선언
+    private String buylink = null;
 }
