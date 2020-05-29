@@ -3,17 +3,64 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'reactstrap';
 import './index.css';
 import TopBar from "./defaultDiv/js/TopBar";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    BrowserRouter as browserHistory,
+    BrowserRouter as IndexRoute,
+    Switch
+} from 'react-router-dom';
 
-//랭킹 화면
-import Ranking from './RankingPage/Ranking';
+//메인 화면
+import Main from './MainPage/Main';
+import Ranking from "./RankingPage/Ranking";
+import ProductPage from "./ProductPage/js/ProductPage";
+import SearchResultPage from "./SearchResultPage/SearchResultPage";
 
 function App() {
+
     return (
-        <div>
-            <Ranking/>
-        </div>
+        <Router>
+        <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/Ranking" component={Ranking}/>
+            <Route path="/ProductPage" component={ProductPage}/>
+            <Route path="/SearchResultPage" component={SearchResultPage}/>
+        </Switch>
+        </Router>
     )
 }
+
+/*
+ <Router>
+            <RenderTest />
+            <Router>
+                <div>
+                    <ul>
+                        <li>
+                            <Link to ="/Main">Main</Link>
+                        </li>
+                        <li>
+                            <Link to ="/Ranking">Ranking</Link>
+                        </li>
+                    </ul>
+                    <div>
+                    </div>
+                </div>
+            </Router>
+        </Router>
+*/
+
+/*
+<Router >
+    <Route path = "/Ranking" component ={Ranking}/>
+    <Route path ='/Main' component = {Main}>
+        <IndexRoute component ={Main} />
+    </Route>
+</Router>
+*/
+
 
 /*
 //검색 결과 화면
@@ -23,6 +70,7 @@ import SearchResult from './SearchResultPage/js/SearchResult';
 function App() {
     return (
         <div>
+            <TopBar/>
             <ResultFiltering/>
             <SearchResult/>
         </div>
@@ -33,13 +81,14 @@ function App() {
 
 
 /*
-//메인 화면
-import Main from './MainPage/Main';
+//랭킹 화면
+import Ranking from './RankingPage/Ranking';
 
 function App() {
     return (
         <div>
-            <Main/>
+            <TopBar />
+            <Ranking/>
         </div>
     )
 }

@@ -27,7 +27,7 @@ public class ProductService {
     }
 
     public List<Product> getProducts(){
-        System.out.println(repository.findAll().toString());
+       // System.out.println(repository.findAll().toString());
         return repository.findAll();
     }
 
@@ -54,10 +54,16 @@ public class ProductService {
         existingProduct.setRawmtrl(product.getRawmtrl());
         existingProduct.setNutrient(product.getNutrient());
         existingProduct.setAllergy(product.getAllergy());
-        existingProduct.setProductHashtag(product.getProductHashtag());
+        existingProduct.setDisease(product.getDisease());
+        existingProduct.setProducthashtag(product.getProducthashtag());
         existingProduct.setLikecount(product.getLikecount());
         existingProduct.setZzimcount(product.getZzimcount());
+        existingProduct.setSearchcount(product.getSearchcount());
 
         return repository.save(existingProduct);
+    }
+
+    public List<Product> getProductsAsSearch(String name){
+        return repository.findByPrdlstnmContaining(name);
     }
 }

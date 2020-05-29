@@ -8,13 +8,14 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import '../css/RankingBarStyle.css';
+import { withRouter } from "react-router-dom";
 
-export default class RankingBar extends React.Component {
+class RankingBar extends React.Component{
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
         };
     }
 
@@ -27,25 +28,26 @@ export default class RankingBar extends React.Component {
     render() {
         return (
             <ButtonGroup className={"rankingToggleMenu"}>
-                <Button className={"rankingButton"}> 랭킹 </Button>
+                <Button className={"rankingButton"} onClick = {()=>{this.props.history.push('/Ranking')}}> 랭킹 </Button>
                 <ButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret className={"rankingToggle"}>
                         실시간 검색어 순위
                     </DropdownToggle>
                     <DropdownMenu className={"rankingMenu"}>
-                            <DropdownItem> 1. A </DropdownItem>
-                            <DropdownItem> 2. B </DropdownItem>
-                            <DropdownItem> 3. C </DropdownItem>
-                            <DropdownItem> 4. D </DropdownItem>
-                            <DropdownItem> 5. E </DropdownItem>
-                            <DropdownItem> 6. F </DropdownItem>
-                            <DropdownItem> 7. G </DropdownItem>
-                            <DropdownItem> 8. H </DropdownItem>
-                            <DropdownItem> 9. I </DropdownItem>
-                            <DropdownItem> 10. J </DropdownItem>
+                        <DropdownItem> 1. A </DropdownItem>
+                        <DropdownItem> 2. B </DropdownItem>
+                        <DropdownItem> 3. C </DropdownItem>
+                        <DropdownItem> 4. D </DropdownItem>
+                        <DropdownItem> 5. E </DropdownItem>
+                        <DropdownItem> 6. F </DropdownItem>
+                        <DropdownItem> 7. G </DropdownItem>
+                        <DropdownItem> 8. H </DropdownItem>
+                        <DropdownItem> 9. I </DropdownItem>
+                        <DropdownItem> 10. J </DropdownItem>
                     </DropdownMenu>
                 </ButtonDropdown>
             </ButtonGroup>
         );
     }
 }
+export default withRouter(RankingBar);

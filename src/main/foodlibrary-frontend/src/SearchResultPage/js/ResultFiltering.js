@@ -23,7 +23,7 @@ class ResultFiltering extends Component {
 
     render() {
         return (
-                <Container>
+                <div>
                     <Row className="ResultFiltering">
                         <button className="ResultFilteringButton" onClick={this.handle}>
                             검색어 필터링</button>
@@ -217,7 +217,7 @@ class ResultFiltering extends Component {
                     </table>
                     }
                 </Row>
-            </Container>
+            </div>
     )
         ;
     }

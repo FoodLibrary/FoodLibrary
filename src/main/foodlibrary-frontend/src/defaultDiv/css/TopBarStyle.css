@@ -1,90 +1,99 @@
 #topBar {
-    position: sticky;
-    top: 0;
+    width: 2050px;
+    margin-top: 0.5rem;
+
 }
 
-#logoImg {
-    padding-bottom: 0.5vh;
-    padding-right: 0.5vh;
-    padding-left: 1vh;
-    max-width: 6vh;
-    max-height: 6vh;
-    min-width: 5vh;
-    min-height: 5vh;
+#categoryImg {
+    width: 3.5rem;
+    height: 4rem;
+    margin-top: 0rem
 }
 
-
-#title {
-    font-size: 3.5vh;
+#navBar {
+    border: 1px solid white;
 }
 
-.categoryImgArea {
-    padding-bottom: 1vh;
-    padding-right: 1vh;
-    max-width: 4vh;
-    max-height: 4vh;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    outline: none;
+#logo {
+    width: 23rem;
+    height: 4rem;
+    padding-left: 1rem;
+    margin-top: 0.1rem;
 }
 
-.categoryImgArea:focus{
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
+#searchButtonImg {
+    width: 2rem;
+    height: 2.2rem;
 
-.categoryImgArea:active {
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-.searchButton {
-    border: 1px solid #a6d149;
-}
-
-.searchButton:hover {
-    border: 1px solid;
 }
 
 #searchButton {
-    max-width: 2vh;
-    max-height: 2vh;
+    margin-top: 1.3rem;
+    border: 1px solid #006edc;
+    margin-left: 1rem;
+    background-color: white;
+    border-radius:10px;
 }
 
-#searchArea {
-    max-width: 30vw;
-    min-width: 30vw;
-}
+#searchInput {
+    margin-top: 1.3rem;
+    border: 1px solid #006edc;
+    width: 30rem;
+    height: 3rem;
+    margin-left: 1.5rem;
+    border-radius: 10px;
 
-@media (max-width:1600px) {
-    #searchArea {
-        display: none;
-    }
-    #loginButton {
-        display: none;
-    }
-    .searchButton {
-        display: none;
-    }
-}
-
-.search {
-    max-width: 40vw;
-}
-
-.memberImage {
-    max-width: 5vh;
-    border-radius: 25px;
 }
 
 #loginButton {
-    max-width: 20vw;
-    border-radius: 25px;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    margin-top: 1.1rem;
+    margin-left: 0.5rem;
+    border: 1px solid #006edc;
+    height: 3.3rem;
+    width: 10rem;
+    background-color: white;
+    border-radius: 10px;
+    color: #006edc;
+    font-family: NanumBarunGothic;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+
 }
 
-#login {
-    font-size: 1.5vh;
-    letter-spacing: 0.1vw;
-    padding-left: 0.1vw;
-    padding-right: 0.1vw;
+#memberImageArea {
+    margin-top: 0.3rem;
+    margin-left: 0.8rem;
+    height: 5rem;
+    border: white;
+    background-color: white;
 }
 
+.memberImage {
+    height: 4rem;
+    border-radius: 30px;
+    border: 2px solid #006edc;
+}
+
+#myPageButton {
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    margin-top: 1.1rem;
+    margin-left: 0.5rem;
+    border: 1px solid #006edc;
+    height: 3.3rem;
+    width: 10rem;
+    background-color: white;
+    border-radius: 10px;
+    color: #006edc;
+    font-family: NanumBarunGothic;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+}
+
+#myPage {
+
+}

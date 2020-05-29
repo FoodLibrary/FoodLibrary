@@ -1,22 +1,23 @@
-.rankingButton {
-    font-weight: bold;
+.rankingToggleMenu {
+    padding-left: 15rem;
+    padding-top: 1.2rem;
+
 }
 
-.rankingToggleMenu {
-    margin-right: 4vh;
+.rankingButton {
+    border: 1px solid #006edc;
+    background-color: #006edc;
+    color: white;
+    height: 3.1rem;
+    border-radius: 10px;
 }
 
 .rankingToggle {
-    width: 300px;
-    text-align: left;
-}
-
-.rankingMenu {
-    width: 300px;
-}
-
-@media (max-width: 1px) {
-    .rankingToggleMenu {
-        display: none;
-    }
+    border: 1px solid #006edc;
+    background-color: white;
+    color: dimgray;
+    height: 3.1rem;
+    width: 20rem;
+    margin-right: 1.5rem;
+    border-radius: 10px;
 }

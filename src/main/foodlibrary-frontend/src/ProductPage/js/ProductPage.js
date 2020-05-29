@@ -6,6 +6,8 @@ import ProductPageMember from './ProductPageMember';
 import ProductPageNaver from './ProductPageNaver';
 import '../css/ProductPage.css'
 import {Container,Row,Col} from 'reactstrap';
+import axios from "axios";
+import TopBar from "../../defaultDiv/js/TopBar";
 
 class ProductPage extends Component{
     constructor(props) {
@@ -26,23 +28,23 @@ class ProductPage extends Component{
         }
     }
     callApi = () =>{
-        fetch('api/productpage/2015026208379')
-            .then(res=>res.json())
-            .then(json=>{
+        axios.post("http://localhost:8081/api/productpage/20150405027137")
+            .then(res=>{
                 this.setState({
-                    prdlstreportno:json.prdlstreportno,
-                    prdlstnm:json.prdlstnm,
-                    manufacture:json.manufacture,
-                    category:json.category,
-                    img:json.img,
-                    rawmtrl:json.rawmtrl,
-                    nutrient:json.nutrient,
-                    allergy:json.allergy,
-                    productHashtag:json.productHashtag,
-                    likecount:json.likecount,
-                    zzimcount:json.zzimcount
+                    prdlstreportno:res.data.prdlstreportno,
+                    prdlstnm:res.data.prdlstnm,
+                    manufacture:res.data.manufacture,
+                    category:res.data.category,
+                    img:res.data.img,
+                    rawmtrl:res.data.rawmtrl,
+                    nutrient:res.data.nutrient,
+                    allergy:res.data.allergy,
+                    productHashtag:res.data.productHashtag,
+                    likecount:res.data.likecount,
+                    zzimcount:res.data.zzimcount
                 })
             })
+            .catch(res=>console.log(res))
     }
 
     componentDidMount() {
@@ -52,6 +54,7 @@ class ProductPage extends Component{
     render(){
         return (
             <div className="ProductPage">
+                <TopBar />
                 <ProductPageHead prdlstnm={this.state.prdlstnm}/>
                 <Container>
                 <hr/>

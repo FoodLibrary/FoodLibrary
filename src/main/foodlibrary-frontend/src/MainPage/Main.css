@@ -1,11 +1,4 @@
-body {
-    background-color:  #fffde5;
-    font-family: 'NanumPen', cursive;
-}
-@font-face{
-    font-family:NanumPen;
-    src:url('../util/Cafe24Oneprettynight.ttf');
-}
+
 .main{
     margin-top: 25vh;
     text-align: center;
@@ -23,7 +16,7 @@ body {
 #title {
     font-size: 5vh;
     color: #a6d149 ;
-    font-family: Cafe24Oneprettynight;
+    font-family: NanumBarunGothic;
 }
 
 .categoryImgArea {
@@ -76,7 +69,7 @@ body {
 }
 
 #loginButton {
-    font-family: Cafe24Oneprettynight;
+    font-family: NanumBarunGothic;
     max-width: 20vw;
     background-color: #a6d149;
     border-radius: 25px;

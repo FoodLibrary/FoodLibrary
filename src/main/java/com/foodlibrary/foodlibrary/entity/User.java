@@ -1,5 +1,6 @@
 package com.foodlibrary.foodlibrary.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private int id;
+
+    @Column(name="nickname")
+    private String nickname;
 
     @Column(name="name")
     private String name;
@@ -28,14 +34,14 @@ public class User {
     @Column(name="sex")
     private String sex;
 
-    @Column(name="userAlergy")
-    private String userAlergy;
+    @Column(name="useralergy")
+    private String useralergy;
 
-    @Column(name="userDisease")
-    private String userDisease;
+    @Column(name="userdisease")
+    private String userdisease;
 
-    @Column(name="phoneNumber")
-    private String phoneNumber;
+    @Column(name="phonenumber")
+    private String phonenumber;
 
     @Column(name="email")
     private String email;

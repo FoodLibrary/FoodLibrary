@@ -5,6 +5,7 @@ import RankingList from "./RankingList";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
+import TopBar from "../defaultDiv/js/TopBar";
 
 class Ranking extends Component {
 
@@ -68,7 +69,8 @@ class Ranking extends Component {
 
     render() {
         return (
-            <Container className="ranking">
+            <div className="ranking">
+                <TopBar />
                 <div className="rankingSub">
                     <div className="rankingLogo">
                         BEST 10
@@ -94,7 +96,7 @@ class Ranking extends Component {
                         <RankingList/>
                     </div>
                 </div>
-            </Container>
+            </div>
         );
     }
 }

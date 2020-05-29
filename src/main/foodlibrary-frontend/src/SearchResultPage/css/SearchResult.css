@@ -1,23 +1,15 @@
 
-.searchResultLogo {
-    margin-left: 2vh;
-    margin-bottom: 1vh;
+.searchResult{
+    margin-left: 25px;
+    margin-bottom: 10px;
     padding: 0 2vh 0 2vh;
-    border: solid 1px;
-    border-radius: 25px;
-    font-size: 3vh;
+    font-size: 20px;
 }
 
-.searchResultImg{
-    width : 3vh;
-    height: 3vh;
-}
 .classification{
-    margin-left: 8vw;
-    border: solid 1px ;
-    border-radius: 25px;
+    margin-left: 30px;
     padding: 0 2vh 0 2vh;
-    font-size: 2.5vh;
+    font-size: 15px;
 }
 
 .resultSort{
