@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Collapse,
     Navbar,
@@ -22,43 +22,36 @@ import TopBar from "../defaultDiv/js/TopBar";
 const imageResources = require('../util/ImageResources.js');
 
 const Main = () => {
-    const [collapsed, setCollapsed,dropdownOpen, setOpen] = useState(true);
+    const [collapsed, setCollapsed, dropdownOpen, setOpen] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
-
-    let [selectedAllergy, setSelectedAllergy] = useState([]);
+    let [selectedAllergies, setSelectedAllergy] = useState(["알러지없음"]);
     const [searchProduct, setSearchProduct] = useState("");
-    const [searchResults, setResults] = useState([]);
-
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
         setSearchProduct(searchProduct);
     };
 
-    const findByProductName = () => {
-        SearchService.findByProductName(searchProduct, selectedAllergy)
-            .then(response => {
-                setResults(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
     const onChangeAllergyInput = (event, value) => {
-        setSelectedAllergy(value);
-        console.log(value);
+        const selectedAllergy = value;
+        let selectedAllergyArray = [];
+        for (let i = 0; i < selectedAllergy.length; i++) {
+            selectedAllergyArray[i] = selectedAllergy[i].allergy;
+        }
+        setSelectedAllergy(selectedAllergyArray);
+        console.log(selectedAllergies);
     };
 
     const toggle = () => setOpen(!dropdownOpen);
     return (
         <div>
             <Navbar id={"topBar"}>
-                <NavbarToggler onClick={toggleNavbar} id={"navBar"} > <img id={"categoryImg"} src={imageResources.categoryImg}/> </NavbarToggler>
+                <NavbarToggler onClick={toggleNavbar} id={"navBar"}> <img id={"categoryImg"}
+                                                                          src={imageResources.categoryImg}/>
+                </NavbarToggler>
                 <Nav>
                     <Button id={"loginButton"}>
-                        <Link to={"/login"}>  Login </Link>
+                        <Link to={"/login"}> Login </Link>
                     </Button>
                     <Button id={"myPageButton"}>
                         <Link to={"/myPage"}> MyPage </Link>
@@ -80,26 +73,29 @@ const Main = () => {
             <Container>
                 <Row>
                     <Col xl={1}></Col>
-                    <Col md={{size:2, offset:1}} xl={{size:2, offset:1}}>
-                        <NavbarBrand href="/" className="mr-auto" > <img id={"title"} src={imageResources.logoImg}/> </NavbarBrand>
-                    </Col >
-                    <Col xl={{size:1, offset:2}}></Col>
+                    <Col md={{size: 2, offset: 1}} xl={{size: 2, offset: 1}}>
+                        <NavbarBrand href="/" className="mr-auto"> <img id={"title"} src={imageResources.logoImg}/>
+                        </NavbarBrand>
+                    </Col>
+                    <Col xl={{size: 1, offset: 2}}></Col>
                 </Row>
                 <Row id={"searchArea"}>
-                    <Col xs={10} sm={{size:8,offset:1}} md={{size:7,offset:2}} lg={{size:7,offset:2}}>
-                        <Input type="text" placeholder="검색할 식품을 입력하세요." className="mr-sm-2" id={"mainSearchArea"} value={searchProduct}  onChange={onChangeSearchProduct}/> </Col>
+                    <Col xs={10} sm={{size: 8, offset: 1}} md={{size: 7, offset: 2}} lg={{size: 7, offset: 2}}>
+                        <Input type="text" placeholder="검색할 식품을 입력하세요." className="mr-sm-2" id={"mainSearchArea"}
+                               value={searchProduct} onChange={onChangeSearchProduct}/> </Col>
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
-                            <Button className={"mainSearchButton"} onClick={findByProductName}>
-                                <Link to={`/searchResult/${searchProduct}`}><img src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
+                            <Button className={"mainSearchButton"}>
+                                <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}><img
+                                    src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
                             </Button>
                         </Route>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col xl={{size:3, offset:2}}>
+                    <Col xl={{size: 3, offset: 2}}>
                         <Autocomplete
                             multiple
                             className={"allergyFilteringMain"}

@@ -54,6 +54,8 @@ public class Product {
     @Column(name="searchcount")
     private int searchcount = 0;
 
+    @Column(name="staraverage")
+    private double staraverage = 0;
 
     @Transient // Entity선선시에 Column으로 쓰지 않는 변수 선언
     private String buylink = null;

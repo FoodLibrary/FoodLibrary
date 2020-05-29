@@ -1,16 +1,40 @@
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Ranking.css';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Container from "reactstrap/es/Container";
 import ProductList from "../SearchResultPage/js/ProductList";
+import SearchService from "../services/SearchService";
 
 const Ranking = (props) => {
     const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
+    }
+
+    const [onTimeRanking, setOnTimeRanking] = useState([]);
+
+    useEffect(() => {
+        SearchService.onTimeRanking()
+            .then(response => {
+                setOnTimeRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    });
+
+    function onclickRankingOnTime() {
+        toggle('1');
+        SearchService.onTimeRanking()
+            .then(response => {
+                setOnTimeRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
     return (
         <Container>
@@ -23,7 +47,7 @@ const Ranking = (props) => {
                 <NavItem>
                     <NavLink  id={"resultRanking"}
                         className={classnames({ active: activeTab === '1' })}
-                        onClick={() => { toggle('1'); }}
+                        onClick={onclickRankingOnTime}
                     >
                         실시간 검색어 순위
                     </NavLink>
@@ -55,8 +79,10 @@ const Ranking = (props) => {
             </Nav>
             <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
-                    <Row>
-
+                    <Row xl={3}>
+                        {onTimeRanking.map((result, index) => (
+                            <ProductList {...result} key={index}/>
+                        ))}
                     </Row>
                 </TabPane>
                 <TabPane tabId="2">

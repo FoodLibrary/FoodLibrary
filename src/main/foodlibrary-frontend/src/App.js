@@ -17,6 +17,7 @@ import LoginPage from "./LoginPage/js/LoginPage";
 import MyPageRouter from "./MyPage/MyPageRouter";
 import SearchResult from "./SearchResultPage/js/SearchResult";
 import Ranking from "./RankingPage/Ranking";
+import RankingRouter from "./RankingPage/RankingRouter";
 
 function App() {
     return (
@@ -24,10 +25,10 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/searchResult/:searchKeyword" component={SearchResultRouter}/>
+                    <Route path="/searchResult/:searchKeyword/:allergyInfo" component={SearchResultRouter}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
-                    <Route path="/ranking" component={Ranking}/>
+                    <Route path="/ranking" component={RankingRouter}/>
                 </Switch>
             </Router>
         </div>

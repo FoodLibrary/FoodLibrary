@@ -57,6 +57,7 @@ public class ProductService {
         existingProduct.setProducthashtag(product.getProducthashtag());
         existingProduct.setLikecount(product.getLikecount());
         existingProduct.setZzimcount(product.getZzimcount());
+        existingProduct.setStaraverage(product.getStaraverage());
 
         return repository.save(existingProduct);
     }
@@ -68,4 +69,5 @@ public class ProductService {
     public int changeCount(int count,String prdlstreportno){
         return repository.setFixedCount(count,prdlstreportno);
     }
+
 }

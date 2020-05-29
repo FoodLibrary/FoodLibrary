@@ -10,27 +10,29 @@ import SearchService from "../../services/SearchService";
 
 
 const SearchResult = (props) => {
-    let [selectedAllergy, setSelectedAllergy] = useState([]);
+    let [selectedAllergies, setSelectedAllergy] = useState(props.selectedAllergy);
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
 
     const onChangeAllergyInput = (event, value) => {
-        setSelectedAllergy(value);
-        console.log(value);
+        const selectedAllergy = props.selectedAllergy;
+        setSelectedAllergy(selectedAllergy);
     };
 
-    const [inputValue, setInputValue] = useState("좋아요순");
+
+    const [inputValue, setInputValue] = useState("좋아요");
 
     // useEffect(() => {
     //     setResults(props);
     //     console.log(searchResults);
     // }, [props]);
 
+
     useEffect(() => {
-        console.log(inputValue)
-        SearchService.findByProductName(searchProduct, inputValue , selectedAllergy)
+        SearchService.findByProductName(searchProduct, inputValue , selectedAllergies)
             .then(response => {
                 setSearchProduct(props.searchResults);
+                setSelectedAllergy(selectedAllergies);
                 setResults(response.data);
             })
             .catch(e => {
@@ -58,6 +60,7 @@ const SearchResult = (props) => {
                         onChange={onChangeAllergyInput}
                         onInputChange={onChangeAllergyInput}
                         onClick={onChangeAllergyInput}
+                        onLoad={onChangeAllergyInput}
                         renderInput={allergy => (
                             <TextField {...allergy} variant="outlined" label={"알러지 유발 요소"}/>
                         )}
@@ -85,9 +88,9 @@ const SearchResult = (props) => {
                 <Col xl={1} id={"sortingArea"}>
                     <Input type="select" className={"selectSort"} onChange={e => setInputValue(e.target.value)}
                            value={inputValue}>
-                        <option className={"selectSort"} value={"좋아요순"}> 좋아요순</option>
-                        <option className={"selectSort"} value={"별점순"}> 별점순</option>
-                        <option className={"selectSort"} value={"리뷰순"}> 리뷰순</option>
+                        <option className={"selectSort"} value={"좋아요"}> 좋아요순</option>
+                        <option className={"selectSort"} value={"별점"}> 별점순</option>
+                        <option className={"selectSort"} value={"리뷰"}> 리뷰순</option>
                     </Input>
                 </Col>
             </Row>

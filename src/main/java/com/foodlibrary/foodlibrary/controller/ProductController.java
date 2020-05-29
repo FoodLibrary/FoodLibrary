@@ -150,18 +150,17 @@ public class ProductController {
         return service.deleteProduct(id);
     }
 
-
     @RequestMapping(value = "/searchproduct/{name}/{sort}", method = RequestMethod.POST)
     public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String sort, @RequestBody String allergy) {
         List<Product> products = service.getProductsAsSearch(name);
         List<Product> tmpProducts = new ArrayList<Product>();
-        LikeComparator comp = new LikeComparator();
         String allergys = allergy.toString();
 
+        //알러지 유무 판단.
         if (allergys.equals("\\[]")) {
-            Collections.sort(products, comp);
-            return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-        } else {
+            tmpProducts = products;
+        }
+        else {
             //불 필요한 단어 삭제
             String tmp = allergys.replaceAll("\\{\"allergy\":\"", "");
             String tmp4 = tmp.replaceAll("\\[", "");
@@ -186,11 +185,24 @@ public class ProductController {
                     tmpProducts.add(products.get(i));
                 }
             }
-            Collections.sort(tmpProducts, comp);
-
-            return new ResponseEntity<List<Product>>(tmpProducts, HttpStatus.OK);
         }
+
+        //정렬
+        if(sort.equals("좋아요")){
+            tmpProducts = productSort(tmpProducts, new LikeComparator());
+        }
+        else if(sort.equals("별점")){
+            tmpProducts = productSort(tmpProducts, new starComparator());
+        }
+       /* else if(sort.equals("리뷰량")){
+
+        }*/
+        else {
+        }
+
+        return new ResponseEntity<List<Product>>(tmpProducts, HttpStatus.OK);
     }
+
     //좋아요 카운트
     class LikeComparator implements Comparator<Product> {
         @Override
@@ -203,15 +215,26 @@ public class ProductController {
         }
     }
 
-    //좋아요순 정렬
-    @RequestMapping(value = "/likeSort", method = RequestMethod.POST)
-    public ResponseEntity<List<Product>> likeSort(@RequestBody List<Product> products) {
-        LikeComparator comp = new LikeComparator();
-        List<Product> productLikeSort = products;
-        Collections.sort(productLikeSort, comp);
-
-        return new ResponseEntity<List<Product>>(productLikeSort, HttpStatus.OK);
+    //별점 카운트
+    class starComparator implements Comparator<Product> {
+        @Override
+        public int compare(Product first, Product second) {
+            double firstLike = first.getStaraverage();
+            double secondLike = second.getStaraverage();
+            if (firstLike > secondLike) return -1;
+            else if (firstLike < secondLike) return 1;
+            else return 0;
+        }
     }
+
+    //정렬
+    public List<Product> productSort(List<Product> products, Comparator<Product> comp) {
+        List<Product> productSort = products;
+        Collections.sort(productSort, comp);
+
+        return productSort;
+    }
+
 
     //좋아요 랭킹
     @RequestMapping(value = "api/productLikeRanking", method = RequestMethod.POST)
@@ -226,6 +249,48 @@ public class ProductController {
             tmpList.add(list.get(i));
         }
         return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
+    }
+
+    //실시간 클릭량 카운트
+    class SearchCountComparator implements Comparator<Product> {
+        @Override
+        public int compare(Product first, Product second) {
+            int firstCount = first.getSearchcount();
+            int secondCount = second.getSearchcount();
+            if (firstCount > secondCount) return -1;
+            else if (firstCount < secondCount) return 1;
+            else return 0;
+        }
+    }
+
+    //실시간 클릭량 랭킹
+    @RequestMapping(value = "/productSearchRanking", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> findSearchRanking() {
+        List<Product> list = service.getProducts();
+        List<Product> tmpList = new ArrayList<Product>();
+
+        SearchCountComparator comp = new SearchCountComparator();
+        Collections.sort(list, comp);
+
+        for (int i = 0; i < 10; i++) {
+            tmpList.add(list.get(i));
+        }
+        return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
+    }
+
+    //실시간 클릭량 랭킹 Toggle (상품명)
+    @RequestMapping(value = "/productSearchRankingPrdnm", method = RequestMethod.POST)
+    public ResponseEntity<List<String>> findSearchRankingPrdnm() {
+        List<Product> list = service.getProducts();
+        List<String> tmpList = new ArrayList<String>();
+
+        SearchCountComparator comp = new SearchCountComparator();
+        Collections.sort(list, comp);
+
+        for (int i = 0; i < 10; i++) {
+            tmpList.add(list.get(i).getPrdlstnm());
+        }
+        return new ResponseEntity<List<String>>(tmpList, HttpStatus.OK);
     }
 /*
     //별점 카운트
