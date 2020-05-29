@@ -30,5 +30,13 @@
     color: #006edc;
     font-family: NanumBarunGothic;
     padding-top: 1rem;
-    padding-left: 1.2rem;
+    padding-left: 1rem;
+}
+
+#signUpGoButton {
+    font-size: 1rem;
+    color: #006edc;
+    font-family: NanumBarunGothic;
+    padding-top: 1rem;
+    padding-left: 3rem;
 }

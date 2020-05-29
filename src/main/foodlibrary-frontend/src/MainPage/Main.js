@@ -13,11 +13,9 @@ import {
 import './Main.css';
 import Route from "react-router-dom/es/Route";
 import {Link} from "react-router-dom";
+
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import SearchService from "../services/SearchService";
-import SearchResult from "../SearchResultPage/js/SearchResult";
-import TopBar from "../defaultDiv/js/TopBar";
 
 const imageResources = require('../util/ImageResources.js');
 
@@ -27,13 +25,22 @@ const Main = () => {
 
     let [selectedAllergies, setSelectedAllergy] = useState(["알러지없음"]);
     const [searchProduct, setSearchProduct] = useState("");
+
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
         setSearchProduct(searchProduct);
     };
 
+    const onClickSearchButtonAlert = () => {
+        if (searchProduct === "") {
+            window.confirm("검색어를 입력하세요.");
+            window.location = '/';
+        }
+    }
+
     const onChangeAllergyInput = (event, value) => {
         const selectedAllergy = value;
+        console.log(value);
         let selectedAllergyArray = [];
         for (let i = 0; i < selectedAllergy.length; i++) {
             selectedAllergyArray[i] = selectedAllergy[i].allergy;
@@ -86,10 +93,14 @@ const Main = () => {
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
-                            <Button className={"mainSearchButton"}>
-                                <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}><img
-                                    src={imageResources.searchButtonImg} id={"mainSearchButton"}/></Link>
+
+
+                            <Button className={"mainSearchButton"} onClick={onClickSearchButtonAlert}>
+                                <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}>
+                                    <img src={imageResources.searchButtonImg} id={"mainSearchButton"}/>
+                                </Link>
                             </Button>
+
                         </Route>
                     </Col>
                 </Row>

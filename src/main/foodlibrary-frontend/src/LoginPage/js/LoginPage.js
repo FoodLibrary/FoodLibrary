@@ -33,10 +33,15 @@ const LoginPage = () => {
                     </Col>
                 </Row>
                 <Row className={"findIdPw"}>
-                    <Col xl={{size:2, offset:4}}>
+                    <Col xl={{size:2, offset:3}}>
+                        <span id={"signUpGoButton"}> <a href={'/signUp'} > 회원 가입 </a> </span>
+
+                    </Col>
+                    <Col xl={2}>
                         <span className={"findIdPw"}> <a href={'/'} > 아이디 찾기 </a> </span>
                     </Col>
                     <Col xl={2}>
+
                         <span className={"findIdPw"}> <a href={'/'} > 비밀번호 찾기 </a> </span>
                     </Col>
                 </Row>

@@ -14,25 +14,35 @@ const SearchResult = (props) => {
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
 
+    const [reSelectedAllergies, setReSelectedAllergy] = useState([]);
+
+    // 날것으로 온 알러지 정보를 다시 json 형식으로 바꾸고 default value로 지정해준다 -> 버튼 하나를 더 달아서 필터링 적용 버튼을 만들면 ?
     const onChangeAllergyInput = (event, value) => {
-        const selectedAllergy = props.selectedAllergy;
-        setSelectedAllergy(selectedAllergy);
+        const selectedAllergy = value;
+        setReSelectedAllergy(selectedAllergy);
     };
 
+    function initialAllergy() {
+        setSelectedAllergy(props.selectedAllergy);
+        let selectedAllergyArray = [];
+        selectedAllergyArray = selectedAllergies.split(",");
+        for (let i = 0; i < selectedAllergyArray.length; i++) {
+            reSelectedAllergies[i] = {allergy: selectedAllergyArray[i]};
+        }
+        return reSelectedAllergies;
+    }
+
+    useEffect(() => {
+        setReSelectedAllergy(initialAllergy);
+    },[]);
 
     const [inputValue, setInputValue] = useState("좋아요");
 
-    // useEffect(() => {
-    //     setResults(props);
-    //     console.log(searchResults);
-    // }, [props]);
-
-
     useEffect(() => {
-        SearchService.findByProductName(searchProduct, inputValue , selectedAllergies)
+        SearchService.findByProductName(searchProduct, inputValue , reSelectedAllergies)
             .then(response => {
                 setSearchProduct(props.searchResults);
-                setSelectedAllergy(selectedAllergies);
+                setSelectedAllergy(reSelectedAllergies);
                 setResults(response.data);
             })
             .catch(e => {
@@ -60,9 +70,9 @@ const SearchResult = (props) => {
                         onChange={onChangeAllergyInput}
                         onInputChange={onChangeAllergyInput}
                         onClick={onChangeAllergyInput}
-                        onLoad={onChangeAllergyInput}
+                        value={reSelectedAllergies}
                         renderInput={allergy => (
-                            <TextField {...allergy} variant="outlined" label={"알러지 유발 요소"}/>
+                            <TextField {...allergy}  variant="outlined" label={"알러지 유발 요소"}/>
                         )}
                     />
                 </Col>

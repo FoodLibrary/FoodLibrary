@@ -19,7 +19,6 @@ function SearchResultRouter({match}) {
         const selectedAllergy = match.params.allergyInfo;
         setSelectedAllergy(selectedAllergy);
 
-        console.log(searchProduct);
     });
 
     return (
