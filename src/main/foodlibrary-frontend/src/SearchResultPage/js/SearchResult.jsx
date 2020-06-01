@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import '../css/SearchResult.css';
-import {Container, Row, Col, Label, Navbar} from 'reactstrap';
+import {Container, Row, Col, Label, Navbar, Button, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
 import ProductList from "./ProductList";
 import Input from "reactstrap/es/Input";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import TopBar from "../../defaultDiv/js/TopBar";
 import SearchService from "../../services/SearchService";
 
 
+const imageResources = require('../../util/ImageResources');
 const SearchResult = (props) => {
     let [selectedAllergies, setSelectedAllergy] = useState(props.selectedAllergy);
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
@@ -16,7 +16,6 @@ const SearchResult = (props) => {
 
     const [reSelectedAllergies, setReSelectedAllergy] = useState([]);
 
-    // 날것으로 온 알러지 정보를 다시 json 형식으로 바꾸고 default value로 지정해준다 -> 버튼 하나를 더 달아서 필터링 적용 버튼을 만들면 ?
     const onChangeAllergyInput = (event, value) => {
         const selectedAllergy = value;
         setReSelectedAllergy(selectedAllergy);
@@ -37,7 +36,9 @@ const SearchResult = (props) => {
     },[]);
 
     const [inputValue, setInputValue] = useState("좋아요");
+    const [popoverOpen, setPopoverOpen] = useState(false);
 
+    const toggleInfo = () => setPopoverOpen(!popoverOpen);
     useEffect(() => {
         SearchService.findByProductName(searchProduct, inputValue , reSelectedAllergies)
             .then(response => {
@@ -60,7 +61,7 @@ const SearchResult = (props) => {
 
             <hr/>
             <Row xl={2}>
-                <Col xl={6}>
+                <Col xl={5}>
                     <Autocomplete
                         multiple
                         className={"allergyFiltering"}
@@ -76,7 +77,7 @@ const SearchResult = (props) => {
                         )}
                     />
                 </Col>
-                <Col xl={6}>
+                <Col xl={5}>
                     <Autocomplete
                         multiple
                         className={"diseaseFiltering"}
@@ -88,6 +89,16 @@ const SearchResult = (props) => {
                         )}
                     />
                 </Col>
+                <Col xl={2}>
+                    <Button id="infoImgButton" type="button">
+                        <img src={imageResources.info} id={"infoImg"}/>
+                    </Button>
+                    <Popover placement="bottom" isOpen={popoverOpen} target="infoImgButton" toggle={toggleInfo}>
+                        <PopoverHeader> 필터링 설명 </PopoverHeader>
+                        <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                    </Popover>
+                </Col>
+
             </Row>
 
             <Row className="classificationRow">
@@ -103,6 +114,7 @@ const SearchResult = (props) => {
                         <option className={"selectSort"} value={"리뷰"}> 리뷰순</option>
                     </Input>
                 </Col>
+
             </Row>
 
             <Row xl={3}>
@@ -122,6 +134,7 @@ export default SearchResult;
 
 
 const allergy = [
+    {allergy: '내 알러지'},
     {allergy: '새우'},
     {allergy: '굴'},
     {allergy: '게'},
@@ -148,6 +161,7 @@ const allergy = [
 
 
 const disease = [
+    {disease: '내 질병'},
     {disease: '당뇨'},
     {disease: '고혈압 '},
     {disease: '비만'}

@@ -24,19 +24,22 @@
 #manufacturerAndName {
     margin-top: 1vh;
     margin-bottom: 1vh;
+    padding-left: 1rem;
     text-align: center;
 }
 
 #allergyArea {
     margin-top: 0.5vh;
-    text-align: left;
+    text-align: center;
     font-size: 1.2vh;
+    padding-left: 2rem;
 }
 
 #diseaseArea {
     margin-top: 1vh;
-    text-align: left;
+    text-align: center;
     font-size: 1.2vh;
+    padding-left: 2rem;
 }
 
 #likeButton {
@@ -74,7 +77,7 @@ button {
 
 .allergyChip {
     border: 1px solid indianred !important;
-    margin: 3px !important;
+    margin: 2px !important;
     border-radius: 30px !important;
     font-family: NanumBarunGothic !important;
     font-size: 1vh !important;
@@ -98,13 +101,20 @@ button {
 
 #diseaseChipArea {
     padding-top: 0.8vh;
+    padding-left: 0vh;
 }
 
 #allergyChipArea {
     padding-top: 0.2vh;
+    padding-left: 0vh;
 }
 
 #productResult {
     margin-top: 2vh;
     margin-left: 1vh
+}
+
+#productList {
+    margin-left: 1vh;
+    margin-top: 0.5rem;
 }

@@ -40,6 +40,22 @@ hr {
 #sortingTitle {
     text-align: right;
     padding-right: 0px;
-    padding-left: 3rem;
-    margin-left: 12rem;
+    margin-left: 1.5rem;
+}
+
+.allergyFiltering {
+    margin-left: 0rem;
+    margin-bottom: 1rem;
+}
+
+.diseaseFiltering {
+    margin-left: 4rem;
+}
+
+#infoImgButton {
+    background-color: white;
+    border-radius: 200px;
+    border: 1px solid white;
+    margin-top: 0.6vh;
+    margin-left: 7rem;
 }

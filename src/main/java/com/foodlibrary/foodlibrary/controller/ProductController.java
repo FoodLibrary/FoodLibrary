@@ -131,9 +131,11 @@ public class ProductController {
         return service.getProductById(id);
     }
 
-    @RequestMapping(value = "api/productpage/{prdlstreportno}", method = RequestMethod.POST)
+    @GetMapping("/productpage/{prdlstreportno}")
     public ResponseEntity<Product> findOneProduct(@PathVariable String prdlstreportno) {
         Product product = service.getOneProduct(prdlstreportno);
+        product.setSearchcount(product.getSearchcount()+1);
+        service.updateProduct(product);
         String productname = product.getPrdlstnm().replace(" ","+");
         String buylink = "https://search.shopping.naver.com/search/all.nhn?query=" + productname;
         product.setBuylink(buylink);
@@ -292,6 +294,8 @@ public class ProductController {
         }
         return new ResponseEntity<List<String>>(tmpList, HttpStatus.OK);
     }
+
+
 /*
     //별점 카운트
     class starComparator implements Comparator<Product> {

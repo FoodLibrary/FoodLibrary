@@ -8,7 +8,10 @@ import {
     NavItem,
     NavLink,
     ButtonDropdown,
-    Button, Container, Row, Col, DropdownToggle, DropdownMenu, DropdownItem, Form, Input
+    Button, Container, Row, Col, DropdownToggle, DropdownMenu, DropdownItem, Form, Input,
+    Modal, ModalHeader, ModalBody, ModalFooter,
+    Popover, PopoverHeader, PopoverBody
+
 } from 'reactstrap';
 import './Main.css';
 import Route from "react-router-dom/es/Route";
@@ -19,7 +22,7 @@ import TextField from "@material-ui/core/TextField";
 
 const imageResources = require('../util/ImageResources.js');
 
-const Main = () => {
+const Main = (props) => {
     const [collapsed, setCollapsed, dropdownOpen, setOpen] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -29,12 +32,42 @@ const Main = () => {
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
         setSearchProduct(searchProduct);
+
     };
 
-    const onClickSearchButtonAlert = () => {
-        if (searchProduct === "") {
-            window.confirm("검색어를 입력하세요.");
-            window.location = '/';
+    const [loginOrNot, setLoginOrNot] = useState("Login");
+
+    function loginOrNotShow(){
+        if (localStorage.getItem('loginOK') == "OK") {
+            const loginOrNot = "Logout";
+            setLoginOrNot(loginOrNot);
+        }
+        else {
+            const loginOrNot = "Login";
+            setLoginOrNot(loginOrNot);
+        }
+    }
+
+    useEffect(() => {
+        loginOrNotShow();
+    });
+
+    function loginOrOutButton() {
+        if (loginOrNot === "Logout") {
+            localStorage.clear();
+            setLoginOrNot("Login");
+        }
+        else {
+            window.location.replace('/login');
+        }
+    }
+
+    function notLoginMyPageOnClick() {
+        if (loginOrNot === "Login") {
+            window.location.replace('/login');
+        }
+        else {
+            window.location.replace('/myPage');
         }
     }
 
@@ -49,7 +82,28 @@ const Main = () => {
         console.log(selectedAllergies);
     };
 
-    const toggle = () => setOpen(!dropdownOpen);
+    const {
+        buttonLabel,
+        className
+    } = props;
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
+    const a = () => {
+        if (searchProduct === "") {
+            window.confirm("검색어를 입력하세요.");
+            window.location.replace('/');
+        }
+    }
+
+    const [popoverOpen, setPopoverOpen] = useState(false);
+
+    const toggleInfo = () => setPopoverOpen(!popoverOpen);
+
+
+
     return (
         <div>
             <Navbar id={"topBar"}>
@@ -57,11 +111,11 @@ const Main = () => {
                                                                           src={imageResources.categoryImg}/>
                 </NavbarToggler>
                 <Nav>
-                    <Button id={"loginButton"}>
-                        <Link to={"/login"}> Login </Link>
+                    <Button id={"loginButton"} onClick={loginOrOutButton}>
+                        <Link to={"/login"}> <span> {loginOrNot} </span> </Link>
                     </Button>
-                    <Button id={"myPageButton"}>
-                        <Link to={"/myPage"}> MyPage </Link>
+                    <Button id={"myPageButton"} onClick={notLoginMyPageOnClick}>
+                        My Page
                     </Button>
                 </Nav>
                 <Collapse isOpen={!collapsed} navbar>
@@ -93,13 +147,12 @@ const Main = () => {
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
+                            <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}>
+                                <Button className={"mainSearchButton"}  onClick={a}>
+                                    <img src={imageResources.searchButtonImg} id={"mainSearchButton"} />
 
-
-                            <Button className={"mainSearchButton"} onClick={onClickSearchButtonAlert}>
-                                <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}>
-                                    <img src={imageResources.searchButtonImg} id={"mainSearchButton"}/>
-                                </Link>
-                            </Button>
+                                </Button>
+                            </Link>
 
                         </Route>
                     </Col>
@@ -133,8 +186,25 @@ const Main = () => {
                             )}
                         />
                     </Col>
+                    <Col>
+                        <Button id="infoImgButtonMain" type="button">
+                            <img src={imageResources.info} id={"infoImg"}/>
+                        </Button>
+                        <Popover placement="bottom" isOpen={popoverOpen} target="infoImgButtonMain" toggle={toggleInfo}>
+                            <PopoverHeader> 필터링 설명 </PopoverHeader>
+                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                        </Popover>
+                    </Col>
                 </Row>
+
+
             </Container>
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+                </ModalFooter>
+            </Modal>
 
         </div>
     );
@@ -145,6 +215,7 @@ export default Main;
 
 
 const allergy = [
+    {allergy: '내 알러지'},
     {allergy: '새우'},
     {allergy: '굴'},
     {allergy: '게'},
@@ -171,6 +242,7 @@ const allergy = [
 
 
 const disease = [
+    {disease: '내 질병'},
     {disease: '당뇨'},
     {disease: '고혈압 '},
     {disease: '비만'}

@@ -12,9 +12,13 @@ const onTimeRankingToggle = () => {
     return http.post(`/productSearchRankingPrdnm`);
 }
 
+const loginCertification = (loginInfo) => {
+    return http.post('/login', loginInfo);
+}
 
 export default {
     findByProductName,
     onTimeRanking,
     onTimeRankingToggle,
+    loginCertification,
 };

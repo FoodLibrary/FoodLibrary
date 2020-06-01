@@ -18,6 +18,7 @@ const hashTag = "https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/6D32DDE3-
 const productImage = "https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/46919DA9-54F9-42D2-AF84-07A47F7FE37C.png";
 const emptyHeart = "https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/4E765DB4-3A59-43DA-B3A5-D60D3878D7BD.png";
 const emptyThumb = "https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/046F9DFF-FE51-4CA1-8B91-173EA891AC34.png";
+const info = "https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/4CBE11B1-5B82-4A26-929C-B6B4912BFA85.png";
 
 module.exports = {
     categoryImg,
@@ -37,5 +38,6 @@ module.exports = {
     hashTag,
     productImage,
     emptyHeart,
-    emptyThumb
+    emptyThumb,
+    info
 };

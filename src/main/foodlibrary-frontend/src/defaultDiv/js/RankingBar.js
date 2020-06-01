@@ -46,19 +46,15 @@ const RankingBar = (props) => {
                                 실시간 검색어 순위
                             </DropdownToggle>
                             <DropdownMenu id={"rankingToggle"} onClick={getOnclickRankingToggle}>
-                                {/*{onTimeRankingToggle.map(() => (*/}
-                                {/*    <DropdownItem id={"rankingToggleItem"}/>*/}
-                                {/*))}*/}
-                                <DropdownItem> 1. {onTimeRankingToggle[0]} </DropdownItem>
-                                <DropdownItem> 2. {onTimeRankingToggle[1]} </DropdownItem>
-                                <DropdownItem> 3. {onTimeRankingToggle[2]} </DropdownItem>
-                                <DropdownItem> 4. {onTimeRankingToggle[3]} </DropdownItem>
-                                <DropdownItem> 5. {onTimeRankingToggle[4]} </DropdownItem>
-                                <DropdownItem> 6. {onTimeRankingToggle[5]} </DropdownItem>
-                                <DropdownItem> 7. {onTimeRankingToggle[6]} </DropdownItem>
-                                <DropdownItem> 8. {onTimeRankingToggle[7]} </DropdownItem>
-                                <DropdownItem> 9. {onTimeRankingToggle[8]} </DropdownItem>
-                                <DropdownItem> 10. {onTimeRankingToggle[9]} </DropdownItem>
+                                {onTimeRankingToggle.map((ranking,i) => {
+                                    return (<DropdownItem key={i}>
+                                        <Link to={"/productPage"}>
+                                            {i+1}.  {onTimeRankingToggle[i]}
+
+                                        </Link>
+
+                                    </DropdownItem>);
+                                    })}
                             </DropdownMenu>
                         </Dropdown>
                     </ButtonGroup>

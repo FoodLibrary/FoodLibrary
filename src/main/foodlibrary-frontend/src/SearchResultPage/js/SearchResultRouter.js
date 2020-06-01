@@ -12,18 +12,17 @@ function SearchResultRouter({match}) {
     //     setResults(props);
     //     console.log(searchResults.searchResults);
     // }, [props]);
-
     useEffect(() => {
         const searchProduct = match.params.searchKeyword;
         setResults(searchProduct);
         const selectedAllergy = match.params.allergyInfo;
         setSelectedAllergy(selectedAllergy);
-
     });
 
     return (
         <div className="searchResultRouter">
             <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy}/>
+
             <SearchResult searchResults={searchResults} selectedAllergy={selectedAllergy}/>
         </div>
 

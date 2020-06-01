@@ -1,0 +1,45 @@
+.ProductPageColTag1{
+    border: 1px solid black;
+}
+@media (max-width: 1000px) {
+    #title{
+        width: 40vh;
+        margin-left: 2vh;
+        margin-top: 20vh;
+    }
+}
+hr{
+    border: 0.1px solid #006edc;
+    width: 72rem;
+}
+.ProductPageth1{
+    width: 0.3em;
+}
+.ProducPageCol1{
+    font-weight: bold;
+    font-size: 1rem;
+}
+.ProducPageCol2{
+    font-size: 0.8rem;
+}
+.ProductPageRow1{
+    margin-bottom: 10px;
+}
+.ProductPageLZButtons{
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1rem;
+}
+.ProducPageColTitle{
+    font-weight: bolder;
+    font-size: 2rem;
+}
+.ProductPageBuyButton{
+    background-color: rgb(0,110,220);
+    border: 0px;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}

@@ -34,9 +34,13 @@ const ProductList = (props) => {
         setColorHeart(heartColor => heartEmpty);
     }
 
+    function productOnClick() {
+        window.location.replace(`/productPage/${searchResults.prdlstreportno}`);
+    }
+
     return (
 
-            <Row>
+            <Row id={"productList"}>
                 <Col xl={12} >
                     <Row id={"productResult"}>
                         <img src={searchResults.img}  id={"productImg"}/>
@@ -53,7 +57,7 @@ const ProductList = (props) => {
                     <Row id={"manufacturerAndName"} >
                         <Col xl={12}>
                             <span id={"productManufacturer"}> [{searchResults.manufacture}] </span>
-                            <span id={"productName"}> {searchResults.prdlstnm}  </span>
+                            <span id={"productName"} onClick={productOnClick}> {searchResults.prdlstnm}  </span>
 
                         </Col>
                     </Row>

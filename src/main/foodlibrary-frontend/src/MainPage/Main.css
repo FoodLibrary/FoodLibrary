@@ -34,11 +34,32 @@
 .allergyFilteringMain {
     width: 19rem;
     margin-top: 1rem;
-    margin-left: 0.5rem;
 }
 
 .diseaseFilteringMain {
     width: 19rem;
     margin-top: 1rem;
-    margin-left: 2.5rem;
+    margin-left: 3rem;
+}
+
+#modalHeader {
+    text-align: center;
+}
+
+#infoImgButtonMain {
+    background-color: white;
+    border-radius: 200px;
+    border: 1px solid white;
+    margin-top: 0.8vh;
+    margin-left: 5.4rem;
+
+}
+
+#infoImg {
+    width: 3vh;
+    height: 3vh;
+}
+
+#infoImgButton:active {
+    border: 1px solid white;
 }

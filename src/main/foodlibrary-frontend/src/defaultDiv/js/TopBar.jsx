@@ -10,7 +10,7 @@ import {
     Col,
     Row,
     Button,
-    Input, Table
+    Input, Table, Form
 } from 'reactstrap';
 import '../css/TopBarStyle.css';
 
@@ -32,6 +32,43 @@ const TopBar = (props) => {
 
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     let [selectedAllergy, setSelectedAllergy] = useState(props.selectedAllergy);
+
+
+    const [loginOrNotA, setLoginOrNotA] = useState("Login");
+
+    function loginOrNotShow(){
+        if (localStorage.getItem('loginOK') == "OK") {
+            const loginOrNotA = "Logout";
+            setLoginOrNotA(loginOrNotA);
+        }
+        else {
+            const loginOrNotA = "Login";
+            setLoginOrNotA(loginOrNotA);
+        }
+    }
+
+    useEffect(() => {
+        loginOrNotShow();
+    });
+
+    function loginOrOutButton() {
+        if (loginOrNotA === "Logout") {
+            localStorage.clear();
+            setLoginOrNotA("Login");
+        }
+        else {
+            window.location.replace('/login');
+        }
+    }
+
+    function notLoginMyPageOnClick() {
+        if (loginOrNotA === "Login") {
+            window.location.replace('/login');
+        }
+        else {
+            window.location.replace('/myPage');
+        }
+    }
 
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
@@ -64,13 +101,13 @@ const TopBar = (props) => {
                         <RankingBar/>
                     </NavItem>
                     <NavItem>
-                        <Button id={"loginButton"}>
-                            <Link to={"/login"}>  Login </Link>
+                        <Button id={"loginButton"} onClick={loginOrOutButton}>
+                            <Link to={"/login"}>  {loginOrNotA} </Link>
                         </Button>
                     </NavItem>
                     <NavItem>
-                        <Button id={"myPageButton"}>
-                            <Link to={"/myPage"}>  MyPage </Link>
+                        <Button id={"myPageButton"} onClick={notLoginMyPageOnClick}>
+                              MyPage
                         </Button>
                     </NavItem>
 
@@ -80,7 +117,7 @@ const TopBar = (props) => {
                     <Nav navbar id={"collapse"}>
                         <NavItem>
                             <span> 대분류 </span>
-                            <NavLink> 소분류1 </NavLink>
+                            <Button> 소분류1 </Button>
                             <NavLink> 소분류2 </NavLink>
                             <NavLink> 소분류3 </NavLink>
                             <NavLink> 소분류4 </NavLink>

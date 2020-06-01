@@ -20,6 +20,7 @@ import Ranking from "./RankingPage/Ranking";
 import RankingRouter from "./RankingPage/RankingRouter";
 import SignUp from "./SignUpPage/SignUp";
 import SignUpRouter from "./SignUpPage/SignUpRouter";
+import ProductDetailPageRouter from "./ProductPage/js/ProductDetailPageRouter";
 
 function App() {
     return (
@@ -32,6 +33,8 @@ function App() {
                     <Route path="/myPage" component={MyPageRouter}/>
                     <Route path="/ranking" component={RankingRouter}/>
                     <Route path="/signUp" component={SignUpRouter}/>
+                    <Route path="/productPage/:productInfo" component={ProductDetailPageRouter}/>
+
                 </Switch>
             </Router>
         </div>
