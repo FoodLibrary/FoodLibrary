@@ -12,8 +12,8 @@ const getReviewCount = () => {
   return http.get("/reviewCount");
 };
 
-const getAll = () => {
-  return http.get("/allReviews");
+const getAll = (productNumber) => {
+  return http.get(`/allReviews/${productNumber}`);
 };
 
 const get = id => {
@@ -28,10 +28,9 @@ const update = (id, data) => {
   return http.put(`/updateReview/${id}`, data);
 };
 
-const remove = nickname => {
-  return http.delete(`/deleteReview/${nickname}`);
+const remove = data => {
+  return http.post(`/deleteReview`, data);
 };
-
 const removeAll = () => {
   return http.delete(`/deleteAllReview`);
 };

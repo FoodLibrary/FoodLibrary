@@ -6,6 +6,7 @@ import UserReview from './UserReview';
 import '../css/Tabbar.css';
 
 const Tabbar = (props) => {
+
   const [activeTab, setActiveTab] = useState('chart');
 
   const tabToggle = tab => {
@@ -40,7 +41,7 @@ const Tabbar = (props) => {
         </TabPane>
         <TabPane tabId="userReview">
           <Row>
-            <UserReview {...props.product}/>
+            <UserReview {...props}/>
           </Row>
         </TabPane>
       </TabContent>

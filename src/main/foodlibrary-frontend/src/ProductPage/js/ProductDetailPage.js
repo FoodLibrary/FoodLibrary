@@ -6,9 +6,8 @@ import ProductService from '../js/ProductService';
 
 const ProductDetailPage = props => {
 
-
     const [product, setproduct] = useState({
-        prdlstreportno:props.productInfo,
+        prdlstreportno:props.productInfo.productNumber,
         prdlstnm:'',
         manufacture:'',
         category:'',
@@ -26,7 +25,7 @@ const ProductDetailPage = props => {
     }, []);
 
     const getProductInfo = () =>{
-        ProductService.getProductInfo(props.productInfo)
+        ProductService.getProductInfo(product.prdlstreportno)
             .then(foundProduct => {
                 setproduct(foundProduct.data);
                 console.log(foundProduct.data);
@@ -101,7 +100,7 @@ const ProductDetailPage = props => {
                     </Row>
                 </Col>
             </Row>
-            <Tabbar {...product}/>
+            <Tabbar {...props.productInfo}/>
         </Container>
     );
 };

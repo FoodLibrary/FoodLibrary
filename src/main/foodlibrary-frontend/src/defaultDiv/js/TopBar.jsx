@@ -53,7 +53,9 @@ const TopBar = (props) => {
 
     function loginOrOutButton() {
         if (loginOrNotA === "Logout") {
-            localStorage.clear();
+            localStorage.setItem('id',"");
+            localStorage.setItem('pw',"");
+            localStorage.setItem('loginOK', null);
             setLoginOrNotA("Login");
         }
         else {

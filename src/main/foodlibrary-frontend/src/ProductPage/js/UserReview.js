@@ -17,7 +17,10 @@ function UserReview(props) {
     const [reviews, setReviews] = useState([]);
     const [reviewCount, setReviewCount] = useState(0);
     const [submit, setSubmit] = useState(false);
-    const [productUserInfo, setProductUserInfo] = useState(props);
+    const [productUserInfo, setProductUserInfo] = useState({
+        prdlstreportno: props.productNumber,
+        nickname: props.nickname
+    });
     const [userExistFlag, setUserExistFlag] = useState(true);
 
     useEffect(() => {
@@ -25,23 +28,10 @@ function UserReview(props) {
     }, []);
 
     const retrieveReviews = () => {
-        ReviewService.getStarAverage()
-            .then(response => {
-                console.log(response.data + "별점 평균");
-            }).catch(e => {
-            console.log(e);
-        });
-        ReviewService.getReviewCount()
-            .then(response => {
-                setReviewCount(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-        ReviewService.getAll()
+        ReviewService.getAll(productUserInfo.prdlstreportno)
             .then(response => {
                 setReviews(response.data);
+                setReviewCount(response.data.length);
                 console.log(response.data);
             })
             .catch(e => {
@@ -50,11 +40,9 @@ function UserReview(props) {
     };
 
     const allowReviewWrite = () => {
-        ReviewService.isUserReview(localStorage.getItem('id'))
+        ReviewService.isUserReview(productUserInfo)
             .then(response => {
-                setProductUserInfo(productUserInfo);
                 setUserExistFlag(response.data);
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -64,7 +52,6 @@ function UserReview(props) {
 
     const writeReview = () => {
         setSubmit(true);
-        retrieveReviews();
     };
 
     const splitHashtag = (hashtagString) => {
@@ -72,20 +59,20 @@ function UserReview(props) {
     };
 
     const deleteReview = () => {
-        ReviewService.remove(productUserInfo.nickname)
+        ReviewService.remove(productUserInfo)
             .then(response => {
+                retrieveReviews();
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-        retrieveReviews();
     };
 
     return (
         <React.Fragment>
             {submit ? (
-                <ReviewWrite {...props} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
+                <ReviewWrite {...productUserInfo} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
             ) : (
                 <ListGroup className="reviewListGroup">
                     <Row md={2} className="reviewInfoRow">

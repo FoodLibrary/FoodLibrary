@@ -54,7 +54,9 @@ const Main = (props) => {
 
     function loginOrOutButton() {
         if (loginOrNot === "Logout") {
-            localStorage.clear();
+            localStorage.setItem('id',"");
+            localStorage.setItem('pw',"");
+            localStorage.setItem('loginOK', null);
             setLoginOrNot("Login");
         }
         else {

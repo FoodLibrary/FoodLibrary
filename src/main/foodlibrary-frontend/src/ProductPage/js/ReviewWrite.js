@@ -13,6 +13,7 @@ import Box from '@material-ui/core/Box';
 
 function ReviewWrite (props){
     const [productUserInfo] = useState(props);
+    console.log(productUserInfo.prdlstreportno);
     const initialReviewState = {
         prdlstreportno: "",
         reviewdesc: "",
@@ -50,11 +51,15 @@ function ReviewWrite (props){
             datetime: moment().format("YYYY MMMM Do, hh:mm")
         };
         ReviewService.create(data)
+            .then(response => {
+                props.retrieveReviews();
+            })
             .catch(e => {
                 console.log(e);
             });
         props.setSubmit(false);
         props.retrieveReviews();
+
     };
 
     const addHash = (event) => {

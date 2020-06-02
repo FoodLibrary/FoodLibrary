@@ -5,7 +5,11 @@ import ProductDetailPage from "./ProductDetailPage";
 
 
 const ProductDetailPageRouter = ({match}) => {
-    const [productInfo, setProductInfo] = useState(match.params.productInfo);
+    const [productInfo, setProductInfo] = useState({
+        productNumber: match.params.productInfo,
+        nickname: localStorage.getItem('id')
+    });
+
     return (
         <div>
             <TopBar/>

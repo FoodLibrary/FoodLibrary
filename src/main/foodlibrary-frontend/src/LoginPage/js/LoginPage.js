@@ -36,7 +36,8 @@ const LoginPage = () => {
             window.location.replace('/');
         }
         else {
-            localStorage.clear();
+            localStorage.setItem('id',"");
+            localStorage.setItem('pw',"");
             localStorage.setItem('loginOK',null);
             window.alert("로그인 실패");
         }
