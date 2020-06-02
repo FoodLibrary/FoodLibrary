@@ -1,9 +1,12 @@
 package com.foodlibrary.foodlibrary.service;
 
+import com.foodlibrary.foodlibrary.entity.Like;
 import com.foodlibrary.foodlibrary.entity.Zzim;
 import com.foodlibrary.foodlibrary.repository.ZzimRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ZzimService {
@@ -25,5 +28,9 @@ public class ZzimService {
 
     public int countZzim(Zzim zzim){
         return zzimRepository.countByPrdlstreportno(zzim.getPrdlstreportno());
+    }
+
+    public List<Zzim> getZzimAsNickname(String nickname){
+        return zzimRepository.findByNickname(nickname);
     }
 }

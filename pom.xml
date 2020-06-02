@@ -68,6 +68,11 @@
             <artifactId>mariadb-java-client</artifactId>
         </dependency>
 
+        <!--이메일 인증-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
     </dependencies>
 

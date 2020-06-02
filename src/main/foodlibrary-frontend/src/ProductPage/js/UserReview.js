@@ -17,7 +17,7 @@ function UserReview(props) {
     const [reviews, setReviews] = useState([]);
     const [reviewCount, setReviewCount] = useState(0);
     const [submit, setSubmit] = useState(false);
-    const [productUserInfo, setProductUserInfo] = useState(props.productUserInfo);
+    const [productUserInfo, setProductUserInfo] = useState(props);
     const [userExistFlag, setUserExistFlag] = useState(true);
 
     useEffect(() => {
@@ -50,8 +50,9 @@ function UserReview(props) {
     };
 
     const allowReviewWrite = () => {
-        ReviewService.isUserReview(productUserInfo.nickname)
+        ReviewService.isUserReview(localStorage.getItem('id'))
             .then(response => {
+                setProductUserInfo(productUserInfo);
                 setUserExistFlag(response.data);
                 console.log(response.data);
             })
@@ -84,7 +85,7 @@ function UserReview(props) {
     return (
         <React.Fragment>
             {submit ? (
-                <ReviewWrite {...productUserInfo} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
+                <ReviewWrite {...props} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
             ) : (
                 <ListGroup className="reviewListGroup">
                     <Row md={2} className="reviewInfoRow">

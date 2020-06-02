@@ -25,4 +25,17 @@ public class UserService {
     public Boolean existUser(String nickname,String password){
         return userRepository.existsByNicknameAndPassword(nickname,password);
     }
+    //아이디 찾기 위한 함수
+    public Boolean existUserNickname(String name,String email){
+        return userRepository.existsByNameAndEmail(name,email);
+    }
+    //아이디 찾기 위한 함수
+    public User getOneUserForFindNickname(String name,String email){
+        return userRepository.findByNameAndEmail(name,email);
+    }
+
+    //비번찾기 위한 함수
+    public Boolean existUserPassword(String name,String nickname){
+        return userRepository.existsByNameAndNickname(name,nickname);
+    }
 }

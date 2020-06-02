@@ -12,39 +12,34 @@ const LoginPage = () => {
     const [id, setID] = useState("");
     const [pw, setPW] = useState("");
     const [loginOK, setLoginOK] = useState("OK");
-    let [loginCertificate, setLoginCertificate] = useState("200");
+    let [loginCertificate, setLoginCertificate] = useState("");
+
     const [loginInfo, setLoginInfo] = useState({
         name: "",
         password: ""
     });
 
-    function loginCertification() {
-        console.log(loginInfo);
-
-    }
-
-    const onClickLoginBtn = () => {
-        console.log(loginInfo);
+    useEffect(() => {
         SearchService.loginCertification(loginInfo)
             .then(response => {
                 setLoginCertificate(response.status.toString());
-                console.log(response.status);
-                if (loginCertificate === "200") {
-                    console.log(loginInfo)
-                    localStorage.setItem('loginOK', loginOK);
-                    window.location.replace('/')
-
-                } else {
-                    window.alert("메롱")
-                    localStorage.setItem('loginOK', null);
-                }
             })
             .catch(e => {
-                console.log(e);
-            });
+                console.log(e.status);
+            })
+    });
 
 
-
+    const onClickLoginBtn = () => {
+        if (loginCertificate === "200") {
+            localStorage.setItem('loginOK', "OK");
+            window.location.replace('/');
+        }
+        else {
+            localStorage.clear();
+            localStorage.setItem('loginOK',null);
+            window.alert("로그인 실패");
+        }
     }
 
     const idChange = (event) => {
@@ -57,7 +52,6 @@ const LoginPage = () => {
     const pwChange = (event) => {
         const pw = event.target.value;
         setPW(pw);
-
         loginInfo.password = pw;
         localStorage.setItem('pw', pw);
     };
@@ -74,22 +68,24 @@ const LoginPage = () => {
                     </Col>
                     <Col xl={{size: 1, offset: 2}}></Col>
                 </Row>
-                <Row>
-                    <Col xl={{size: 6, offset: 3}}>
-                        <Input type="text" placeholder="아이디" id={"loginID"} onChange={idChange}/>
-                    </Col>
-                </Row>
+                    <Row>
+                        <Col xl={{size: 6, offset: 3}}>
+                            <Input type="text" placeholder="아이디" id={"loginID"} onChange={idChange}/>
+                        </Col>
+                    </Row>
 
-                <Row>
-                    <Col xl={{size: 6, offset: 3}}>
-                        <Input type="password" placeholder="비밀번호" id={"loginPW"} onChange={pwChange}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xl={{size: 6, offset: 3}}>
-                        <Button id={"loginBtn"} onClick={onClickLoginBtn}> 로그인 </Button>
-                    </Col>
-                </Row>
+                    <Row>
+                        <Col xl={{size: 6, offset: 3}}>
+                            <Input type="password" placeholder="비밀번호" id={"loginPW"} onChange={pwChange}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={{size: 6, offset: 3}}>
+                            <Button id={"loginBtn"} onClick={onClickLoginBtn}> 로그인 </Button>
+                        </Col>
+                    </Row>
+
+
                 <Row className={"findIdPw"}>
                     <Col xl={{size: 2, offset: 3}}>
                         <span id={"signUpGoButton"}> <a href={'/signUp'}> 회원 가입 </a> </span>

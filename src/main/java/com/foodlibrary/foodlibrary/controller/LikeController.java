@@ -38,7 +38,7 @@ public class LikeController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public List<String> getLikeUser(String name){
-        return likeService.getProductLikeCount(name);
+    public List<String> getLikeUser(String productNo){
+        return likeService.getProductLikeCount(productNo);
     }
 }

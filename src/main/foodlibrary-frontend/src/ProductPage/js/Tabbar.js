@@ -40,7 +40,7 @@ const Tabbar = (props) => {
         </TabPane>
         <TabPane tabId="userReview">
           <Row>
-            <UserReview {...props}/>
+            <UserReview {...props.product}/>
           </Row>
         </TabPane>
       </TabContent>

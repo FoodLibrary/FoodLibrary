@@ -10,5 +10,7 @@ public interface LikeRepository extends JpaRepository<Like, Integer> {
 
     int countByPrdlstreportno(String prdlstreportno);
 
-    List<Like> findAllByPrdlstreportno(String name);
+    List<Like> findAllByPrdlstreportno(String prdlstreportno);
+
+    List<Like> findByNickname(String nickname);
 }

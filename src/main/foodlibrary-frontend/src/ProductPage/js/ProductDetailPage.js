@@ -6,6 +6,7 @@ import ProductService from '../js/ProductService';
 
 const ProductDetailPage = props => {
 
+
     const [product, setproduct] = useState({
         prdlstreportno:props.productInfo,
         prdlstnm:'',
@@ -100,7 +101,7 @@ const ProductDetailPage = props => {
                     </Row>
                 </Col>
             </Row>
-            {/*<Tabbar productUserInfo={productUserInfo}/>*/}
+            <Tabbar {...product}/>
         </Container>
     );
 };

@@ -11,5 +11,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findByPrdlstnmContaining(String name);
 
     @Query("update Product p set p.likecount=?1 where p.prdlstreportno=?2")
-    int setFixedCount(int count, String prdlstreportno);
+    int setFixedCount(int count,String prdlstreportno);
+
+    List<Product> findByCategoryOrderByLikecountDesc(String category);
+    List<Product> findByCategoryOrderByZzimcountDesc(String category);
+    List<Product> findByCategoryOrderByStaraverageDesc(String category);
 }

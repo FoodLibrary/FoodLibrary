@@ -11,8 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Box from '@material-ui/core/Box';
 
-
-
 function ReviewWrite (props){
     const [productUserInfo] = useState(props);
     const initialReviewState = {
@@ -113,9 +111,9 @@ function ReviewWrite (props){
             <FormGroup>
                 {/*<input type="file" className="fileupload" name="file" onChange={}/>*/}
             </FormGroup>
-
+            <Button onClick={saveReview}/>
         </Form>
-    <button onClick={saveReview}/>
+
         </React.Fragment>
     );
 };

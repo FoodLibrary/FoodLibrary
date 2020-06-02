@@ -1,7 +1,7 @@
 import http from "../../http-common";
 
-const isUserReview = data => {
-  return http.post("/isUserReview", data);
+const isUserReview = productUserInfo => {
+  return http.post("/isUserReview", productUserInfo);
 };
 
 const getStarAverage = () => {

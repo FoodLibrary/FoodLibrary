@@ -40,4 +40,8 @@ public class LikeService {
         }
         return likeUser;
     }
+
+    public List<Like> getLikesAsNickname(String nickname){
+        return likeRepository.findByNickname(nickname);
+    }
 }

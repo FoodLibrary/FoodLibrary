@@ -27,7 +27,6 @@ public class ProductService {
     }
 
     public List<Product> getProducts(){
-       // System.out.println(repository.findAll().toString());
         return repository.findAll();
     }
 
@@ -35,11 +34,6 @@ public class ProductService {
         System.out.println(repository.findById(id).orElse(null).toString());
         return repository.findById(id).orElse(null);
     }
-/*
-    public Product getProductByName(String name){
-        return repository.findByName(name);
-    }
-*/
     public String deleteProduct(String id){
         repository.deleteById(id);
         return "product removed" + id;
@@ -54,20 +48,34 @@ public class ProductService {
         existingProduct.setRawmtrl(product.getRawmtrl());
         existingProduct.setNutrient(product.getNutrient());
         existingProduct.setAllergy(product.getAllergy());
+        existingProduct.setDisease(product.getDisease());
         existingProduct.setProducthashtag(product.getProducthashtag());
         existingProduct.setLikecount(product.getLikecount());
         existingProduct.setZzimcount(product.getZzimcount());
+        existingProduct.setSearchcount(product.getSearchcount());
         existingProduct.setStaraverage(product.getStaraverage());
 
         return repository.save(existingProduct);
     }
 
+
     public List<Product> getProductsAsSearch(String name){
         return repository.findByPrdlstnmContaining(name);
     }
 
+    //이거 뭔지 찾을것
     public int changeCount(int count,String prdlstreportno){
         return repository.setFixedCount(count,prdlstreportno);
     }
 
+    public List<Product> searchAsCategory(String category,String filter){
+        if(filter.equals("likecount")) {
+            return repository.findByCategoryOrderByLikecountDesc(category);
+        }else if(filter.equals("zzimcount")){
+            return repository.findByCategoryOrderByZzimcountDesc(category);
+        }else if(filter.equals("staraverage")){
+            return repository.findByCategoryOrderByStaraverageDesc(category);
+        }
+        return null;
+    }
 }
