@@ -227,7 +227,6 @@ const allergy = [
     {allergy: '전복'},
     {allergy: '고등어'},
     {allergy: '전복'},
-    {allergy: '고등어'},
     {allergy: '조개류'},
     {allergy: '토마토'},
     {allergy: '메밀'},

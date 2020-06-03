@@ -12,14 +12,14 @@ const MyPage = () =>  {
                 <Row id={"myPageTitleArea"}>
                     <Col xs={{size:4, offset:3}} md={{size:3,offset:5}} lg={{size:4,offset:4}} xl={{size:3,offset:5}}> <span id={"myPageTitle"}> My Page </span> </Col>
                 </Row>
-                <hr/>
+                <hr className={"myPageHR"}/>
                 <Row>
                    <Filtering/>
                    <Col xl={{size:3,offset:10}}>
                        <Button id={"saveMyAllergy"}> 내 정보 저장 </Button>
                    </Col>
                 </Row>
-                <hr id={"hr"}/>
+                <hr className={"myPageHR"}/>
                 <Row id={"myHeartTitle"}>  <Col xs={12} md={12}> <span className={"myHeart"} id={"myHeartText"}> 내 찜목록  </span> </Col> </Row>
             </Container>
 

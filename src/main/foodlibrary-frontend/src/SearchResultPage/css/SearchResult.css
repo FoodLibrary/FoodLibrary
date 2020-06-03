@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-hr {
+#searchResultHR {
     border: 0.1px solid #006edc;
     width: 72rem;
 }

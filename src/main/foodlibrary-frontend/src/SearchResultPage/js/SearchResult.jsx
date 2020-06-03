@@ -62,7 +62,7 @@ const SearchResult = (props) => {
                 </Col>
             </Row>
 
-            <hr/>
+            <hr id={"searchResultHR"}/>
             <Row xl={2}>
                 <Col xl={5}>
                     <Autocomplete
@@ -136,6 +136,7 @@ const SearchResult = (props) => {
 export default SearchResult;
 
 
+
 const allergy = [
     {allergy: '내 알러지'},
     {allergy: '새우'},
@@ -147,7 +148,6 @@ const allergy = [
     {allergy: '전복'},
     {allergy: '고등어'},
     {allergy: '전복'},
-    {allergy: '고등어'},
     {allergy: '조개류'},
     {allergy: '토마토'},
     {allergy: '메밀'},

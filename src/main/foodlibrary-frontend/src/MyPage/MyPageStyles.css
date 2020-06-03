@@ -46,8 +46,9 @@
 
 }
 
-#hr {
-    margin-top:3rem
+.myPageHR {
+    margin-top:3rem;
+    width: 100%;
 }
 
 #saveMyAllergy {
