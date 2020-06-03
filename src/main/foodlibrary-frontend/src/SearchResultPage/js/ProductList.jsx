@@ -5,9 +5,7 @@ import '../css/ProductListStyle.css';
 import Chip from "@material-ui/core/Chip";
 
 const ProductList = (props) => {
-
     const imageResources = require('../../util/ImageResources.js');
-
     const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
     const[thumbColor, setColorThumb] = useState(imageResources.thumb);
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
@@ -16,6 +14,8 @@ const ProductList = (props) => {
     const [searchResults, setResults]  = useState(props);
 
     const allergyResult = searchResults.allergy.split(",");
+    const [allergyInfo, setAllergyInfo] = useState(props.allergyForReSearch);
+
 
     useEffect(() => {
         setResults(props);
@@ -35,7 +35,7 @@ const ProductList = (props) => {
     }
 
     function productOnClick() {
-        window.location.replace(`/productPage/${searchResults.prdlstreportno}`);
+        window.location.replace(`/productPage/${props.searchProduct}/${allergyInfo}/${searchResults.prdlstreportno}`);
     }
 
     return (

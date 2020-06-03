@@ -33,7 +33,7 @@ function App() {
                     <Route path="/myPage" component={MyPageRouter}/>
                     <Route path="/ranking" component={RankingRouter}/>
                     <Route path="/signUp" component={SignUpRouter}/>
-                    <Route path="/productPage/:productInfo" component={ProductDetailPageRouter}/>
+                    <Route path="/productPage/:searchKeyword/:allergyInfo/:productInfo" component={ProductDetailPageRouter}/>
 
                 </Switch>
             </Router>

@@ -7,9 +7,10 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import SearchService from "../../services/SearchService";
 
-
 const imageResources = require('../../util/ImageResources');
+
 const SearchResult = (props) => {
+    const allergyForReSearch = props.selectedAllergy;
     let [selectedAllergies, setSelectedAllergy] = useState(props.selectedAllergy);
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
@@ -25,6 +26,7 @@ const SearchResult = (props) => {
         setSelectedAllergy(props.selectedAllergy);
         let selectedAllergyArray = [];
         selectedAllergyArray = selectedAllergies.split(",");
+
         for (let i = 0; i < selectedAllergyArray.length; i++) {
             reSelectedAllergies[i] = {allergy: selectedAllergyArray[i]};
         }
@@ -120,7 +122,7 @@ const SearchResult = (props) => {
             <Row xl={3}>
 
                 {searchResults.map((result, index) => (
-                    <ProductList {...result} key={index}/>
+                    <ProductList {...result} searchProduct={searchProduct} allergyForReSearch={allergyForReSearch}  key={index}/>
                 ))}
 
             </Row>

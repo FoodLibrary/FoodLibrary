@@ -6,7 +6,6 @@ import './MyPageStyles.css';
 
 const imageResources = require('../util/ImageResources.js');
 
-
 const MyPage = () =>  {
         return (
             <Container id={"myPage"}>

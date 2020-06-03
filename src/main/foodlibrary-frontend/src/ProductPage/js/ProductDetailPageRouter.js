@@ -9,10 +9,12 @@ const ProductDetailPageRouter = ({match}) => {
         productNumber: match.params.productInfo,
         nickname: localStorage.getItem('id')
     });
+    const [searchResults, setResults] = useState(match.params.searchKeyword);
+    const [selectedAllergy, setSelectedAllergy] = useState(match.params.allergyInfo)
 
     return (
         <div>
-            <TopBar/>
+            <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy}/>
             <ProductDetailPage productInfo={productInfo}/>
         </div>
     );

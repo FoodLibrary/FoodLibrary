@@ -8,10 +8,6 @@ function SearchResultRouter({match}) {
     const [searchResults, setResults] = useState(match.params.searchKeyword);
     const [selectedAllergy, setSelectedAllergy] = useState(match.params.allergyInfo);
 
-    // useEffect(() => {
-    //     setResults(props);
-    //     console.log(searchResults.searchResults);
-    // }, [props]);
     useEffect(() => {
         const searchProduct = match.params.searchKeyword;
         setResults(searchProduct);
@@ -22,7 +18,6 @@ function SearchResultRouter({match}) {
     return (
         <div className="searchResultRouter">
             <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy}/>
-
             <SearchResult searchResults={searchResults} selectedAllergy={selectedAllergy}/>
         </div>
 

@@ -93,7 +93,7 @@ const Main = (props) => {
 
     const toggle = () => setModal(!modal);
 
-    const a = () => {
+    const allowSearch = () => {
         if (searchProduct === "") {
             window.confirm("검색어를 입력하세요.");
             window.location.replace('/');
@@ -150,7 +150,7 @@ const Main = (props) => {
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
                             <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}>
-                                <Button className={"mainSearchButton"}  onClick={a}>
+                                <Button className={"mainSearchButton"}  onClick={allowSearch}>
                                     <img src={imageResources.searchButtonImg} id={"mainSearchButton"} />
 
                                 </Button>

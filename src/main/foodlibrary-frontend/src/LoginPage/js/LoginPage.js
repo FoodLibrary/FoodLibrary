@@ -8,7 +8,7 @@ import SearchService from "../../services/SearchService";
 const imageResources = require('../../util/ImageResources');
 
 const LoginPage = () => {
-
+    const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
     const [id, setID] = useState("");
     const [pw, setPW] = useState("");
     const [loginOK, setLoginOK] = useState("OK");
@@ -59,7 +59,7 @@ const LoginPage = () => {
 
     return (
         <div className="LoginPage">
-            <TopBar/>
+            <TopBar selectedAllergy={selectedAllergy}/>
             <Container>
                 <Row>
                     <Col xl={1}></Col>
