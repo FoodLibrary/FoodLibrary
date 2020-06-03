@@ -3,6 +3,11 @@
     color: #006edc;
 }
 
+#rankingToggleBar {
+    margin-left: 10vh;
+    margin-right: 0vh;
+}
+
 .rankingButton {
     border: 1px solid #006edc;
     background-color: #006edc;

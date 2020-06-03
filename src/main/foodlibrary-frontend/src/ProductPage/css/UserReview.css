@@ -1,26 +1,110 @@
 .listItem{
     text-align: right;
+    font-size: 0.8rem;
 }
 .reviewInfoRow{
     border-right: 1px solid #dee2e6;
     border-left: 1px solid #dee2e6;
-    width: 93em;
+    width: 100%;
 }
 .userReviewTitle{
     text-align: center;
 }
+
+.userReviewDate {
+    font-size: 0.7rem;
+}
 .reviewListGroup{
-    width:94.5em;
+    width:100%;
     padding-left:1.5em;
     align-items: center;
 }
 .collapse{
-    width:90em;
+    width:100%;
 }
 .ReviewWrite{
-    align-items: center;
-    text-align: center;
+    text-align: left;
     align-self: center;
     align-content: center;
-    padding-right:30em;
+    margin-top: 2rem;
+    margin-left: 2.3rem;
+    margin-right: 2rem;
+
+}
+
+#productReviewCount {
+    font-size: 0.8rem;
+    color: #006edc;
+    margin-bottom: 1rem;
+    text-align: right;
+    margin-top:1rem;
+    margin-left: 66%;
+}
+
+#reviewWriteButton {
+    font-size: 0.8rem;
+    color: #006edc;
+    background-color: white;
+    border: 1px solid #006edc;
+    margin-top: 0.5rem;
+}
+
+#reviewTitleTitle {
+    font-size: 1rem;
+    color: #006edc;
+    padding-top: 1rem;
+}
+
+#reviewTitleTitleStar {
+    font-size: 1rem;
+    color: #006edc;
+    padding-top: 1rem;
+}
+
+#hashTag {
+    font-size: 1rem;
+}
+
+#reviewButtonArea {
+    align-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-left: 45%;
+}
+
+#reviewButton {
+    font-size: 0.8rem;
+    color: #006edc;
+    background-color: white;
+    border: 1px solid #006edc;
+    margin-top: 0.5rem;
+}
+
+.pagination {
+    margin-top: 2rem;
+}
+
+#deleteReview {
+    font-size: 0.8rem;
+    color: #006edc;
+    background-color: white;
+    border: 1px solid #006edc;
+    margin-top: 1rem;
+    margin-left: 93%;
+}
+
+#reviewText {
+    border: 1px solid darkgray;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+#reviewTextTitle {
+    font-size: 1rem;
+    color: #006edc;
+    padding-top: 1rem;
+    padding-bottom: 0.3rem;
+    margin-left: 1rem;
 }

@@ -41,6 +41,7 @@ const SearchResult = (props) => {
     const [popoverOpen, setPopoverOpen] = useState(false);
 
     const toggleInfo = () => setPopoverOpen(!popoverOpen);
+
     useEffect(() => {
         SearchService.findByProductName(searchProduct, inputValue , reSelectedAllergies)
             .then(response => {

@@ -7,7 +7,8 @@ import {
     Col,
     Pagination,
     PaginationItem,
-    PaginationLink
+    PaginationLink,
+    Button
 } from 'reactstrap';
 import '../css/UserReview.css';
 import ReviewService from "../js/ReviewService";
@@ -75,46 +76,45 @@ function UserReview(props) {
                 <ReviewWrite {...productUserInfo} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
             ) : (
                 <ListGroup className="reviewListGroup">
-                    <Row md={2} className="reviewInfoRow">
-                        <Col md={{size: 2, offset: 7}}>
-                            {reviewCount}
-                        </Col>
+                    <Row xl={2} className="reviewInfoRow">
                         {productUserInfo.nickname === "" || allowReviewWrite() ?
-                            <Col></Col>
-                            : <Col md={{size: 3}}>
-                                <button onClick={writeReview}>
+                            <Col xl={2}></Col>
+                            : <Col xl={2}>
+                                <Button onClick={writeReview} id={"reviewWriteButton"}>
                                     리뷰작성
-                                </button>
+                                </Button>
                             </Col>}
+                        <Col xl={2} id={"productReviewCount"}>
+                            <span > 이 제품의 리뷰 갯수 : {reviewCount} </span>
+                        </Col>
+
                     </Row>
                     {reviews &&
                     reviews.map((review, index) => (
                         <React.Fragment>
                             <ListGroupItem className="listItem" id={"review" + index} action>
                                 <Row>
-                                    <Col>
-                                        <div className="userReviewTitle">
-                                            {review.reviewtitle}
-                                        </div>
+                                    <Col className="userReviewTitle" xl={4}>
+                                        {review.reviewtitle}
                                     </Col>
-                                    <Col md={{size: 3, offset: 4}}>
+                                    <Col xl={3}>
                                         {splitHashtag(review.reviewhashtag).map((oneHashtag, index) => (
                                             <div className="userReviewHashTag">
                                                 {oneHashtag}
                                             </div>
                                         ))}
                                     </Col>
-                                    <Col>
+                                    <Col xl={2}>
                                         <div className="userName">
                                             {review.nickname}
                                         </div>
                                     </Col>
-                                    <Col>
+                                    <Col xl={2}>
                                         <div className="userReviewDate">
                                             {review.datetime}
                                         </div>
                                     </Col>
-                                    <Col md="1">
+                                    <Col md="1" xl={1}>
                                         <div className="userReviewPoint">
                                             {review.star}
                                         </div>
@@ -122,8 +122,9 @@ function UserReview(props) {
                                 </Row>
                             </ListGroupItem>
                             <UncontrolledCollapse className={"collapse"} toggler={"#review" + index}>
+                                <Row> <span id={"reviewTextTitle"}> [내용] </span> </Row>
                                 <Row>
-                                    <Col>
+                                    <Col id={"reviewText"}>
                                         {review.reviewdesc}
                                     </Col>
                                 </Row>
@@ -133,9 +134,9 @@ function UserReview(props) {
                                     </Col>
                                 </Row>
                                 {review.nickname === productUserInfo.nickname ?
-                                    <button onClick={deleteReview}>
+                                    <Button onClick={deleteReview} id={"deleteReview"}>
                                         리뷰삭제
-                                    </button> : <React.Fragment/>
+                                    </Button> : <React.Fragment/>
                                 }
                             </UncontrolledCollapse>
                         </React.Fragment>

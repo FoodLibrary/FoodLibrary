@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container} from 'reactstrap';
 import classnames from 'classnames';
 import ProductChart from './ProductChart';
 import UserReview from './UserReview';
@@ -14,20 +14,20 @@ const Tabbar = (props) => {
   }
 
   return (
-    <div>
+    <Container id={"productDetailTab"}>
       <Nav tabs>
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === 'chart' })}
             onClick={() => { tabToggle('chart'); }}>
-            식품분석표
+            <span className={"tabMenu"}> 식품분석표 </span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === 'userReview' })}
             onClick={() => { tabToggle('userReview'); }}>
-            회원 리뷰
+            <span className={"tabMenu"}> 회원 리뷰 </span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -40,12 +40,13 @@ const Tabbar = (props) => {
           </Row>
         </TabPane>
         <TabPane tabId="userReview">
-          <Row>
+          <Col>
             <UserReview {...props}/>
-          </Row>
+          </Col>
+
         </TabPane>
       </TabContent>
-    </div>
+    </Container>
   );
 }
 

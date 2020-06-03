@@ -3,7 +3,7 @@ import '../css/ProductDetailPage.css'
 import {Container,Row,Col} from 'reactstrap';
 import Tabbar from './Tabbar';
 import ProductService from '../js/ProductService';
-
+import Chip from "@material-ui/core/Chip";
 const ProductDetailPage = props => {
 
     const [product, setproduct] = useState({
@@ -15,6 +15,7 @@ const ProductDetailPage = props => {
         rawmtrl:'',
         nutrient:'',
         allergy:'',
+        disease:'',
         productHashtag:'',
         likecount:0,
         zzimcount:0
@@ -33,6 +34,9 @@ const ProductDetailPage = props => {
             console.log(e);
         });
     }
+    const allergyChip = product.allergy.split(",");
+    const diseaseChip = product.disease.split(",");
+
     //
     // const setZzim = () =>{
     //     ZzimLikeService.addZzim(productUserInfo)
@@ -52,50 +56,60 @@ const ProductDetailPage = props => {
     //     });
     // }
     return(
-        <Container>
+        <Container id={"productChart"}>
             <Row>
-                <Col sm={{size:5}}>
+                <Col xl={{size:5}}>
                     <img className="ProductImage" src={product.img} alt="none"/>
                 </Col>
-                <Col sm={{size:7}}>
+                <Col xl={{size:7}}>
                     <Row className="ProductPageRow1" md="4">
-                        <Col md={{size:6,offset:1}}className="ProducPageColTitle">{product.prdlstnm}</Col>
-                        <Col md={{size:1}}>
-                            <img className="ProductPageLZButtons" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/80406245-72B8-455B-BA53-B836563235E2.png" alt="hello world"
+                        <Col xl={{size:6,offset:1}}className="ProducPageColTitle">{product.prdlstnm}</Col>
+                        <Col xl={{size:1}}>
+                            <img id="productPageZButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/80406245-72B8-455B-BA53-B836563235E2.png" alt="hello world"
                                  />
                         </Col>
-                        <Col md={{size:1}}>
-                            <img className="ProductPageLZButtons" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/2F3ECBE2-8BFE-4633-8D6D-04C11E07A486.png" alt="thank you"
+                        <Col xl={{size:1}}>
+                            <img id="productPageBButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/2F3ECBE2-8BFE-4633-8D6D-04C11E07A486.png" alt="thank you"
                                  />
                         </Col>
-                        <Col md={{size:3}}>
+                        <Col xl={{size:3}} id={"ProductPageBuyButtonArea"}>
                             <button className="ProductPageBuyButton">구매하기</button>
                         </Col>
-
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col md={{size:3}} className="ProducPageCol1">생상지 및 소재지</Col>
+                        <Col xl={{size:3}} className="ProducPageCol1">생산자 및 소재지</Col>
                         <Col className="ProducPageCol2">{product.manufacture}</Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col md={{size:3}} className="ProducPageCol1">원산지 정보</Col>
+                        <Col xl={{size:3}} className="ProducPageCol1">원산지 정보</Col>
                         <Col className="ProducPageCol2">{product.rawmtrl}</Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col md={{size:3}} className="ProducPageCol1">알러지</Col>
-                        <Col className="ProducPageCol2">{product.allergy}</Col>
+                        <Col xl={{size:3}} className="ProducPageCol1">알러지</Col>
+
+                        <Col className="ProducPageCol2">
+                            {allergyChip.map((result,index) => (
+                                <Chip className={"allergyChip"} label={result}/>
+                            ))}
+
+                        </Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col md={{size:3}} className="ProducPageCol1">지병</Col>
-                        <Col className="ProducPageCol2">알수없음</Col>
+
+                        <Col xl={{size:3}} className="ProducPageCol1">지병</Col>
+                        <Col className="ProducPageCol2">
+                            {diseaseChip.map((result,index) => (
+                                <Chip className={"allergyChip"} label={result}/>
+                            ))}
+                        </Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col md={{size:3}} className="ProducPageCol1">제품 키워드</Col>
+                        <Col xl={{size:3}} className="ProducPageCol1">제품 키워드</Col>
                         <Col className="ProducPageCol2">{product.productHashtag}</Col>
                     </Row>
                 </Col>

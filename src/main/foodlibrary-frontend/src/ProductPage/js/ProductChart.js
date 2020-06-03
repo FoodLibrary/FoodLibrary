@@ -5,7 +5,7 @@ const ProductChart = (props) => {
     return (
         <Table responsive>
             <thead>
-                <tr>
+                <tr className={"foodTable"}>
                     <th>1회 제공량 (g)</th>
                     <th>열량 (kcal)</th>
                     <th>탄수화물 (g)</th>
@@ -19,7 +19,7 @@ const ProductChart = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr className={"foodTable"}>
                     <td>1</td>
                     <td>2</td>
                     <td>3</td>

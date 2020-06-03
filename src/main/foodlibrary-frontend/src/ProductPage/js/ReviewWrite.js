@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, FormText, Row, Col} from 'reactstrap';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -48,7 +48,7 @@ function ReviewWrite (props){
             reviewhashtag: reviewWrite.reviewhashtag,
             reviewimg: reviewWrite.reviewimg,
             star: reviewWrite.star,
-            datetime: moment().format("YYYY MMMM Do, hh:mm")
+            datetime: moment().format('MMMM Do YYYY, h:mm:ss a')
         };
         ReviewService.create(data)
             .then(response => {
@@ -84,21 +84,22 @@ function ReviewWrite (props){
         <React.Fragment>
         <Form className = "ReviewWrite">
             <FormGroup>
-                <Label for="reviewTitle">리뷰제목</Label>
-                <Input required type="text" id="reviewTitle" placeholder="리뷰제목"
-                       onChange={handleInputChange} name="reviewtitle" value={reviewWrite.reviewtitle}/>
+                <Label for="reviewTitle" id={"reviewTitleTitle"}> [리뷰 제목]</Label>
+                <Input required type="text" id="reviewTitle" placeholder="리뷰 제목"
+                       onChange={handleInputChange} name="reviewtitle" value={reviewWrite.reviewtitle} />
             </FormGroup>
             <FormGroup>
-                <Label for="reviewDesc">내용</Label>
-                <Input required type="textarea" id="reviewDesc" placeholder="리뷰내용"
+                <Label for="reviewDesc" id={"reviewTitleTitle"}>[내용]</Label>
+                <Input required type="textarea" id="reviewDesc" placeholder="리뷰내용" rows="20"
                        onChange={handleInputChange} name="reviewdesc" value={reviewWrite.reviewdesc}/>
-                <Box component="fieldset" mb={5} borderColor="transparent">
-                    <Typography component="legend">별점</Typography>
+                <Box component="fieldset" xl={5} borderColor="transparent">
+                    <Typography component="legend" id={"reviewTitleTitleStar"}>[별점]</Typography>
                     <Rating name="star" size="large" defaultValue={5} max={5} precision={0.5}
                     onChange={handleInputChange}/>
                 </Box>
             </FormGroup>
                 <Autocomplete
+                    id={"hashTag"}
                     multiple
                     name="reviewhashtag"
                     options={hashtags.map((option) => option.title)}
@@ -116,7 +117,10 @@ function ReviewWrite (props){
             <FormGroup>
                 {/*<input type="file" className="fileupload" name="file" onChange={}/>*/}
             </FormGroup>
-            <Button onClick={saveReview}/>
+            <Col id={"reviewButtonArea"}>
+                <Button onClick={saveReview} id={"reviewButton"}> 리뷰 작성하기 </Button>
+            </Col>
+
         </Form>
 
         </React.Fragment>
