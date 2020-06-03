@@ -48,6 +48,7 @@ const TopBar = (props) => {
     const allowSearch = () => {
         if (searchProduct === "") {
             window.confirm("검색어를 입력하세요.");
+            window.location.reload();
         }
     }
 
