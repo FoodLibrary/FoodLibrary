@@ -16,6 +16,8 @@ const ProductList = (props) => {
     const allergyResult = searchResults.allergy.split(",");
     const [allergyInfo, setAllergyInfo] = useState(props.allergyForReSearch);
 
+    const diseaseResult = searchResults.disease.split(",");
+    const [diseaseInfo, setDiseaseInfo] = useState(props.diseaseForReSearch);
 
     useEffect(() => {
         setResults(props);
@@ -73,8 +75,9 @@ const ProductList = (props) => {
                     <Row>
                         <Col xl={4} id={"diseaseArea"} > 지병 위험군 </Col>
                         <Col xl={8} id={"diseaseChipArea"}>
-                            <Chip className={"diseaseChip"} label="고혈압" />
-                            <Chip className={"diseaseChip"} label="당뇨" />
+                            {diseaseResult.map((result,index) => (
+                                <Chip className={"diseaseChip"} label={result}/>
+                            ))}
                         </Col>
                     </Row>
                 </Col>

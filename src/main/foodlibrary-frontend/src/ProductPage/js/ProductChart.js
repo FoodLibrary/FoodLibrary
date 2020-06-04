@@ -1,7 +1,10 @@
 import {Table} from 'reactstrap';
-import React from 'react';
+import React, {useState} from 'react';
 
 const ProductChart = (props) => {
+
+    const a = props.nutrient.split(",")
+    console.log(a)
     return (
         <Table responsive>
             <thead>
@@ -20,12 +23,12 @@ const ProductChart = (props) => {
             </thead>
             <tbody>
                 <tr className={"foodTable"}>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
+                    <td>{a[0]}</td>
+                    <td>{a[1]}</td>
+                    <td>{a[2]}</td>
+                    <td>{a[3]}</td>
+                    <td>{a[4]}</td>
+                    <td>{a[5]}</td>
                     <td>7</td>
                     <td>8</td>
                     <td>9</td>

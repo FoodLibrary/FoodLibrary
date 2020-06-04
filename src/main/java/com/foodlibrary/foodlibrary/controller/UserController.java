@@ -33,6 +33,10 @@ public class UserController {
     @Autowired
     ZzimService zzimService;
 
+    @Autowired
+    LikeController likeController;
+
+
     //일단 여기가 회원가입
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
@@ -86,7 +90,6 @@ public class UserController {
     }
     //좋아요 누른 남자 count
     public int likeManOfUserCount(String productNo) {
-        LikeController likeController = new LikeController();
         List<String> likeUser = likeController.getLikeUser(productNo);
         int count = 0;
         for (int i = 0; i < likeUser.size(); i++) {
@@ -97,7 +100,6 @@ public class UserController {
 
     //좋아요 누른 여자 count
     public int likeWoManOfUserCount(String productNo) {
-        LikeController likeController = new LikeController();
         List<String> likeUser = likeController.getLikeUser(productNo);
         int count = 0;
         for (int i = 0; i < likeUser.size(); i++) {
@@ -109,7 +111,6 @@ public class UserController {
     //좋아요 누른 10,20,30,40,50,60이상 카운트
     //age는 String으로 10대, 20대, 30대 ... 로 받아온다.
     public int ageCount(String productNo, String age) {
-        LikeController likeController = new LikeController();
         List<String> likeUser = likeController.getLikeUser(productNo);
         int count = 0;
 
@@ -169,103 +170,3 @@ public class UserController {
         return userAge;
     }
 }
-
-/*
-package com.foodlibrary.foodlibrary.controller;
-
-import com.foodlibrary.foodlibrary.entity.Like;
-import com.foodlibrary.foodlibrary.entity.Product;
-import com.foodlibrary.foodlibrary.entity.User;
-import com.foodlibrary.foodlibrary.entity.Zzim;
-import com.foodlibrary.foodlibrary.service.LikeService;
-import com.foodlibrary.foodlibrary.service.ProductService;
-import com.foodlibrary.foodlibrary.service.UserService;
-import com.foodlibrary.foodlibrary.service.ZzimService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@RestController
-public class UserController {
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    LikeService likeService;
-
-    @Autowired
-    ProductService productService;
-
-    @Autowired
-    ZzimService zzimService;
-
-    //일단 여기가 회원가입
-    @RequestMapping(value="/users", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder){
-        System.out.println(user.toString());
-        if(userService.existUser(user.getNickname(),user.getPassword())){
-            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
-        }else {
-            userService.saveUser(user);
-
-            return new ResponseEntity<Void>(HttpStatus.CREATED);
-        }
-    }
-
-    @RequestMapping(value="/getuser/{nickname}",method = RequestMethod.POST)
-    public ResponseEntity<User> getUser(@PathVariable String nickname){
-        User user = userService.getOneUser(nickname);
-
-        return new ResponseEntity<User>(user,HttpStatus.OK);
-    }
-
-    public int likeManOfUserCount(String name) {
-        LikeController likeController = new LikeController();
-        List<String> likeUser = likeController.getLikeUser(name);
-        int count = 0;
-        for (int i = 0; i < likeUser.size(); i++) {
-            if(userService.getOneUser(likeUser.get(i)).getSex().equals("남자")) count++;
-        }
-        return count;
-    }
-
-    @GetMapping("/userlike/{nickname}")
-    public ResponseEntity<List<Product>> sendLikeList(@PathVariable String nickname){
-        List<Like> likeList = likeService.getLikesAsNickname(nickname);
-        List<Product> productList = new ArrayList<Product>();
-
-        for(int i=0;i<likeList.size();i++) {
-            Product product = productService.getOneProduct(likeList.get(i).getPrdlstreportno());
-            productList.add(product);
-        }
-        if(productList.size()==0){
-            return new ResponseEntity<List<Product>>(HttpStatus.BAD_REQUEST);
-        }else {
-            return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/userzzim/{nickname}")
-    public ResponseEntity<List<Product>> sendZzimList(@PathVariable String nickname){
-        List<Zzim> zzimList = zzimService.getZzimAsNickname(nickname);
-        List<Product> productList = new ArrayList<Product>();
-
-        for(int i=0;i<zzimList.size();i++) {
-            Product product = productService.getOneProduct(zzimList.get(i).getPrdlstreportno());
-            productList.add(product);
-        }
-        if(productList.size()==0){
-            return new ResponseEntity<List<Product>>(HttpStatus.BAD_REQUEST);
-        }else {
-            return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
-        }
-    }
-
-
-}*/

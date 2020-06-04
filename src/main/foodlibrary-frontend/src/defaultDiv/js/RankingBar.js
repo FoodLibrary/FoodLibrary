@@ -13,6 +13,7 @@ const RankingBar = (props) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
+    const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
     const [searchResults, setResults] = useState([]);
 
     const toggle = () => setDropdownOpen(prevState => !prevState);

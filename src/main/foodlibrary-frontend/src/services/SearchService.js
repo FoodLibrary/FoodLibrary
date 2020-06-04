@@ -1,7 +1,7 @@
 import http from "../http-common"
 
-const findByProductName = (searchProduct, inputValue ,allergy) => {
-    return http.post(`/searchproduct/${searchProduct}/${inputValue}`, allergy);
+const findByProductName = (searchProduct, category, inputValue ,allergyAndDisease ) => {
+    return http.post(`/searchproduct/${searchProduct}/${category}/${inputValue}`, allergyAndDisease);
 };
 
 const onTimeRanking = () => {
@@ -10,7 +10,19 @@ const onTimeRanking = () => {
 
 const onTimeRankingToggle = () => {
     return http.post(`/productSearchRankingPrdnm`);
-}
+};
+
+const reviewRanking = () => {
+    return http.post('/productReviewRanking');
+};
+
+const sexRanking = (inputSexValue) => {
+    return http.post(`/productSexRanking/${inputSexValue}`);
+};
+
+const ageRanking = (inputAgeValue) => {
+    return http.post(`/productAgeRanking/${inputAgeValue}`);
+};
 
 const loginCertification = (loginInfo) => {
     return http.post('/login', loginInfo);
@@ -22,4 +34,8 @@ export default {
     onTimeRanking,
     onTimeRankingToggle,
     loginCertification,
+    reviewRanking,
+    sexRanking,
+    ageRanking,
+
 };

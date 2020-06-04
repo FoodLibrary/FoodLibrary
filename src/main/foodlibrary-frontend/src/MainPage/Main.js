@@ -27,12 +27,12 @@ const Main = (props) => {
     const toggleNavbar = () => setCollapsed(!collapsed);
 
     let [selectedAllergies, setSelectedAllergy] = useState(["알러지없음"]);
+    let [selectedDisease, setSelectedDiseases] = useState(["질병없음"]);
     const [searchProduct, setSearchProduct] = useState("");
 
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
         setSearchProduct(searchProduct);
-
     };
 
     const [loginOrNot, setLoginOrNot] = useState("Login");
@@ -83,6 +83,18 @@ const Main = (props) => {
         setSelectedAllergy(selectedAllergyArray);
         console.log(selectedAllergies);
     };
+
+    const onChangeDiseaseInput = (event, value) => {
+        const selectedDisease = value;
+        console.log(value);
+        let selectedDiseaseArray = [];
+        for (let i = 0; i < selectedDisease.length; i++) {
+            selectedDiseaseArray[i] = selectedDisease[i].disease;
+        }
+        setSelectedDiseases(selectedDiseaseArray);
+        console.log(selectedDisease);
+    };
+
 
     const {
         buttonLabel,
@@ -149,7 +161,7 @@ const Main = (props) => {
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
-                            <Link to={`/searchResult/${searchProduct}/${selectedAllergies}`}>
+                            <Link to={`/searchResult/${searchProduct}/${selectedAllergies}/${selectedDisease}`}>
                                 <Button className={"mainSearchButton"}  onClick={allowSearch}>
                                     <img src={imageResources.searchButtonImg} id={"mainSearchButton"} />
 
@@ -183,6 +195,9 @@ const Main = (props) => {
                             size="small"
                             options={disease}
                             getOptionLabel={(option) => option.disease}
+                            onChange={onChangeDiseaseInput}
+                            onInputChange={onChangeDiseaseInput}
+                            onClick={onChangeDiseaseInput}
                             renderInput={disease => (
                                 <TextField {...disease} variant="outlined" label={"질병 정보"}/>
                             )}
@@ -244,7 +259,20 @@ const allergy = [
 
 const disease = [
     {disease: '내 질병'},
-    {disease: '당뇨'},
-    {disease: '고혈압 '},
-    {disease: '비만'}
+    {disease: '고혈압'},
+    {disease: '요로결석'},
+    {disease: '신부전증'},
+    {disease: '위염'},
+    {disease: '복부비만'},
+    {disease: '이상지혈증'},
+    {disease: '비만'},
+    {disease: '간부전'},
+    {disease: '신장질환'},
+    {disease: '심근경색'},
+    {disease: '변비'},
+    {disease: '동맥경화증'},
+    {disease: '협십증'},
+    {disease: '암'},
+    {disease: '심장병'},
+    {disease: '심근경색'},
 ];

@@ -5,11 +5,11 @@ import Tabbar from './Tabbar';
 import ProductService from '../js/ProductService';
 import Chip from "@material-ui/core/Chip";
 const ProductDetailPage = props => {
-
+    const [nutrient, setNutrient] = useState("");
     const [product, setproduct] = useState({
         prdlstreportno:props.productInfo.productNumber,
-        prdlstnm:'',
-        manufacture:'',
+        prdlstnm: '',
+        manufacture: '',
         category:'',
         img:'',
         rawmtrl:'',
@@ -29,14 +29,20 @@ const ProductDetailPage = props => {
         ProductService.getProductInfo(product.prdlstreportno)
             .then(foundProduct => {
                 setproduct(foundProduct.data);
-                console.log(foundProduct.data);
+                setNutrient(foundProduct.data.nutrient);
+                console.log(foundProduct.data)
             }).catch(e => {
             console.log(e);
         });
     }
+
     const allergyChip = product.allergy.split(",");
     const diseaseChip = product.disease.split(",");
 
+    const buyProduct = () => {
+        const url = product.buylink;
+        window.open(url, '_blank');
+    }
     //
     // const setZzim = () =>{
     //     ZzimLikeService.addZzim(productUserInfo)
@@ -73,7 +79,7 @@ const ProductDetailPage = props => {
                                  />
                         </Col>
                         <Col xl={{size:3}} id={"ProductPageBuyButtonArea"}>
-                            <button className="ProductPageBuyButton">구매하기</button>
+                            <button className="ProductPageBuyButton" onClick={buyProduct}>구매하기</button>
                         </Col>
                     </Row>
                     <hr/>
@@ -99,7 +105,6 @@ const ProductDetailPage = props => {
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-
                         <Col xl={{size:3}} className="ProducPageCol1">지병</Col>
                         <Col className="ProducPageCol2">
                             {diseaseChip.map((result,index) => (
@@ -114,7 +119,7 @@ const ProductDetailPage = props => {
                     </Row>
                 </Col>
             </Row>
-            <Tabbar {...props.productInfo}/>
+            <Tabbar {...props.productInfo} nutrient={nutrient}/>
         </Container>
     );
 };

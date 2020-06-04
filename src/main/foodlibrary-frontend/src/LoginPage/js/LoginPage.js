@@ -9,6 +9,7 @@ const imageResources = require('../../util/ImageResources');
 
 const LoginPage = () => {
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
+    const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
     const [searchResults, setSearchResults] = useState("");
 
     const [id, setID] = useState("");
@@ -61,7 +62,7 @@ const LoginPage = () => {
 
     return (
         <div className="LoginPage">
-            <TopBar selectedAllergy={selectedAllergy} searchResults={searchResults}/>
+            <TopBar selectedAllergy={selectedAllergy} searchResults={searchResults} selectedDisease={selectedDisease}/>
             <Container>
                 <Row>
                     <Col xl={1}></Col>

@@ -35,7 +35,7 @@ const Tabbar = (props) => {
         <TabPane tabId="chart">
           <Row>
             <Col sm="12">
-              <ProductChart/>
+              <ProductChart {...props} nutrient={props.nutrient}/>
             </Col>
           </Row>
         </TabPane>

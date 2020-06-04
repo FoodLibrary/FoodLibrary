@@ -11,30 +11,64 @@ const imageResources = require('../../util/ImageResources');
 
 const SearchResult = (props) => {
     const allergyForReSearch = props.selectedAllergy;
+    const diseaseForReSearch = props.selectedDisease;
+
     let [selectedAllergies, setSelectedAllergy] = useState(props.selectedAllergy);
+    let [selectedDisease, setSelectedDisease] = useState(props.selectedDisease);
+
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
 
     const [reSelectedAllergies, setReSelectedAllergy] = useState([]);
+    const [reSelectedDisease, setReSelectedDisease] = useState([]);
 
     const onChangeAllergyInput = (event, value) => {
         const selectedAllergy = value;
         setReSelectedAllergy(selectedAllergy);
     };
 
+    const onChangeDiseaseInput = (event, value) => {
+        const selectedDisease = value;
+        setSelectedDisease(selectedDisease);
+    };
+
     function initialAllergy() {
         setSelectedAllergy(props.selectedAllergy);
         let selectedAllergyArray = [];
         selectedAllergyArray = selectedAllergies.split(",");
-
         for (let i = 0; i < selectedAllergyArray.length; i++) {
             reSelectedAllergies[i] = {allergy: selectedAllergyArray[i]};
         }
         return reSelectedAllergies;
     }
 
+    function initialDisease() {
+        setSelectedDisease(props.selectedDisease);
+        let selectedDiseaseArray = [];
+        selectedDiseaseArray = selectedDisease.split(",");
+        for (let i = 0; i < selectedDiseaseArray.length; i++) {
+            reSelectedDisease[i] = {disease: selectedDiseaseArray[i]};
+        }
+        return reSelectedDisease;
+    }
+
+    const [allergyAndDisease, setAllergyAndDisease] = useState([]);
+
+    function initialAllergyAndDisease() {
+        let allergyAndDisease = [];
+        for (let i = 0; i < reSelectedAllergies.length; i++) {
+            allergyAndDisease[i] = reSelectedAllergies[i];
+        }
+        for (let j = reSelectedAllergies.length; j < reSelectedAllergies.length + reSelectedDisease.length; j++) {
+            allergyAndDisease[j] = reSelectedDisease[j-reSelectedDisease.length];
+        }
+        return allergyAndDisease;
+    }
+
     useEffect(() => {
         setReSelectedAllergy(initialAllergy);
+        setReSelectedDisease(initialDisease);
+        setAllergyAndDisease(initialAllergyAndDisease);
     },[]);
 
     const [inputValue, setInputValue] = useState("좋아요");
@@ -42,17 +76,20 @@ const SearchResult = (props) => {
 
     const toggleInfo = () => setPopoverOpen(!popoverOpen);
 
+    const [category, setCategory] = useState("없음");
+
     useEffect(() => {
-        SearchService.findByProductName(searchProduct, inputValue , reSelectedAllergies)
+        SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease)
             .then(response => {
                 setSearchProduct(props.searchResults);
                 setSelectedAllergy(reSelectedAllergies);
+                setSelectedDisease(reSelectedDisease);
                 setResults(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-    });
+    },[]);
 
     return (
         <Container>
@@ -87,6 +124,10 @@ const SearchResult = (props) => {
                         size="small"
                         options={disease}
                         getOptionLabel={(option) => option.disease}
+                        onChange={onChangeDiseaseInput}
+                        onInputChange={onChangeDiseaseInput}
+                        onClick={onChangeDiseaseInput}
+                        value={reSelectedDisease}
                         renderInput={disease => (
                             <TextField {...disease} variant="outlined" label={"질병 정보"}/>
                         )}
@@ -112,9 +153,9 @@ const SearchResult = (props) => {
                 <Col xl={1} id={"sortingArea"}>
                     <Input type="select" className={"selectSort"} onChange={e => setInputValue(e.target.value)}
                            value={inputValue}>
-                        <option className={"selectSort"} value={"좋아요"}> 좋아요순</option>
-                        <option className={"selectSort"} value={"별점"}> 별점순</option>
-                        <option className={"selectSort"} value={"리뷰"}> 리뷰순</option>
+                        <option className={"selectSort"} value={"좋아요"}> 좋아요순 </option>
+                        <option className={"selectSort"} value={"별점"}> 별점순 </option>
+                        <option className={"selectSort"} value={"리뷰량"}> 리뷰순 </option>
                     </Input>
                 </Col>
 
@@ -123,7 +164,7 @@ const SearchResult = (props) => {
             <Row xl={3}>
 
                 {searchResults.map((result, index) => (
-                    <ProductList {...result} searchProduct={searchProduct} allergyForReSearch={allergyForReSearch}  key={index}/>
+                    <ProductList {...result} searchProduct={searchProduct} allergyForReSearch={allergyForReSearch} diseaseForReSearch={diseaseForReSearch} key={index}/>
                 ))}
 
             </Row>
@@ -165,7 +206,21 @@ const allergy = [
 
 const disease = [
     {disease: '내 질병'},
-    {disease: '당뇨'},
-    {disease: '고혈압 '},
-    {disease: '비만'}
+    {disease: '고혈압'},
+    {disease: '요로결석'},
+    {disease: '신부전증'},
+    {disease: '위염'},
+    {disease: '복부비만'},
+    {disease: '이상지혈증'},
+    {disease: '비만'},
+    {disease: '간부전'},
+    {disease: '신장질환'},
+    {disease: '심근경색'},
+    {disease: '변비'},
+    {disease: '동맥경화증'},
+    {disease: '협십증'},
+    {disease: '암'},
+    {disease: '심장병'},
+    {disease: '심근경색'},
 ];
+

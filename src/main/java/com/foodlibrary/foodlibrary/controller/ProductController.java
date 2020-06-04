@@ -1,9 +1,8 @@
-
+/*
 package com.foodlibrary.foodlibrary.controller;
 
 import com.foodlibrary.foodlibrary.entity.Product;
 import com.foodlibrary.foodlibrary.service.ProductService;
-import com.foodlibrary.foodlibrary.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,107 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
+    @PostMapping("/addProduct")
+    public Product addProduct(@RequestBody Product product) {
+        return service.saveProduct(product);
+    }
+
+    @PostMapping("/addProducts")
+    public List<Product> addProducts(@RequestBody List<Product> products) {
+        return service.saveProducts(products);
+    }
+
+    @GetMapping("/products")
+    public List<Product> findAllProducts() {
+        return service.getProducts();
+    }
+
+    class RankingComparator implements Comparator<Product> {
+        @Override
+        public int compare(Product first, Product second) {
+            int firstLike = first.getLikecount();
+            int secondLike = second.getLikecount();
+            if (firstLike > secondLike) return -1;
+            else if (firstLike < secondLike) return 1;
+            else return 0;
+        }
+    }
+
+    @RequestMapping(value = "api/productRanking", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> findProduct() {
+        List<Product> list = service.getProducts();
+        List<Product> tmpList = new ArrayList<Product>();
+
+        RankingComparator comp = new RankingComparator();
+        Collections.sort(list, comp);
+
+        for(int i=0; i < 10 ; i++){
+            tmpList.add(list.get(i));
+        }
+
+        return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
+    }
+
+    @GetMapping("/product/{id}")
+    public Product findProductById(@PathVariable String id) {
+
+        return service.getProductById(id);
+    }
+
+    @RequestMapping(value = "api/productpage/{prdlstreportno}", method = RequestMethod.POST)
+    public ResponseEntity<Product> findOneProduct(@PathVariable String prdlstreportno) {
+        Product product = service.getOneProduct(prdlstreportno);
+        String productname = product.getPrdlstnm().replace(" ","+");
+        String buylink = "https://search.shopping.naver.com/search/all.nhn?query=" + productname;
+        product.setBuylink(buylink);
+        return new ResponseEntity<Product>(product, HttpStatus.OK);
+    }
+
+    @PutMapping("/updateProduct")
+    public Product updateProduct(@RequestBody Product product) {
+        return service.updateProduct(product);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable String id) {
+        return service.deleteProduct(id);
+    }
+
+    @RequestMapping(value = "/searchproduct/{name}", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name) {
+        List<Product> products = service.getProductsAsSearch(name);
+        //System.out.println(products.toString());
+        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+    }
+
+}
+
+
+*/
+package com.foodlibrary.foodlibrary.controller;
+
+import com.foodlibrary.foodlibrary.entity.Product;
+import com.foodlibrary.foodlibrary.service.ProductService;
+import com.foodlibrary.foodlibrary.service.RankService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.*;
+
+@RestController
+public class ProductController {
+
+    @Autowired
+    private ProductService service;
     @Autowired
     private RankService rankService;
+    @Autowired
+    private ReviewController reviewsController;
+    @Autowired
+    private UserController userController;
 
     @PostMapping("/addProduct")
     public Product addProduct(@RequestBody Product product) {
@@ -37,16 +135,15 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public Product findProductById(@PathVariable String id) {
-
         return service.getProductById(id);
     }
 
     @GetMapping("/productpage/{prdlstreportno}")
     public ResponseEntity<Product> findOneProduct(@PathVariable String prdlstreportno) {
         Product product = service.getOneProduct(prdlstreportno);
-        product.setSearchcount(product.getSearchcount()+1);
+        product.setSearchcount(product.getSearchcount() + 1);
         service.updateProduct(product);
-        String productname = product.getPrdlstnm().replace(" ","+");
+        String productname = product.getPrdlstnm().replace(" ", "+");
         String buylink = "https://search.shopping.naver.com/search/all.nhn?query=" + productname;
         product.setBuylink(buylink);
         return new ResponseEntity<Product>(product, HttpStatus.OK);
@@ -62,94 +159,92 @@ public class ProductController {
         return service.deleteProduct(id);
     }
 
-    //이전것
-    /*@PostMapping("/searchproduct/{name}")
-    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @RequestBody String allergy) {
-        rankService.addword(name);
-        List<Product> products = service.getProductsAsSearch(name);
-        List<Product> tmpProducts = new ArrayList<Product>();
-        String allergys = allergy.toString();
 
-        if (allergy.equals("\\[]")) {
-            return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+    @RequestMapping(value = "/searchproduct/{name}/{category}/{sort}", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @RequestBody String allergyAndDisease) {
+        List<Product> products;
+        List<Product> tmpProducts = new ArrayList<Product>(); // 알러지 필터링
+        List<Product> tmpProducts2 = new ArrayList<Product>(); // 지병 필터링
+        List<String> allergys = new ArrayList<String>();
+        List<String> diseases = new ArrayList<String>();
+
+        //name 입력이 있으면 해당 상품만 검색
+        if (!name.equals("없음")) {
+            products = service.getProductsAsSearch(name);
         }
+        //없으면 모든 상품 검색
         else {
-            //불 필요한 단어 삭제
-            String tmp = allergys.replaceAll("\\{\"allergy\":\"","");
-            String tmp4 = tmp.replaceAll("\\[","");
-            tmp = tmp4.replaceAll("\\]","");
-            tmp4 = tmp.replaceAll("\"\\}","");
+            products = service.getProducts();
+        }
 
-            //삭제 후 단어 나누기
-            String[] replaceAllergy = tmp4.split(",");
+        //카테고리가 있으면 카테고리상품만 검색
+        if (!category.equals("없음")) {
+            products = service.searchCategory(products, category);
+        }
 
+        String[] allergyTmp = allergyAndDisease.split("\"allergy\":\"");
+        String[] diseaseTmp = allergyAndDisease.split("\"disease\":\"");
+
+        //알러지 유무 판단.
+        if (allergyTmp.length < 2) {
+            tmpProducts = products;
+        } else {
+            for (int i = 1; i < allergyTmp.length; i++) {
+                allergys.add(allergyTmp[i].split("\"")[0]);
+            }
             //입력받은 알러지와 상품의 알러지 비교
             for (int i = 0; i < products.size(); i++) {
                 String[] productAllergy = products.get(i).getAllergy().split(",");
-                boolean check = true;
+                boolean checkAllergy = true;
                 for (int j = 0; j < productAllergy.length; j++) {
-                    for (int z = 0; z < replaceAllergy.length; z++) {
-                        if (productAllergy[j].equals(replaceAllergy[z])) {
-                            check = false;
+                    for (int z = 0; z < allergys.size(); z++) {
+                        if (productAllergy[j].equals(allergys.get(z))) {
+                            checkAllergy = false;
                         }
                     }
                 }
-                if (check == true) {
+                if (checkAllergy == true) {
                     tmpProducts.add(products.get(i));
                 }
             }
-            return new ResponseEntity<List<Product>>(tmpProducts, HttpStatus.OK);
         }
-    }*/
-    @RequestMapping(value = "/searchproduct/{name}/{sort}", method = RequestMethod.POST)
-    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String sort, @RequestBody String allergy) {
-        List<Product> products = service.getProductsAsSearch(name);
-        List<Product> tmpProducts = new ArrayList<Product>();
-        String allergys = allergy.toString();
 
-        //알러지 유무 판단.
-        if (allergys.equals("\\[]")) {
-            tmpProducts = products;
+        //지병 유무 판단.
+        if (diseaseTmp.length < 2) {
+            tmpProducts2 = tmpProducts;
         } else {
-            //불 필요한 단어 삭제
-            String tmp = allergys.replaceAll("\\{\"allergy\":\"", "");
-            String tmp4 = tmp.replaceAll("\\[", "");
-            tmp = tmp4.replaceAll("\\]", "");
-            tmp4 = tmp.replaceAll("\"\\}", "");
-
-            //삭제 후 단어 나누기
-            String[] replaceAllergy = tmp4.split(",");
-
-            //입력받은 알러지와 상품의 알러지 비교
-            for (int i = 0; i < products.size(); i++) {
-                String[] productAllergy = products.get(i).getAllergy().split(",");
-                boolean check = true;
-                for (int j = 0; j < productAllergy.length; j++) {
-                    for (int z = 0; z < replaceAllergy.length; z++) {
-                        if (productAllergy[j].equals(replaceAllergy[z])) {
-                            check = false;
+            for (int i = 1; i < diseaseTmp.length; i++) {
+                diseases.add(diseaseTmp[i].split("\"")[0]);
+            }
+            //입력받은 지병과 상품의 지병 비교
+            for (int i = 0; i < tmpProducts.size(); i++) {
+                String[] productDisease = tmpProducts.get(i).getDisease().split(",");
+                boolean checkDisease = true;
+                for (int j = 0; j < productDisease.length; j++) {
+                    for (int z = 0; z < diseases.size(); z++) {
+                        if (productDisease[j].equals(diseases.get(z))) {
+                            checkDisease = false;
                         }
                     }
                 }
-                if (check == true) {
-                    tmpProducts.add(products.get(i));
+                if (checkDisease == true) {
+                    tmpProducts2.add(tmpProducts.get(i));
                 }
             }
         }
 
         //정렬
         if (sort.equals("좋아요")) {
-            tmpProducts = productSort(tmpProducts, new LikeComparator());
+            tmpProducts2 = productSort(tmpProducts2, new LikeComparator());
         } else if (sort.equals("별점")) {
-            tmpProducts = productSort(tmpProducts, new starComparator());
+            tmpProducts2 = productSort(tmpProducts2, new starComparator());
         } else if (sort.equals("리뷰량")) {
-            tmpProducts = productSort(tmpProducts, new reviewComparator());
+            tmpProducts2 = productSort(tmpProducts2, new reviewComparator());
         } else {
         }
 
-        return new ResponseEntity<List<Product>>(tmpProducts, HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(tmpProducts2, HttpStatus.OK);
     }
-
 
     //좋아요 카운트
     class LikeComparator implements Comparator<Product> {
@@ -179,8 +274,6 @@ public class ProductController {
     class reviewComparator implements Comparator<Product> {
         @Override
         public int compare(Product first, Product second) {
-            ReviewController reviewsController = new ReviewController();
-
             int firstCount = reviewsController.getReviewCount(first.getPrdlstreportno());
             int secondCount = reviewsController.getReviewCount(second.getPrdlstreportno());
             if (firstCount > secondCount) return -1;
@@ -260,9 +353,8 @@ public class ProductController {
     class ManCountComparator implements Comparator<Product> {
         @Override
         public int compare(Product first, Product second) {
-            UserController uc = new UserController();
-            int firstCount = uc.likeManOfUserCount(first.getPrdlstnm());
-            int secondCount = uc.likeManOfUserCount(second.getPrdlstnm());
+            int firstCount = userController.likeManOfUserCount(first.getPrdlstnm());
+            int secondCount = userController.likeManOfUserCount(second.getPrdlstnm());
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;
@@ -273,9 +365,8 @@ public class ProductController {
     class WomanCountComparator implements Comparator<Product> {
         @Override
         public int compare(Product first, Product second) {
-            UserController uc = new UserController();
-            int firstCount = uc.likeWoManOfUserCount(first.getPrdlstnm());
-            int secondCount = uc.likeWoManOfUserCount(second.getPrdlstnm());
+            int firstCount = userController.likeWoManOfUserCount(first.getPrdlstnm());
+            int secondCount = userController.likeWoManOfUserCount(second.getPrdlstnm());
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;
@@ -283,7 +374,7 @@ public class ProductController {
     }
 
     //성별 랭킹
-    @RequestMapping(value = "api/productSexRanking/{sex}", method = RequestMethod.POST)
+    @RequestMapping(value = "/productSexRanking/{sex}", method = RequestMethod.POST)
     public ResponseEntity<List<Product>> findSexRanking(@PathVariable String sex) {
         List<Product> list = service.getProducts();
         List<Product> tmpList = new ArrayList<Product>();
@@ -305,14 +396,15 @@ public class ProductController {
     //나이별 정렬
     class AgeCountComparator implements Comparator<Product> {
         String age;
-        AgeCountComparator(String age){
-            this.age= age;
+
+        AgeCountComparator(String age) {
+            this.age = age;
         }
+
         @Override
         public int compare(Product first, Product second) {
-            UserController uc = new UserController();
-            int firstCount = uc.ageCount(first.getPrdlstnm(),age);
-            int secondCount = uc.ageCount(second.getPrdlstnm(),age);
+            int firstCount = userController.ageCount(first.getPrdlstnm(), age);
+            int secondCount = userController.ageCount(second.getPrdlstnm(), age);
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;
@@ -320,7 +412,7 @@ public class ProductController {
     }
 
     //나이별 랭킹
-    @RequestMapping(value = "api/productAgeRanking/{age}", method = RequestMethod.POST)
+    @RequestMapping(value = "/productAgeRanking/{age}", method = RequestMethod.POST)
     public ResponseEntity<List<Product>> findAgeRanking(@PathVariable String age) {
         List<Product> list = service.getProducts();
         List<Product> tmpList = new ArrayList<Product>();
@@ -335,19 +427,26 @@ public class ProductController {
     }
 
     //카테고리로 검색
-    @RequestMapping(value="/searchAsCategory", method = RequestMethod.POST)
-    public ResponseEntity<List<List<Product>>> searchAsCategory(@RequestBody Map<String,String> param){
+    @RequestMapping(value = "/searchAsCategory", method = RequestMethod.POST)
+    public ResponseEntity<List<List<Product>>> searchAsCategory(@RequestBody Map<String, String> param) {
         String category = param.get("category");
 
-        List<Product> listlike = service.searchAsCategory(category,"likecount");
-        List<Product > listzzim = service.searchAsCategory(category, "zzimcount");
-        List<Product> liststar = service.searchAsCategory(category,"staraverage");
+        List<Product> listlike = service.searchAsCategory(category, "likecount");
+        List<Product> listzzim = service.searchAsCategory(category, "zzimcount");
+        List<Product> liststar = service.searchAsCategory(category, "staraverage");
         List<List<Product>> list = new ArrayList<>();
         list.add(listlike);
         list.add(listzzim);
         list.add(liststar);
 
-        return new ResponseEntity<List<List<Product>>>(list,HttpStatus.OK);
+        return new ResponseEntity<List<List<Product>>>(list, HttpStatus.OK);
     }
-}
 
+    @RequestMapping(value = "/productnmByName/{productName}", method = RequestMethod.POST)
+    public ResponseEntity<String> productnmByName(@PathVariable String productName) {
+        Product product = service.getProductByName(productName);
+        return new ResponseEntity<String>(product.getPrdlstreportno(), HttpStatus.OK);
+    }
+
+
+}

@@ -15,14 +15,7 @@ import {
 import '../css/TopBarStyle.css';
 
 import RankingBar from "./RankingBar";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchService from "../../services/SearchService";
-import ProductList from "../../SearchResultPage/js/ProductList";
-import SearchResult from "../../SearchResultPage/js/SearchResult";
-import Container from "reactstrap/lib/Container";
 import {Link} from "react-router-dom";
-import LoginPage from "../../LoginPage/js/LoginPage";
 
 const imageResources = require('../../util/ImageResources.js');
 
@@ -32,6 +25,7 @@ const TopBar = (props) => {
 
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     let [selectedAllergy, setSelectedAllergy] = useState(props.selectedAllergy);
+    let [selectedDisease, setSelectedDisease] = useState(props.selectedDisease);
 
     const [loginOrNotA, setLoginOrNotA] = useState("Login");
 
@@ -84,7 +78,15 @@ const TopBar = (props) => {
             setSelectedAllergy(selectedAllergy);
         }
 
+        if (props.selectedDisease === null) {
+            console.log(selectedDisease)
+        } else {
+            setSelectedDisease(selectedDisease);
+        }
+
     };
+
+
 
     return (
         <Navbar>
@@ -98,7 +100,7 @@ const TopBar = (props) => {
                 </NavItem>
                 <NavItem>
 
-                    <Link to={`/searchResult/${searchProduct}/${selectedAllergy}`}>
+                    <Link to={`/searchResult/${searchProduct}/${selectedAllergy}/${selectedDisease}`}>
                         <Button id={"searchButton"} onClick={allowSearch}>
                             <img id={"searchButtonImg"} src={imageResources.searchButtonImg}/>
                         </Button>

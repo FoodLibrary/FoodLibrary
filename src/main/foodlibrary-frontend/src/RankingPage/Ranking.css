@@ -69,3 +69,15 @@
 .activeTab {
     background-color:#61dafb ;
 }
+
+#sexRankingSelect {
+    font-family: NanumBarunGothic;
+    font-size: 1rem;
+    color: #006edc;
+    padding-left: 5rem;
+    margin-top: 1rem;
+}
+
+#sexRankingSelectArea {
+    margin-top: 2rem;
+}

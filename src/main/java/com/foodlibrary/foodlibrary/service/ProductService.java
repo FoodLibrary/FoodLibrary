@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,10 +63,20 @@ public class ProductService {
     public List<Product> getProductsAsSearch(String name){
         return repository.findByPrdlstnmContaining(name);
     }
-
+    public Product getProductByName(String name){ return repository.findByPrdlstnm(name);}
     //이거 뭔지 찾을것
     public int changeCount(int count,String prdlstreportno){
         return repository.setFixedCount(count,prdlstreportno);
+    }
+
+    public List<Product> searchCategory(List<Product> products, String category){
+        List<Product> tmpProducts = new ArrayList<Product>();
+        for(Product product : products){
+            if(product.getCategory().equals(category)) {
+                tmpProducts.add(product);
+            }
+        }
+        return tmpProducts;
     }
 
     public List<Product> searchAsCategory(String category,String filter){

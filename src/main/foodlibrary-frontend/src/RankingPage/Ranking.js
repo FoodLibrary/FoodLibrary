@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import Container from "reactstrap/es/Container";
 import ProductList from "../SearchResultPage/js/ProductList";
 import SearchService from "../services/SearchService";
+import Input from "reactstrap/es/Input";
 
 const Ranking = (props) => {
     const [activeTab, setActiveTab] = useState('1');
@@ -15,8 +16,16 @@ const Ranking = (props) => {
     }
 
     const [onTimeRanking, setOnTimeRanking] = useState([]);
+    const [reviewRanking, setReviewRanking] = useState([]);
+    const [sexRanking, setSexRanking] = useState([]);
+    const [ageRanking, setAgeRanking] = useState([]);
+
+    const [inputSexValue, setInputSexValue] = useState("남자");
+    const [inputAgeValue, setInputAgeValue] = useState("20대");
 
     useEffect(() => {
+        setInputSexValue(inputSexValue);
+        setInputAgeValue(inputAgeValue);
         SearchService.onTimeRanking()
             .then(response => {
                 setOnTimeRanking(response.data);
@@ -24,6 +33,7 @@ const Ranking = (props) => {
             .catch(e => {
                 console.log(e);
             });
+
     });
 
     function onclickRankingOnTime() {
@@ -36,6 +46,40 @@ const Ranking = (props) => {
                 console.log(e);
             });
     }
+
+    function onClickReview() {
+        toggle('2');
+        SearchService.reviewRanking()
+            .then(response => {
+                setReviewRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    function onClickSexRanking() {
+        toggle('3');
+        SearchService.sexRanking(inputSexValue)
+            .then(response => {
+                setSexRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    function onClickAgeRanking() {
+        toggle('4');
+        SearchService.ageRanking(inputAgeValue)
+            .then(response => {
+                setAgeRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
     return (
         <Container>
             <Row>
@@ -54,7 +98,7 @@ const Ranking = (props) => {
                 <NavItem>
                     <NavLink id={"reviewRanking"}
                         className={classnames({ active: activeTab === '2' })}
-                        onClick={() => { toggle('2'); }}
+                        onClick={onClickReview}
                     >
                         리뷰량 순위
                     </NavLink>
@@ -62,7 +106,7 @@ const Ranking = (props) => {
                 <NavItem>
                     <NavLink id={"sexRanking"}
                         className={classnames({ active: activeTab === '3' })}
-                        onClick={() => { toggle('3'); }}
+                        onClick={onClickSexRanking}
                     >
                         성별 순위
                     </NavLink>
@@ -70,7 +114,7 @@ const Ranking = (props) => {
                 <NavItem>
                     <NavLink id={"ageRanking"}
                         className={classnames({ active: activeTab === '4' })}
-                        onClick={() => { toggle('4'); }}
+                        onClick={onClickAgeRanking}
                     >
                         나이별 순위
                     </NavLink>
@@ -86,7 +130,59 @@ const Ranking = (props) => {
                 </TabPane>
                 <TabPane tabId="2">
                     <Row>
+                        <Row xl={3}>
+                            {reviewRanking.map((result, index) => (
+                                <ProductList {...result} searchProduct={result.prdlstnm} allergyForReSearch={allergyForReSearch} key={index}/>
+                            ))}
+                        </Row>
+                    </Row>
+                </TabPane>
+                <TabPane tabId="3">
+                    <Row id={"sexRankingSelectArea"}>
+                        <Col xl={7}></Col>
+                        <Col xl={2}>
+                            <span id={"sexRankingSelect"}> 성별 선택 : </span>
+                        </Col>
+                        <Col xl={3}>
 
+                            <Input type={"select"} onChange={e => setInputSexValue(e.target.value)} value={inputSexValue}>
+                                <option value={"남자"}> 남성 </option>
+                                <option value={"여자"}> 여성 </option>
+                            </Input>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Row xl={3}>
+                            {sexRanking.map((result, index) => (
+                                <ProductList {...result} searchProduct={result.prdlstnm} allergyForReSearch={allergyForReSearch} key={index}/>
+                            ))}
+                        </Row>
+                    </Row>
+                </TabPane>
+
+                <TabPane tabId="4">
+                    <Row id={"sexRankingSelectArea"}>
+                        <Col xl={7}></Col>
+                        <Col xl={2}>
+                            <span id={"sexRankingSelect"}> 성별 선택 : </span>
+                        </Col>
+                        <Col xl={3}>
+                            <Input type={"select"} onChange={e => setInputAgeValue(e.target.value)} value={inputAgeValue}>
+                                <option value={"10대"}> 10대 </option>
+                                <option value={"20대"} defaultChecked={true}> 20대 </option>
+                                <option value={"30대"}> 30대 </option>
+                                <option value={"40대"}> 40대 </option>
+                                <option value={"50대"}> 50대 </option>
+                                <option value={"60대이상"}> 60대 이상 </option>
+                            </Input>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Row xl={3}>
+                            {ageRanking.map((result, index) => (
+                                <ProductList {...result} searchProduct={result.prdlstnm} allergyForReSearch={allergyForReSearch} key={index}/>
+                            ))}
+                        </Row>
                     </Row>
                 </TabPane>
             </TabContent>

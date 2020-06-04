@@ -28,7 +28,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/searchResult/:searchKeyword/:allergyInfo" component={SearchResultRouter}/>
+                    <Route path="/searchResult/:searchKeyword/:allergyInfo/:diseaseInfo" component={SearchResultRouter}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
                     <Route path="/ranking" component={RankingRouter}/>
