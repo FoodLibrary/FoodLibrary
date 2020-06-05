@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../css/SearchResult.css';
-import {Container, Row, Col, Label, Navbar, Button, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import {Button, Col, Container, Popover, PopoverBody, PopoverHeader, Row} from 'reactstrap';
 import ProductList from "./ProductList";
 import Input from "reactstrap/es/Input";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -14,7 +14,7 @@ const SearchResult = (props) => {
     const diseaseForReSearch = props.selectedDisease;
 
     let [selectedAllergies, setSelectedAllergy] = useState(props.selectedAllergy);
-    let [selectedDisease, setSelectedDisease] = useState(props.selectedDisease);
+    let [selectedDiseases, setSelectedDisease] = useState([props.selectedDisease]);
 
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
     const [searchResults, setResults] = useState([]);
@@ -23,19 +23,17 @@ const SearchResult = (props) => {
     const [reSelectedDisease, setReSelectedDisease] = useState([]);
 
     const onChangeAllergyInput = (event, value) => {
-        const selectedAllergy = value;
-        setReSelectedAllergy(selectedAllergy);
+        setReSelectedAllergy(value);
     };
 
     const onChangeDiseaseInput = (event, value) => {
-        const selectedDisease = value;
-        setSelectedDisease(selectedDisease);
+        setReSelectedDisease(value);
     };
 
     function initialAllergy() {
-        setSelectedAllergy(props.selectedAllergy);
+        setSelectedAllergy(selectedAllergies);
         let selectedAllergyArray = [];
-        selectedAllergyArray = selectedAllergies.split(",");
+        selectedAllergyArray = props.selectedAllergy.split(",");
         for (let i = 0; i < selectedAllergyArray.length; i++) {
             reSelectedAllergies[i] = {allergy: selectedAllergyArray[i]};
         }
@@ -43,9 +41,9 @@ const SearchResult = (props) => {
     }
 
     function initialDisease() {
-        setSelectedDisease(props.selectedDisease);
+        setSelectedDisease(selectedDiseases);
         let selectedDiseaseArray = [];
-        selectedDiseaseArray = selectedDisease.split(",");
+        selectedDiseaseArray = props.selectedDisease.split(",");
         for (let i = 0; i < selectedDiseaseArray.length; i++) {
             reSelectedDisease[i] = {disease: selectedDiseaseArray[i]};
         }
@@ -60,16 +58,10 @@ const SearchResult = (props) => {
             allergyAndDisease[i] = reSelectedAllergies[i];
         }
         for (let j = reSelectedAllergies.length; j < reSelectedAllergies.length + reSelectedDisease.length; j++) {
-            allergyAndDisease[j] = reSelectedDisease[j-reSelectedDisease.length];
+            allergyAndDisease[j] = reSelectedDisease[j - reSelectedAllergies.length];
         }
         return allergyAndDisease;
     }
-
-    useEffect(() => {
-        setReSelectedAllergy(initialAllergy);
-        setReSelectedDisease(initialDisease);
-        setAllergyAndDisease(initialAllergyAndDisease);
-    },[]);
 
     const [inputValue, setInputValue] = useState("좋아요");
     const [popoverOpen, setPopoverOpen] = useState(false);
@@ -79,17 +71,24 @@ const SearchResult = (props) => {
     const [category, setCategory] = useState("없음");
 
     useEffect(() => {
+        setReSelectedAllergy(initialAllergy);
+        setReSelectedDisease(initialDisease);
+    },[]);
+
+
+    useEffect(() => {
         SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease)
             .then(response => {
+
                 setSearchProduct(props.searchResults);
-                setSelectedAllergy(reSelectedAllergies);
-                setSelectedDisease(reSelectedDisease);
+                setAllergyAndDisease(initialAllergyAndDisease);
                 setResults(response.data);
+
             })
             .catch(e => {
                 console.log(e);
             });
-    },[]);
+    },[allergyAndDisease]);
 
     return (
         <Container>
@@ -111,9 +110,9 @@ const SearchResult = (props) => {
                         onChange={onChangeAllergyInput}
                         onInputChange={onChangeAllergyInput}
                         onClick={onChangeAllergyInput}
-                        value={reSelectedAllergies}
+                        defaultValue={reSelectedAllergies}
                         renderInput={allergy => (
-                            <TextField {...allergy}  variant="outlined" label={"알러지 유발 요소"}/>
+                            <TextField {...allergy}  variant="outlined" label={"알러지 선택"}/>
                         )}
                     />
                 </Col>
@@ -127,9 +126,9 @@ const SearchResult = (props) => {
                         onChange={onChangeDiseaseInput}
                         onInputChange={onChangeDiseaseInput}
                         onClick={onChangeDiseaseInput}
-                        value={reSelectedDisease}
+                        defaultValue={reSelectedDisease}
                         renderInput={disease => (
-                            <TextField {...disease} variant="outlined" label={"질병 정보"}/>
+                            <TextField {...disease}  variant="outlined" label={"질병 선택"}/>
                         )}
                     />
                 </Col>

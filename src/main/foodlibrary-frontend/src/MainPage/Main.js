@@ -38,7 +38,7 @@ const Main = (props) => {
     const [loginOrNot, setLoginOrNot] = useState("Login");
 
     function loginOrNotShow(){
-        if (localStorage.getItem('loginOK') == "OK") {
+        if (localStorage.getItem('loginOK') === "OK") {
             const loginOrNot = "Logout";
             setLoginOrNot(loginOrNot);
         }
@@ -75,24 +75,20 @@ const Main = (props) => {
 
     const onChangeAllergyInput = (event, value) => {
         const selectedAllergy = value;
-        console.log(value);
         let selectedAllergyArray = [];
         for (let i = 0; i < selectedAllergy.length; i++) {
             selectedAllergyArray[i] = selectedAllergy[i].allergy;
         }
         setSelectedAllergy(selectedAllergyArray);
-        console.log(selectedAllergies);
     };
 
     const onChangeDiseaseInput = (event, value) => {
         const selectedDisease = value;
-        console.log(value);
         let selectedDiseaseArray = [];
         for (let i = 0; i < selectedDisease.length; i++) {
             selectedDiseaseArray[i] = selectedDisease[i].disease;
         }
         setSelectedDiseases(selectedDiseaseArray);
-        console.log(selectedDisease);
     };
 
 
