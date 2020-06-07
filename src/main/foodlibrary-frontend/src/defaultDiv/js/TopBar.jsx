@@ -20,6 +20,9 @@ import {Link} from "react-router-dom";
 const imageResources = require('../../util/ImageResources.js');
 
 const TopBar = (props) => {
+    const [category, setCategory] = useState("없음");
+    const categories = ['과자', '탄산음료', '즉석식품' , '축산가공식품', '가공식품', '사탕', '이유식' , '소스' , '장류' , '라면' , '음료' , '커피' ];
+
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -71,7 +74,13 @@ const TopBar = (props) => {
 
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
-        setSearchProduct(searchProduct);
+        if (searchProduct === "없음") {
+            setSearchProduct(null);
+        }
+        else {
+            setSearchProduct(searchProduct);
+        }
+
         if (props.selectedAllergy === null) {
             console.log(selectedAllergy)
         } else {
@@ -100,7 +109,7 @@ const TopBar = (props) => {
                 </NavItem>
                 <NavItem>
 
-                    <Link to={`/searchResult/${searchProduct}/${selectedAllergy}/${selectedDisease}`}>
+                    <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergy}/${selectedDisease}`}>
                         <Button id={"searchButton"} onClick={allowSearch}>
                             <img id={"searchButtonImg"} src={imageResources.searchButtonImg}/>
                         </Button>
@@ -125,11 +134,9 @@ const TopBar = (props) => {
             <Collapse isOpen={!collapsed} navbar>
                 <Nav navbar id={"collapse"}>
                     <NavItem>
-                        <span> 대분류 </span>
-                        <Button> 소분류1 </Button>
-                        <NavLink> 소분류2 </NavLink>
-                        <NavLink> 소분류3 </NavLink>
-                        <NavLink> 소분류4 </NavLink>
+                        {categories.map((result, i) => (
+                            <NavLink className={"categoryName"} href={`/searchResult/${categories[i]}/없음/${selectedAllergy}/${selectedDisease}`}> {result} </NavLink>
+                        ))}
                     </NavItem>
                 </Nav>
             </Collapse>

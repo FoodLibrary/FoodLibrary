@@ -1,8 +1,6 @@
 import React from 'react';
-import {Button, Form, FormGroup, Input, Label} from "reactstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import {Container, Row, Col,Button, Form, FormGroup, Input, Label} from "reactstrap";
+
 import Filtering from "../defaultDiv/js/Filtering";
 import './EditMemberInfo.css';
 
@@ -11,11 +9,7 @@ const imageResources = require('../util/ImageResources.js');
 const EditMemberInfo = () => {
         return (
             <Container id={"editMemberInfo"}>
-                <Row >
-                    <Col xl={12} id={"editMemberInfoArea"}>
-                        <span id={"editMemberInfoTitle"}> 회원 정보 수정 </span>
-                    </Col>
-                </Row>
+
                 <Form id={"editMemberInfoForm"} >
                     <FormGroup row >
                         <Col xl={{size:1, offset:2}}  lg={{size:1, offset:2}}  md={{size:1, offset:2}}  sm={{size:2, offset:1}} xs={12} className={"signUpText"}> <Label  id={"id"}> 아이디 </Label> </Col>

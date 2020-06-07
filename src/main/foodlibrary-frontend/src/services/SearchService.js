@@ -8,8 +8,8 @@ const onTimeRanking = () => {
     return http.post(`/productSearchRanking`);
 };
 
-const onTimeRankingToggle = () => {
-    return http.post(`/productSearchRankingPrdnm`);
+const onTimeRankingToggleBar = () => {
+    return http.get('/topranking');
 };
 
 const reviewRanking = () => {
@@ -26,16 +26,24 @@ const ageRanking = (inputAgeValue) => {
 
 const loginCertification = (loginInfo) => {
     return http.post('/login', loginInfo);
-}
+};
 
+const findNickname = (userInfo) => {
+    return http.post('/findnickname',userInfo);
+};
+
+const findPassword = (userInfoForPW) => {
+    return http.post('/findpassword',userInfoForPW );
+}
 
 export default {
     findByProductName,
     onTimeRanking,
-    onTimeRankingToggle,
+    onTimeRankingToggleBar,
     loginCertification,
     reviewRanking,
     sexRanking,
     ageRanking,
-
+    findNickname,
+    findPassword,
 };

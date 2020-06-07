@@ -1,6 +1,6 @@
 import React, {Component, useEffect, useState} from 'react';
 import '../css/LoginPage.css';
-import {Container, Row, Col, NavbarBrand, Input, Button, Form} from 'reactstrap';
+import {Container, Row, Col, NavbarBrand, Input, Button, Form,  Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import TopBar from "../../defaultDiv/js/TopBar";
 import useLocalStorage from 'react-use-localstorage';
 import SearchService from "../../services/SearchService";
@@ -8,6 +8,17 @@ import SearchService from "../../services/SearchService";
 const imageResources = require('../../util/ImageResources');
 
 const LoginPage = () => {
+
+    const [modal, setModal] = useState(false);
+
+    const [modalOK, setModalOK] = useState(false);
+
+    const [modalPW, setModalPW] = useState(false);
+
+    const toggle = () => setModal(!modal);
+    const togglePW = () => setModalPW(!modalPW);
+    const toggleOK = () => setModalOK(!modalOK);
+
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
     const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
     const [searchResults, setSearchResults] = useState("");
@@ -22,6 +33,17 @@ const LoginPage = () => {
         password: ""
     });
 
+    const [findID, setFindID] = useState({
+        name: "",
+        email: ""
+    });
+
+    const [findPW, setFindPW] = useState( {
+        name1: "",
+        email1: "",
+        nickname1: ""
+    });
+
     useEffect(() => {
         SearchService.loginCertification(loginInfo)
             .then(response => {
@@ -31,6 +53,32 @@ const LoginPage = () => {
                 console.log(e.status);
             })
     });
+
+    const onClickSendEmailForName = () => {
+        SearchService.findNickname(findID)
+            .then(response => {
+                if (response.status === 200) {
+                    setModal(false);
+                }
+            })
+            .catch(e => {
+                console.log(e.status);
+            })
+    };
+
+    const onClickSendEmailForPassword = () => {
+        SearchService.findPassword(findPW)
+            .then(response => {
+                if (response.status === 200) {
+                    setModalPW(false);
+                }
+            })
+            .catch(e => {
+                console.log(e.status);
+            })
+
+    };
+
 
 
     const onClickLoginBtn = () => {
@@ -58,6 +106,31 @@ const LoginPage = () => {
         setPW(pw);
         loginInfo.password = pw;
         localStorage.setItem('pw', pw);
+    };
+
+    const onChangeFindIDName = (event) => {
+        const name = event.target.value;
+        findID.name = name;
+    };
+
+    const onChangeFindIDEmail= (event) => {
+        const email = event.target.value;
+        findID.email = email;
+    };
+
+    const onChangeFindPWName = (event) => {
+        const name1 = event.target.value;
+        findPW.name = name1;
+    };
+
+    const onChangeFindPWEmail= (event) => {
+        const email1 = event.target.value;
+        findPW.email = email1;
+    };
+
+    const onChangeFindPWID= (event) => {
+        const nickname1 = event.target.value;
+        findPW.nickname = nickname1;
     };
 
     return (
@@ -92,19 +165,112 @@ const LoginPage = () => {
 
                 <Row className={"findIdPw"}>
                     <Col xl={{size: 2, offset: 3}}>
-                        <span id={"signUpGoButton"}> <a href={'/signUp'}> 회원 가입 </a> </span>
+                        <span > <Button href={'/signUp'} id={"signupButton"}> 회원 가입 </Button> </span>
 
                     </Col>
                     <Col xl={2}>
-                        <span className={"findIdPw"}> <a href={'/'}> 아이디 찾기 </a> </span>
+                        <span > <Button onClick={toggle} id={"findIDButton"}> 아이디 찾기 </Button> </span>
+
                     </Col>
                     <Col xl={2}>
 
-                        <span className={"findIdPw"}> <a href={'/'}> 비밀번호 찾기 </a> </span>
+                        <span > <Button onClick={togglePW} id={"findPWButton"}>비밀번호 찾기 </Button> </span>
                     </Col>
                 </Row>
             </Container>
 
+
+            <Modal isOpen={modal} toggle={toggle} className={"abc"}>
+                <ModalHeader toggle={toggle}> 아이디 찾기 </ModalHeader>
+                <ModalBody>
+                    <Row className={"findID"}>
+                        <Col xl={{size:2, offset:1}} className={"findIDText"}>
+                            <span className={"findIDText"}>
+                                이메일 :
+                            </span>
+                        </Col>
+                        <Col>
+                            <Input type={"text"} placeholder={"등록된 이메일을 입력하세요."} onChange={onChangeFindIDEmail}> </Input>
+                        </Col>
+                        <Col xl={1}></Col>
+                    </Row>
+
+                    <Row className={"findID"}>
+                        <Col xl={{size:2, offset:1}} className={"findIDText"}>
+                            <span >
+                                이름 :
+                            </span>
+                        </Col>
+                        <Col>
+                            <Input type={"text"} placeholder={"이름을 입력하세요."} onChange={onChangeFindIDName}> </Input>
+                        </Col>
+                        <Col xl={1}></Col>
+                    </Row>
+
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={onClickSendEmailForName}> 확인 </Button>{' '}
+                    <Button color="danger" onClick={toggle}> 취소 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalPW} toggle={togglePW} className={"abc"}>
+                <ModalHeader toggle={togglePW}> 비밀번호 찾기 </ModalHeader>
+                <ModalBody>
+                    <Row className={"findID"}>
+                        <Col xl={{size:2, offset:1}} className={"findIDText"}>
+                            <span className={"findIDText"}>
+                                이메일 :
+                            </span>
+                        </Col>
+                        <Col>
+                            <Input type={"text"} placeholder={"등록된 이메일을 입력하세요."} onChange={(onChangeFindPWEmail)}> </Input>
+                        </Col>
+                        <Col xl={1}></Col>
+                    </Row>
+
+                    <Row className={"findID"}>
+                        <Col xl={{size:2, offset:1}} className={"findIDText"}>
+                            <span >
+                                이름 :
+                            </span>
+                        </Col>
+                        <Col>
+                            <Input type={"text"} placeholder={"이름을 입력하세요."} onChange={onChangeFindPWName}> </Input>
+                        </Col>
+                        <Col xl={1}></Col>
+                    </Row>
+
+                    <Row className={"findID"}>
+                        <Col xl={{size:2, offset:1}} className={"findIDText"}>
+                            <span >
+                                아이디 :
+                            </span>
+                        </Col>
+                        <Col>
+                            <Input type={"text"} placeholder={"아이디를 입력하세요."} onChange={onChangeFindPWID}> </Input>
+                        </Col>
+                        <Col xl={1}></Col>
+                    </Row>
+
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={onClickSendEmailForPassword}> 확인 </Button>{' '}
+                    <Button color="danger" onClick={togglePW}> 취소 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalOK} toggle={toggleOK} className={"abc"}>
+                <ModalHeader toggle={toggleOK}> 아이디 찾기 실패 </ModalHeader>
+                <ModalBody>
+                    <Row> 입력한 정보가 잘못되었습니다. </Row>
+                    <Row> 다시 시도해주세요. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleOK}> 확인 </Button>{' '}
+                    <Button color="danger" onClick={toggleOK}> 취소 </Button>
+                </ModalFooter>
+            </Modal>
         </div>
     );
 

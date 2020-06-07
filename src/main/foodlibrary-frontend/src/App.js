@@ -28,12 +28,12 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/searchResult/:searchKeyword/:allergyInfo/:diseaseInfo" component={SearchResultRouter}/>
+                    <Route path="/searchResult/:categoryInfo/:searchKeyword/:allergyInfo/:diseaseInfo" component={SearchResultRouter}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/myPage" component={MyPageRouter}/>
                     <Route path="/ranking" component={RankingRouter}/>
                     <Route path="/signUp" component={SignUpRouter}/>
-                    <Route path="/productPage/:searchKeyword/:allergyInfo/:productInfo" component={ProductDetailPageRouter}/>
+                    <Route path="/productPage/:searchKeyword/:allergyInfo/:diseaseInfo/:productInfo" component={ProductDetailPageRouter}/>
 
                 </Switch>
             </Router>

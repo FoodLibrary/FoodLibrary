@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 
 const ProductChart = (props) => {
 
-    const a = props.nutrient.split(",")
-    console.log(a)
+    const a = props.nutrient.split(",");
+
     return (
         <Table responsive>
             <thead>

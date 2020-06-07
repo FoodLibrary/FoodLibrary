@@ -37,7 +37,7 @@ const ProductList = (props) => {
     }
 
     function productOnClick() {
-        window.location.replace(`/productPage/${props.searchProduct}/${allergyInfo}/${searchResults.prdlstreportno}`);
+        window.location.replace(`/productPage/${props.searchProduct}/${allergyInfo}/${diseaseInfo}/${searchResults.prdlstreportno}`);
     }
 
     return (

@@ -19,10 +19,15 @@ import {Link} from "react-router-dom";
 
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import Chip from "@material-ui/core/Chip";
 
 const imageResources = require('../util/ImageResources.js');
 
 const Main = (props) => {
+    const [category, setCategory] = useState("없음");
+    const categories = ['과자', '탄산음료', '즉석식품' , '축산가공식품', '가공식품', '사탕', '이유식' , '소스' , '장류' , '라면' , '음료' , '커피' ];
+
+
     const [collapsed, setCollapsed, dropdownOpen, setOpen] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -34,6 +39,8 @@ const Main = (props) => {
         const searchProduct = e.target.value;
         setSearchProduct(searchProduct);
     };
+
+
 
     const [loginOrNot, setLoginOrNot] = useState("Login");
 
@@ -112,8 +119,6 @@ const Main = (props) => {
 
     const toggleInfo = () => setPopoverOpen(!popoverOpen);
 
-
-
     return (
         <div>
             <Navbar id={"topBar"}>
@@ -128,14 +133,13 @@ const Main = (props) => {
                         My Page
                     </Button>
                 </Nav>
+
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
                         <NavItem>
-                            <span> 대분류 </span>
-                            <NavLink> 소분류1 </NavLink>
-                            <NavLink> 소분류2 </NavLink>
-                            <NavLink> 소분류3 </NavLink>
-                            <NavLink> 소분류4 </NavLink>
+                            {categories.map((result, i) => (
+                                <NavLink className={"categoryName"} href={`/searchResult/${categories[i]}/없음/${selectedAllergies}/${selectedDisease}`}> {result} </NavLink>
+                             ))}
                         </NavItem>
                     </Nav>
                 </Collapse>
@@ -157,7 +161,7 @@ const Main = (props) => {
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
-                            <Link to={`/searchResult/${searchProduct}/${selectedAllergies}/${selectedDisease}`}>
+                            <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergies}/${selectedDisease}`}>
                                 <Button className={"mainSearchButton"}  onClick={allowSearch}>
                                     <img src={imageResources.searchButtonImg} id={"mainSearchButton"} />
 
@@ -205,7 +209,7 @@ const Main = (props) => {
                         </Button>
                         <Popover placement="bottom" isOpen={popoverOpen} target="infoImgButtonMain" toggle={toggleInfo}>
                             <PopoverHeader> 필터링 설명 </PopoverHeader>
-                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                            <PopoverBody> </PopoverBody>
                         </Popover>
                     </Col>
                 </Row>

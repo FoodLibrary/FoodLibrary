@@ -4,8 +4,26 @@ import {Container,Row,Col} from 'reactstrap';
 import Tabbar from './Tabbar';
 import ProductService from '../js/ProductService';
 import Chip from "@material-ui/core/Chip";
-const ProductDetailPage = props => {
+import ReactWordcloud from 'react-wordcloud';
+import Words from "./Words";
+const options = {
+    colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+    fontFamily: 'Gothic',
+    fontSizes: [15, 60],
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    padding: 2,
+    rotations: 3,
+    scale: 'sqrt',
+    transitionDuration: 1000,
+    rotationAngles: [0, 0],
+};
+
+
+const ProductDetailPage = (props) => {
+
     const [nutrient, setNutrient] = useState("");
+    const [productHashtag, setProductHashTag] = useState([]);
     const [product, setproduct] = useState({
         prdlstreportno:props.productInfo.productNumber,
         prdlstnm: '',
@@ -16,7 +34,7 @@ const ProductDetailPage = props => {
         nutrient:'',
         allergy:'',
         disease:'',
-        productHashtag:'',
+        producthashtag:'',
         likecount:0,
         zzimcount:0
     });
@@ -30,10 +48,24 @@ const ProductDetailPage = props => {
             .then(foundProduct => {
                 setproduct(foundProduct.data);
                 setNutrient(foundProduct.data.nutrient);
-                console.log(foundProduct.data)
+                getWordCloud(foundProduct.data.producthashtag)
             }).catch(e => {
             console.log(e);
         });
+    };
+    
+    function getWordCloud(str) {
+        const hashtag = str.split(",");
+        const productHashtag = [];
+        for (let i = 0; i < hashtag.length; i++) {
+            productHashtag[i] =
+                {
+                    text: hashtag[i],
+                    value: i+1
+                }
+        }
+        setProductHashTag(productHashtag);
+
     }
 
     const allergyChip = product.allergy.split(",");
@@ -115,11 +147,13 @@ const ProductDetailPage = props => {
                     <hr/>
                     <Row className="ProductPageRow1">
                         <Col xl={{size:3}} className="ProducPageCol1">제품 키워드</Col>
-                        <Col className="ProducPageCol2">{product.productHashtag}</Col>
+                        <Col className="ProducPageCol2" id={"wordcloud"}>
+                            <ReactWordcloud words={productHashtag} options={options}/>
+                        </Col>
                     </Row>
                 </Col>
             </Row>
-            <Tabbar {...props.productInfo} nutrient={nutrient}/>
+            <Tabbar {...props.productInfo} nutrient={nutrient} />
         </Container>
     );
 };

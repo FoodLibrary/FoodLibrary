@@ -18,25 +18,26 @@ const RankingBar = (props) => {
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [onTimeRankingToggle, setOnTimeRankingToggle] = useState([]);
-    useEffect(() => {
-        SearchService.onTimeRankingToggle()
-            .then(response => {
-                setOnTimeRankingToggle(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    });
 
-    function getOnclickRankingToggle() {
-        SearchService.onTimeRankingToggle()
-            .then(response => {
-                setOnTimeRankingToggle(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
+    // useEffect(() => {
+    //     SearchService.onTimeRankingToggleBar()
+    //         .then(response => {
+    //             setOnTimeRankingToggle(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // });
+
+    // function getOnclickRankingToggle() {
+    //     SearchService.onTimeRankingToggle()
+    //         .then(response => {
+    //             setOnTimeRankingToggle(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
 
         return (
             <Container>
@@ -51,12 +52,12 @@ const RankingBar = (props) => {
                             <DropdownToggle caret className={"rankingToggle"}>
                                 실시간 검색어 순위
                             </DropdownToggle>
-                            <DropdownMenu id={"rankingToggle"} onClick={getOnclickRankingToggle}>
+                            <DropdownMenu id={"rankingToggle"} >
                                 {onTimeRankingToggle.map((ranking,i) => {
                                     return (<DropdownItem key={i}>
-                                        <Link to={`/productPage/${onTimeRankingToggle[i]}/${selectedAllergy}/${searchResults}`}>
+                                        {/*<Link to={`/productPage/${onTimeRankingToggle[i]}/${selectedAllergy}/${searchResults}`}>*/}
                                             {i+1}.  {onTimeRankingToggle[i]}
-                                        </Link>
+                                        {/*</Link>*/}
 
                                     </DropdownItem>);
                                     })}

@@ -40,7 +40,6 @@ public class LoginController {
     public ResponseEntity<Void> execMailforNickname(@RequestBody Map<String,String> param){
         String name = param.get("name");
         String email = param.get("email");
-        System.out.println(name+" , "+email);
 
         if(userService.existUserNickname(name,email)){
             System.out.println("체크");
@@ -54,7 +53,7 @@ public class LoginController {
 
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
-            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
     }

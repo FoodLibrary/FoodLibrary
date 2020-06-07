@@ -10,6 +10,8 @@ import SearchService from "../../services/SearchService";
 const imageResources = require('../../util/ImageResources');
 
 const SearchResult = (props) => {
+    const [category, setCategory] = useState(props.selectedCategory);
+
     const allergyForReSearch = props.selectedAllergy;
     const diseaseForReSearch = props.selectedDisease;
 
@@ -68,7 +70,7 @@ const SearchResult = (props) => {
 
     const toggleInfo = () => setPopoverOpen(!popoverOpen);
 
-    const [category, setCategory] = useState("없음");
+
 
     useEffect(() => {
         setReSelectedAllergy(initialAllergy);
@@ -79,7 +81,6 @@ const SearchResult = (props) => {
     useEffect(() => {
         SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease)
             .then(response => {
-
                 setSearchProduct(props.searchResults);
                 setAllergyAndDisease(initialAllergyAndDisease);
                 setResults(response.data);

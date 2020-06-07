@@ -13,23 +13,20 @@ import {
 import '../css/UserReview.css';
 import ReviewService from "../js/ReviewService";
 import ReviewWrite from "./ReviewWrite";
-import ReviewPagination from "./ReviewPagination";
+import Chip from "@material-ui/core/Chip";
 
 function UserReview(props) {
-    const [reviews, setReviews] = useState([...Array(30).keys()].map(i => ({ id: (i+1), name: (i+1) })));
+    const [reviews, setReviews] = useState([]);
     const [reviewCount, setReviewCount] = useState(0);
     const [submit, setSubmit] = useState(false);
     const [productUserInfo, setProductUserInfo] = useState({
         prdlstreportno: props.productNumber,
         nickname: props.nickname
     });
-
     const [userExistFlag, setUserExistFlag] = useState(true);
-    const [pageOfItems, setPageOfItems] = useState([]);
 
     useEffect(() => {
         retrieveReviews();
-        onChangePage(pageOfItems);
     }, []);
 
     const retrieveReviews = () => {
@@ -37,16 +34,11 @@ function UserReview(props) {
             .then(response => {
                 setReviews(response.data);
                 setReviewCount(response.data.length);
-                setPageOfItems(response.data.split(0,3));
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-    };
-
-    const onChangePage = (pageOfItems) => {
-        setPageOfItems(pageOfItems);
     };
 
     const allowReviewWrite = () => {
@@ -98,8 +90,8 @@ function UserReview(props) {
                         </Col>
 
                     </Row>
-                    {pageOfItems &&
-                    pageOfItems.map((review, index) => (
+                    {reviews &&
+                    reviews.map((review, index) => (
                         <React.Fragment>
                             <ListGroupItem className="listItem" id={"review" + index} action>
                                 <Row>
@@ -108,9 +100,9 @@ function UserReview(props) {
                                     </Col>
                                     <Col xl={3}>
                                         {splitHashtag(review.reviewhashtag).map((oneHashtag, index) => (
-                                            <div className="userReviewHashTag">
-                                                {oneHashtag}
-                                            </div>
+                                            <Chip className="userReviewHashTag" label={oneHashtag}>
+
+                                            </Chip>
                                         ))}
                                     </Col>
                                     <Col xl={2}>
@@ -150,7 +142,26 @@ function UserReview(props) {
                             </UncontrolledCollapse>
                         </React.Fragment>
                     ))}
-                    <ReviewPagination items={reviews} onChangPage={onChangePage}/>
+                    <Pagination className="pagination" aria-label="Page navigation example">
+                        <PaginationItem>
+                            <PaginationLink first href="#"/>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink previous href="#"/>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink href="#">
+                                1
+                            </PaginationLink>
+                        </PaginationItem>
+
+                        <PaginationItem>
+                            <PaginationLink next href="#"/>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink last href="#"/>
+                        </PaginationItem>
+                    </Pagination>
                 </ListGroup>
             )}
 

@@ -60,3 +60,15 @@
     margin-top: 3rem;
     margin-left: 3rem;
 }
+
+#myPageTab {
+    width: 34rem;
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+    font-family: NanumBarunGothic;
+    color: #006edc;
+}
+
+#myPageTab:hover{
+    border: 1px solid #006edc;
+}

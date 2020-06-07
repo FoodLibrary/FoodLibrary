@@ -76,25 +76,25 @@ button {
 }
 
 .allergyChip {
-    border: 1px solid indianred !important;
+    border: 1px solid #ce2939 !important;
     margin: 2px !important;
     border-radius: 30px !important;
     font-family: NanumBarunGothic !important;
     font-size: 1vh !important;
     color: white !important;
-    background-color: indianred !important;
+    background-color: #ce2939 !important;
     text-align: center !important;
     vertical-align: center !important;
 }
 
 .diseaseChip {
-    border: 1px solid indianred !important;
+    border: 1px solid #ce2939 !important;
     margin: 3px !important;
     border-radius: 30px !important;
     font-family: NanumBarunGothic !important;
     font-size: 1vh !important;
     color: white !important;
-    background-color: indianred !important;
+    background-color: #ce2939 !important;
     text-align: center !important;
     vertical-align: center !important;
 }

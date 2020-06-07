@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,9 +19,11 @@ public class Rank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name="searchword")
-    private String searchword;
 
     @Column(name="count")
     private int count;
+
+    @Column(name="searchword")
+    private String searchword;
+
 }
