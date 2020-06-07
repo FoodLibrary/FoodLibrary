@@ -12,12 +12,26 @@ const LoginPage = () => {
     const [modal, setModal] = useState(false);
 
     const [modalOK, setModalOK] = useState(false);
-
+    const [modalPWOK, setModalPWOK] = useState(false);
+    const [modalFail, setModalFail] = useState(false);
     const [modalPW, setModalPW] = useState(false);
 
     const toggle = () => setModal(!modal);
     const togglePW = () => setModalPW(!modalPW);
-    const toggleOK = () => setModalOK(!modalOK);
+    const toggleOK = () => {
+        setModalOK(!modalOK);
+        setModal(!modal);
+    };
+
+    const togglePWOK = () => {
+        setModalPWOK(!modalPWOK);
+        setModalPW(!modalPW);
+    };
+
+    const toggleFail = () => {
+        setModalFail(!modalFail);
+        setModal(!modal);
+    }
 
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
     const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
@@ -26,6 +40,7 @@ const LoginPage = () => {
     const [id, setID] = useState("");
     const [pw, setPW] = useState("");
     const [loginOK, setLoginOK] = useState("OK");
+
     let [loginCertificate, setLoginCertificate] = useState("");
 
     const [loginInfo, setLoginInfo] = useState({
@@ -58,7 +73,10 @@ const LoginPage = () => {
         SearchService.findNickname(findID)
             .then(response => {
                 if (response.status === 200) {
-                    setModal(false);
+                    setModalOK(true);
+                }
+                else {
+                    console.log("ㅎㅎㅎㅎㅎㅎㅎ")
                 }
             })
             .catch(e => {
@@ -70,7 +88,10 @@ const LoginPage = () => {
         SearchService.findPassword(findPW)
             .then(response => {
                 if (response.status === 200) {
-                    setModalPW(false);
+                    setModalPWOK(true);
+                }
+                else {
+                    console.log("ㅎㅎㅎㅎㅎㅎㅎ")
                 }
             })
             .catch(e => {
@@ -261,16 +282,28 @@ const LoginPage = () => {
             </Modal>
 
             <Modal isOpen={modalOK} toggle={toggleOK} className={"abc"}>
-                <ModalHeader toggle={toggleOK}> 아이디 찾기 실패 </ModalHeader>
+                <ModalHeader toggle={toggleOK}> 이메일 전송 성공 </ModalHeader>
                 <ModalBody>
-                    <Row> 입력한 정보가 잘못되었습니다. </Row>
-                    <Row> 다시 시도해주세요. </Row>
+                    <Row id={"okSign"}> 입력한 이메일로 회원님의 아이디가 발송되었습니다. </Row>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={toggleOK}> 확인 </Button>{' '}
                     <Button color="danger" onClick={toggleOK}> 취소 </Button>
                 </ModalFooter>
             </Modal>
+
+            <Modal isOpen={modalPWOK} toggle={togglePWOK} className={"abc"}>
+                <ModalHeader toggle={togglePWOK}> 이메일 전송 성공 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 입력한 이메일로 회원님의 비밀번호가 발송되었습니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={togglePWOK}> 확인 </Button>{' '}
+                    <Button color="danger" onClick={togglePWOK}> 취소 </Button>
+                </ModalFooter>
+            </Modal>
+
+
         </div>
     );
 

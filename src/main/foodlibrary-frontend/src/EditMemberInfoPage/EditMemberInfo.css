@@ -18,4 +18,17 @@
     border: 1px solid #006edc;
     color: #006edc;
     background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#filtering{
+    margin-left: 3rem;
+}
+
+.defaultValue {
+    text-align: center;
+    font-family: NanumBarunGothic;
+    font-size: 1.8vh;
+    color: #006edc;
 }

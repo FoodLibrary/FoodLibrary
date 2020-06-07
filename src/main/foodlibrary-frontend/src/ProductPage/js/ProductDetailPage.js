@@ -5,7 +5,7 @@ import Tabbar from './Tabbar';
 import ProductService from '../js/ProductService';
 import Chip from "@material-ui/core/Chip";
 import ReactWordcloud from 'react-wordcloud';
-import Words from "./Words";
+
 const options = {
     colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
     fontFamily: 'Gothic',

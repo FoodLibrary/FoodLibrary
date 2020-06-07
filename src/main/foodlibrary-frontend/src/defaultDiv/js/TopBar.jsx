@@ -10,18 +10,18 @@ import {
     Col,
     Row,
     Button,
-    Input, Table, Form
+    Input, Table, Form, ModalHeader, ModalBody, ModalFooter, Modal
 } from 'reactstrap';
 import '../css/TopBarStyle.css';
 
 import RankingBar from "./RankingBar";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 const imageResources = require('../../util/ImageResources.js');
 
 const TopBar = (props) => {
     const [category, setCategory] = useState("없음");
-    const categories = ['과자', '탄산음료', '즉석식품' , '축산가공식품', '가공식품', '사탕', '이유식' , '소스' , '장류' , '라면' , '음료' , '커피' ];
+    const categories = ['과자', '탄산음료', '즉석식품', '축산가공식품', '가공식품', '사탕', '이유식', '소스', '장류', '라면', '음료', '커피'];
 
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
@@ -31,6 +31,13 @@ const TopBar = (props) => {
     let [selectedDisease, setSelectedDisease] = useState(props.selectedDisease);
 
     const [loginOrNotA, setLoginOrNotA] = useState("Login");
+
+    const [modalSearchTop, setModalSearchTop] = useState(false);
+
+    const toggleSearchTop = () => {
+        setModalSearchTop(!modalSearchTop);
+    };
+
 
     function loginOrNotShow() {
         if (localStorage.getItem('loginOK') === "OK") {
@@ -42,10 +49,9 @@ const TopBar = (props) => {
         }
     }
 
-    const allowSearch = () => {
+    function allowSearchTop() {
         if (searchProduct === "") {
-            window.confirm("검색어를 입력하세요.");
-            window.location.reload();
+            setModalSearchTop(true);
         }
     }
 
@@ -76,8 +82,7 @@ const TopBar = (props) => {
         const searchProduct = e.target.value;
         if (searchProduct === "없음") {
             setSearchProduct(null);
-        }
-        else {
+        } else {
             setSearchProduct(searchProduct);
         }
 
@@ -96,7 +101,6 @@ const TopBar = (props) => {
     };
 
 
-
     return (
         <Navbar>
             <Nav>
@@ -105,15 +109,19 @@ const TopBar = (props) => {
                 </NavbarToggler>
                 <NavbarBrand href="/"> <img id={"logo"} src={imageResources.logoImg}/> </NavbarBrand>
                 <NavItem>
-                    <Input id={"searchInput"} type={"text"} placeholder={"검색할 식품을 입력하세요."} value={searchProduct} onChange={onChangeSearchProduct}/>
+                    <Input id={"searchInput"} type={"text"} placeholder={"검색할 식품을 입력하세요."} value={searchProduct}
+                           onChange={onChangeSearchProduct}/>
                 </NavItem>
                 <NavItem>
-
-                    <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergy}/${selectedDisease}`}>
-                        <Button id={"searchButton"} onClick={allowSearch}>
-                            <img id={"searchButtonImg"} src={imageResources.searchButtonImg}/>
+                    <Route>
+                        <Button id={"searchButton"} onClick={allowSearchTop}>
+                            <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergy}/${selectedDisease}`}
+                                  onClick={allowSearchTop}>
+                                <img onClick={allowSearchTop} id={"searchButtonImg"} src={imageResources.searchButtonImg} />
+                            </Link>
                         </Button>
-                    </Link>
+                    </Route>
+
                 </NavItem>
                 <NavItem>
                     <RankingBar/>
@@ -135,12 +143,22 @@ const TopBar = (props) => {
                 <Nav navbar id={"collapse"}>
                     <NavItem>
                         {categories.map((result, i) => (
-                            <NavLink className={"categoryName"} href={`/searchResult/${categories[i]}/없음/${selectedAllergy}/${selectedDisease}`}> {result} </NavLink>
+                            <NavLink className={"categoryName"}
+                                     href={`/searchResult/${categories[i]}/없음/${selectedAllergy}/${selectedDisease}`}> {result} </NavLink>
                         ))}
                     </NavItem>
                 </Nav>
             </Collapse>
 
+            <Modal isOpen={modalSearchTop} toggle={toggleSearchTop} className={"abc"}>
+                <ModalHeader toggle={toggleSearchTop}> 검색 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 검색어를 입력하세요. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleSearchTop}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
         </Navbar>
     );
 

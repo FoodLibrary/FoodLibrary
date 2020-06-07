@@ -25,7 +25,13 @@ const imageResources = require('../util/ImageResources.js');
 
 const Main = (props) => {
     const [category, setCategory] = useState("없음");
-    const categories = ['과자', '탄산음료', '즉석식품' , '축산가공식품', '가공식품', '사탕', '이유식' , '소스' , '장류' , '라면' , '음료' , '커피' ];
+    const categories = ['과자', '탄산음료', '즉석식품', '축산가공식품', '가공식품', '사탕', '이유식', '소스', '장류', '라면', '음료', '커피'];
+
+    const [modalSearch, setModalSearch] = useState(false);
+
+    const toggleSearch = () => {
+        setModalSearch(!modalSearch);
+    };
 
 
     const [collapsed, setCollapsed, dropdownOpen, setOpen] = useState(true);
@@ -41,15 +47,13 @@ const Main = (props) => {
     };
 
 
-
     const [loginOrNot, setLoginOrNot] = useState("Login");
 
-    function loginOrNotShow(){
+    function loginOrNotShow() {
         if (localStorage.getItem('loginOK') === "OK") {
             const loginOrNot = "Logout";
             setLoginOrNot(loginOrNot);
-        }
-        else {
+        } else {
             const loginOrNot = "Login";
             setLoginOrNot(loginOrNot);
         }
@@ -61,12 +65,11 @@ const Main = (props) => {
 
     function loginOrOutButton() {
         if (loginOrNot === "Logout") {
-            localStorage.setItem('id',"");
-            localStorage.setItem('pw',"");
+            localStorage.setItem('id', "");
+            localStorage.setItem('pw', "");
             localStorage.setItem('loginOK', null);
             setLoginOrNot("Login");
-        }
-        else {
+        } else {
             window.location.replace('/login');
         }
     }
@@ -74,8 +77,7 @@ const Main = (props) => {
     function notLoginMyPageOnClick() {
         if (loginOrNot === "Login") {
             window.location.replace('/login');
-        }
-        else {
+        } else {
             window.location.replace('/myPage');
         }
     }
@@ -99,21 +101,11 @@ const Main = (props) => {
     };
 
 
-    const {
-        buttonLabel,
-        className
-    } = props;
-
-    const [modal, setModal] = useState(false);
-
-    const toggle = () => setModal(!modal);
-
     const allowSearch = () => {
         if (searchProduct === "") {
-            window.confirm("검색어를 입력하세요.");
-            window.location.replace('/');
+            setModalSearch(true);
         }
-    }
+    };
 
     const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -138,8 +130,9 @@ const Main = (props) => {
                     <Nav navbar>
                         <NavItem>
                             {categories.map((result, i) => (
-                                <NavLink className={"categoryName"} href={`/searchResult/${categories[i]}/없음/${selectedAllergies}/${selectedDisease}`}> {result} </NavLink>
-                             ))}
+                                <NavLink className={"categoryName"}
+                                         href={`/searchResult/${categories[i]}/없음/${selectedAllergies}/${selectedDisease}`}> {result} </NavLink>
+                            ))}
                         </NavItem>
                     </Nav>
                 </Collapse>
@@ -161,12 +154,14 @@ const Main = (props) => {
 
                     <Col xs={2} sm={3} md={4} lg={3}>
                         <Route>
-                            <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergies}/${selectedDisease}`}>
-                                <Button className={"mainSearchButton"}  onClick={allowSearch}>
-                                    <img src={imageResources.searchButtonImg} id={"mainSearchButton"} />
 
-                                </Button>
-                            </Link>
+                            <Button className={"mainSearchButton"} onClick={allowSearch}>
+                                <Link onClick={allowSearch}
+                                    to={`/searchResult/${category}/${searchProduct}/${selectedAllergies}/${selectedDisease}`}>
+                                    <img onClick={allowSearch} src={imageResources.searchButtonImg} id={"mainSearchButton"} />
+                                </Link>
+                            </Button>
+
 
                         </Route>
                     </Col>
@@ -216,10 +211,13 @@ const Main = (props) => {
 
 
             </Container>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+            <Modal isOpen={modalSearch} toggle={toggleSearch} className={"abc"}>
+                <ModalHeader toggle={toggleSearch}> 검색 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 검색어를 입력하세요. </Row>
+                </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+                    <Button color="primary" onClick={toggleSearch}> 확인 </Button>
                 </ModalFooter>
             </Modal>
 
