@@ -96,6 +96,7 @@ public class ProductController {
 package com.foodlibrary.foodlibrary.controller;
 
 import com.foodlibrary.foodlibrary.entity.Product;
+import com.foodlibrary.foodlibrary.repository.ProductRepository;
 import com.foodlibrary.foodlibrary.service.ProductService;
 import com.foodlibrary.foodlibrary.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,8 @@ public class ProductController {
     private ReviewController reviewsController;
     @Autowired
     private UserController userController;
+    @Autowired
+    private ProductRepository productRepository;
 
     @PostMapping("/addProduct")
     public Product addProduct(@RequestBody Product product) {
@@ -447,6 +450,5 @@ public class ProductController {
         Product product = service.getProductByName(productName);
         return new ResponseEntity<String>(product.getPrdlstreportno(), HttpStatus.OK);
     }
-
 
 }

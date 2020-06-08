@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Row, Col, Label} from 'reactstrap';
+import {Container, Row, Col, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 
 import '../css/ProductListStyle.css';
 import Chip from "@material-ui/core/Chip";
+import SearchService from "../../services/SearchService";
 
 const ProductList = (props) => {
     const imageResources = require('../../util/ImageResources.js');
+
     const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
     const[thumbColor, setColorThumb] = useState(imageResources.thumb);
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
@@ -15,47 +17,103 @@ const ProductList = (props) => {
 
     const allergyResult = searchResults.allergy.split(",");
     const [allergyInfo, setAllergyInfo] = useState(props.allergyForReSearch);
-
     const diseaseResult = searchResults.disease.split(",");
     const [diseaseInfo, setDiseaseInfo] = useState(props.diseaseForReSearch);
+    const [like, setLike] = useState({
+        prdlstreportno:'',
+        nickname:''
+    });
+
+    const [zzim, setZzim] = useState({
+        prdlstreportno:'',
+        nickname:''
+    });
 
     useEffect(() => {
         setResults(props);
     }, [props]);
 
+    useEffect(() => {
+        SearchService.getLikeUsers(searchResults.prdlstreportno)
+            .then(response => {
+                if (response.data.includes(localStorage.getItem('id'))) {
+                    setEmptyThumb(thumbEmpty => thumbColor);
+                    setColorThumb(thumbColor => thumbEmpty);
+                }
+            });
+
+        SearchService.getZzimUsers(searchResults.prdlstreportno)
+            .then(response => {
+                if (response.data.includes(localStorage.getItem('id'))) {
+                    setEmptyHeart(heartEmpty => heartColor);
+                    setColorHeart(heartColor => heartEmpty);
+                }
+            });
+
+    },[]);
+
     function thumbButtonClick() {
-        setEmptyThumb(thumbEmpty => thumbColor);
-        setColorThumb(thumbColor => thumbEmpty);
-        if (setEmptyThumb) {
-            console.log("뿅?")
+        like.nickname=localStorage.getItem('id');
+        like.prdlstreportno = searchResults.prdlstreportno;
+        if (setEmptyThumb && localStorage.getItem('loginOK') === "OK") {
+            setEmptyThumb(thumbEmpty => thumbColor);
+            setColorThumb(thumbColor => thumbEmpty);
+            SearchService.addLike(like)
+                .then(response => {
+                    console.log(like);
+            });
+        }
+        else {
+            setModalClickOK(!modalClickOK);
         }
     }
 
     function heartButtonClick() {
-        setEmptyHeart(heartEmpty => heartColor);
-        setColorHeart(heartColor => heartEmpty);
+        zzim.nickname=localStorage.getItem('id');
+        zzim.prdlstreportno = searchResults.prdlstreportno;
+        if (setEmptyHeart && localStorage.getItem('loginOK') === "OK") {
+            setEmptyHeart(heartEmpty => heartColor);
+            setColorHeart(heartColor => heartEmpty);
+            SearchService.addZzim(zzim)
+                .then(response => {
+                    console.log(zzim);
+                });
+        }
+        else {
+            setModalClickOK(!modalClickOK);
+        }
     }
 
     function productOnClick() {
         window.location.replace(`/productPage/${props.searchProduct}/${allergyInfo}/${diseaseInfo}/${searchResults.prdlstreportno}`);
     }
 
+    const [modalClickOK, setModalClickOK] = useState(false);
+
+    const toggleClickOK = () => {
+        setModalClickOK(!modalClickOK);
+    };
+
     return (
 
             <Row id={"productList"}>
                 <Col xl={12} >
                     <Row id={"productResult"}>
-                        <img src={searchResults.img}  id={"productImg"}/>
+                        <Col>
+                            <img src={searchResults.img}  id={"productImg"}/>
+                            <button id={"heartButton"} onClick={heartButtonClick} >
+                                <img id={"heartButtonImage"} src={heartEmpty}/>
+                            </button>
+                            <button id={"likeButton"} onClick={thumbButtonClick}>
+                                <img id={"likeButtonImage"} src={thumbEmpty}/>
+                            </button>
+                        </Col>
+                        <Col>
+
+                        </Col>
 
                     </Row>
-                    {/*<Row>*/}
-                    {/*    <button id={"heartButton"} onClick={heartButtonClick} >*/}
-                    {/*        <img id={"heartButtonImage"} src={heartEmpty}/>*/}
-                    {/*    </button>*/}
-                    {/*    <button id={"likeButton"} onClick={thumbButtonClick}>*/}
-                    {/*        <img id={"likeButtonImage"} src={thumbEmpty}/>*/}
-                    {/*    </button>*/}
-                    {/*</Row>*/}
+
                     <Row id={"manufacturerAndName"} >
                         <Col xl={12}>
                             <span id={"productManufacturer"}> [{searchResults.manufacture}] </span>
@@ -81,6 +139,18 @@ const ProductList = (props) => {
                         </Col>
                     </Row>
                 </Col>
+
+                <Modal isOpen={modalClickOK} toggle={toggleClickOK} className={"abc"}>
+                    <ModalHeader toggle={toggleClickOK}> 실패 </ModalHeader>
+                    <ModalBody>
+                        <Row id={"okSign"}> 찜, 좋아요 기능을 이용하기 위해서는 로그인을 하세요! </Row>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={toggleClickOK}> 확인 </Button>{' '}
+                        <Button color="danger" onClick={toggleClickOK}> 취소 </Button>
+                    </ModalFooter>
+                </Modal>
+
             </Row>
 
 

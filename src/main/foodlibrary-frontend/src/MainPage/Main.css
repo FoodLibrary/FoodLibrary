@@ -63,3 +63,14 @@
 #infoImgButton:active {
     border: 1px solid white;
 }
+
+.categoryName {
+    font-size: 1rem;
+    padding-left: 1rem;
+    color: dimgray;
+}
+
+#collapse {
+    margin-top: 1rem;
+    margin-left: 2vh;
+}

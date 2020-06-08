@@ -34,7 +34,27 @@ const findNickname = (userInfo) => {
 
 const findPassword = (userInfoForPW) => {
     return http.post('/findpassword',userInfoForPW );
-}
+};
+
+const addLike = (likeInfo) => {
+    return http.post('/addlike', likeInfo);
+};
+
+const addZzim = (zzimInfo) => {
+    return http.post('/addzzim',zzimInfo);
+};
+
+const getLikeUsers = (productNo) => {
+    return http.post(`/likeUsers/${productNo}`);
+};
+
+const getZzimUsers = (productNo) => {
+    return http.post(`/zzimUsers/${productNo}`);
+};
+
+const getUserZzim = (nickname) => {
+    return http.post(`/userzzimproduct/${nickname}`)
+};
 
 export default {
     findByProductName,
@@ -46,4 +66,9 @@ export default {
     ageRanking,
     findNickname,
     findPassword,
+    addLike,
+    addZzim,
+    getLikeUsers,
+    getZzimUsers,
+    getUserZzim,
 };

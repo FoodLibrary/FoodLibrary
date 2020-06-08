@@ -76,7 +76,7 @@ const LoginPage = () => {
                     setModalOK(true);
                 }
                 else {
-                    console.log("ㅎㅎㅎㅎㅎㅎㅎ")
+                    console.log("fail")
                 }
             })
             .catch(e => {
@@ -91,7 +91,7 @@ const LoginPage = () => {
                     setModalPWOK(true);
                 }
                 else {
-                    console.log("ㅎㅎㅎㅎㅎㅎㅎ")
+                    console.log("fail")
                 }
             })
             .catch(e => {

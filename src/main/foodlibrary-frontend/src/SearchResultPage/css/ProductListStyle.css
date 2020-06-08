@@ -4,6 +4,12 @@
     border: 1px solid gray;
 }
 
+#productResult {
+    margin-top: 2vh;
+    margin-left: 1vh;
+}
+
+
 .productListImg {
     margin-top: 1vh;
 }
@@ -24,7 +30,7 @@
 #manufacturerAndName {
     margin-top: 1vh;
     margin-bottom: 1vh;
-    padding-left: 1rem;
+    padding-left: 2.5rem;
     text-align: center;
 }
 
@@ -48,6 +54,9 @@
     border-radius: 50px;
     border: 0;
     outline: 0;
+    position: absolute;
+    top: 19.3rem;
+    left: 20rem;
 }
 
 #likeButtonImage {
@@ -62,6 +71,9 @@
     border-radius: 50px;
     border: 0px;
     outline: 0px;
+    position: absolute;
+    top: 18.5rem;
+    left: 17rem;
 }
 
 button {
@@ -71,8 +83,8 @@ button {
 #heartButtonImage {
     padding-top: 0.2vh;
     padding-bottom: -0.3vh;
-    width: 3.5vh;
-    height: 3.5vh;
+    width: 3.1vh;
+    height: 3.6vh;
 }
 
 .allergyChip {
@@ -109,12 +121,9 @@ button {
     padding-left: 0vh;
 }
 
-#productResult {
-    margin-top: 2vh;
-    margin-left: 1vh
-}
 
 #productList {
     margin-left: 1vh;
     margin-top: 0.5rem;
+    margin-bottom: 2rem;
 }

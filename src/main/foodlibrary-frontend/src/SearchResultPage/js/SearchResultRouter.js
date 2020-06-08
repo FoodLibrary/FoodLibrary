@@ -26,8 +26,10 @@ function SearchResultRouter({match}) {
 
     return (
         <div className="searchResultRouter">
-            <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy} selectedDisease={selectedDisease} selectedCategory={selectedCategory}/>
-            <SearchResult searchResults={searchResults} selectedAllergy={selectedAllergy} selectedDisease={selectedDisease} selectedCategory={selectedCategory}/>
+            <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy} selectedDisease={selectedDisease}
+                    selectedCategory={selectedCategory}/>
+            <SearchResult searchResults={searchResults} selectedAllergy={selectedAllergy}
+                          selectedDisease={selectedDisease} selectedCategory={selectedCategory}/>
         </div>
 
     );

@@ -12,4 +12,8 @@ public interface ZzimRepository extends JpaRepository<Zzim, Integer> {
     int countByPrdlstreportno(String prdlstreportno);
 
     List<Zzim> findByNickname(String nickname);
+
+    List<Zzim> findAllByPrdlstreportno(String prdlstreportno);
+
+
 }

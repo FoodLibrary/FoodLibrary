@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import Filtering from "../defaultDiv/js/Filtering";
 
 import './MyPageStyles.css';
 import EditMemberInfo from "../EditMemberInfoPage/EditMemberInfo";
 import SignUp from "../SignUpPage/SignUp";
+import SearchService from "../services/SearchService";
 
 
 const MyPage = () =>  {
@@ -13,6 +14,8 @@ const MyPage = () =>  {
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
     };
+
+
 
         return (
             <Container id={"myPage"}>
