@@ -127,7 +127,7 @@ const Main = (props) => {
                 </Nav>
 
                 <Collapse isOpen={!collapsed} navbar id={"collapse"}>
-                    <Nav navbar>
+                <Nav navbar>
                         <NavItem>
                             {categories.map((result, i) => (
                                 <NavLink className={"categoryName"}

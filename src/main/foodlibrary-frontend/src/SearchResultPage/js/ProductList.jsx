@@ -100,7 +100,7 @@ const ProductList = (props) => {
                 <Col xl={12} >
                     <Row id={"productResult"}>
                         <Col>
-                            <img src={searchResults.img}  id={"productImg"}/>
+                            <img src={searchResults.img}  id={"productImg"} onClick={productOnClick}/>
                             <button id={"heartButton"} onClick={heartButtonClick} >
                                 <img id={"heartButtonImage"} src={heartEmpty}/>
                             </button>

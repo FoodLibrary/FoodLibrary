@@ -152,6 +152,19 @@ public class ProductController {
         return new ResponseEntity<Product>(product, HttpStatus.OK);
     }
 
+    @RequestMapping(value="/productListForZzim", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> findProductById2(@RequestBody List<String> prdlstreportno) {
+        List<Product> zzimList = new ArrayList();
+
+        for (int i = 0; i < prdlstreportno.size(); i++) {
+            Product product = service.getOneProduct(prdlstreportno.get(i));
+            zzimList.add(product);
+            System.out.println(product);
+        }
+        return new ResponseEntity<List<Product>>(zzimList,HttpStatus.OK);
+    }
+
+
     @PutMapping("/updateProduct")
     public Product updateProduct(@RequestBody Product product) {
         return service.updateProduct(product);

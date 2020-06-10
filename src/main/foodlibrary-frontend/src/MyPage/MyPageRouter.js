@@ -6,24 +6,30 @@ import TopBar from "../defaultDiv/js/TopBar";
 import SearchService from "../services/SearchService";
 
 function MyPageRouter() {
-    const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
-    const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
+    const selectedAllergy = ["알러지없음"];
+    const selectedDisease = ["질병없음"];
+    const [productList, setProductList] = useState([]);
+
     const [searchResults, setSearchResults] = useState("");
 
     useEffect(() => {
-        SearchService.getUserZzim("타노스는내발밑")
+        SearchService.getUserZzim(localStorage.getItem('id'))
             .then(response => {
-                console.log(response.data)
+                const productList = response.data;
+                setProductList(productList);
+
             })
             .catch(e => {
                 console.log(e);
             });
-    });
+    },[]);
+
 
     return (
         <div className="myPageRouter">
             <TopBar searchResults={searchResults} selectedAllergy={selectedAllergy} selectedDisease={selectedDisease} />
-            <MyPage/>
+            <MyPage productList={productList}/>
+
         </div>
 
     );
