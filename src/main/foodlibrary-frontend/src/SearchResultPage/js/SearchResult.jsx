@@ -19,6 +19,7 @@ const SearchResult = (props) => {
     let [selectedDiseases, setSelectedDisease] = useState([props.selectedDisease]);
 
     const [searchProduct, setSearchProduct] = useState(props.searchResults);
+
     const [searchResults, setResults] = useState([]);
 
     const [reSelectedAllergies, setReSelectedAllergy] = useState([]);
@@ -84,7 +85,6 @@ const SearchResult = (props) => {
                 setSearchProduct(props.searchResults);
                 setAllergyAndDisease(initialAllergyAndDisease);
                 setResults(response.data);
-
             })
             .catch(e => {
                 console.log(e);

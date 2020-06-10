@@ -56,6 +56,10 @@ const getUserZzim = (nickname) => {
     return http.post(`/userzzimproduct/${nickname}`)
 };
 
+const getProductInfoForZzim = (prdlstreportno) => {
+    return http.post(`/productListForZzim`,prdlstreportno)
+}
+
 export default {
     findByProductName,
     onTimeRanking,
@@ -71,4 +75,5 @@ export default {
     getLikeUsers,
     getZzimUsers,
     getUserZzim,
+    getProductInfoForZzim,
 };

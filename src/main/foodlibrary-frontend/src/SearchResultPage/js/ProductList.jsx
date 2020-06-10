@@ -7,7 +7,6 @@ import SearchService from "../../services/SearchService";
 
 const ProductList = (props) => {
     const imageResources = require('../../util/ImageResources.js');
-
     const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
     const[thumbColor, setColorThumb] = useState(imageResources.thumb);
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
@@ -100,7 +99,7 @@ const ProductList = (props) => {
                 <Col xl={12} >
                     <Row id={"productResult"}>
                         <Col>
-                            <img src={searchResults.img}  id={"productImg"}/>
+                            <img src={searchResults.img}  id={"productImg"} onClick={productOnClick}/>
                             <button id={"heartButton"} onClick={heartButtonClick} >
                                 <img id={"heartButtonImage"} src={heartEmpty}/>
                             </button>
