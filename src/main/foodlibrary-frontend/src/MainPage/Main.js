@@ -20,7 +20,6 @@ import {Link} from "react-router-dom";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Chip from "@material-ui/core/Chip";
-import Spinner from "reactstrap/es/Spinner";
 
 const imageResources = require('../util/ImageResources.js');
 
@@ -114,7 +113,6 @@ const Main = (props) => {
 
     return (
         <div>
-
             <Navbar id={"topBar"}>
                 <NavbarToggler onClick={toggleNavbar} id={"navBar"}> <img id={"categoryImg"}
                                                                           src={imageResources.categoryImg}/>
