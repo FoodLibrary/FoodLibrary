@@ -369,8 +369,8 @@ public class ProductController {
     class ManCountComparator implements Comparator<Product> {
         @Override
         public int compare(Product first, Product second) {
-            int firstCount = userController.likeManOfUserCount(first.getPrdlstnm());
-            int secondCount = userController.likeManOfUserCount(second.getPrdlstnm());
+            int firstCount = userController.likeManOfUserCount(first.getPrdlstreportno());
+            int secondCount = userController.likeManOfUserCount(second.getPrdlstreportno());
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;
@@ -381,8 +381,8 @@ public class ProductController {
     class WomanCountComparator implements Comparator<Product> {
         @Override
         public int compare(Product first, Product second) {
-            int firstCount = userController.likeWoManOfUserCount(first.getPrdlstnm());
-            int secondCount = userController.likeWoManOfUserCount(second.getPrdlstnm());
+            int firstCount = userController.likeWoManOfUserCount(first.getPrdlstreportno());
+            int secondCount = userController.likeWoManOfUserCount(second.getPrdlstreportno());
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;
@@ -419,8 +419,8 @@ public class ProductController {
 
         @Override
         public int compare(Product first, Product second) {
-            int firstCount = userController.ageCount(first.getPrdlstnm(), age);
-            int secondCount = userController.ageCount(second.getPrdlstnm(), age);
+            int firstCount = userController.ageCount(first.getPrdlstreportno(), age);
+            int secondCount = userController.ageCount(second.getPrdlstreportno(), age);
             if (firstCount > secondCount) return -1;
             else if (firstCount < secondCount) return 1;
             else return 0;

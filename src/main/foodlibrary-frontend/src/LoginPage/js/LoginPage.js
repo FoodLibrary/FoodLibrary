@@ -44,8 +44,8 @@ const LoginPage = () => {
     let [loginCertificate, setLoginCertificate] = useState("");
 
     const [loginInfo, setLoginInfo] = useState({
-        name: "",
-        password: ""
+        name: localStorage.getItem('id'),
+        password: localStorage.getItem('pw')
     });
 
     const [findID, setFindID] = useState({
@@ -59,9 +59,24 @@ const LoginPage = () => {
         nickname1: ""
     });
 
+    const idChange = (event) => {
+        const id = event.target.value;
+        setID(id);
+        loginInfo.name = id;
+        localStorage.setItem('id', id);
+    };
+
+    const pwChange = (event) => {
+        const pw = event.target.value;
+        setPW(pw);
+        loginInfo.password = pw;
+        localStorage.setItem('pw', pw);
+    };
+
     useEffect(() => {
         SearchService.loginCertification(loginInfo)
             .then(response => {
+                console.log(loginInfo)
                 setLoginCertificate(response.status.toString());
             })
             .catch(e => {
@@ -115,19 +130,7 @@ const LoginPage = () => {
         }
     }
 
-    const idChange = (event) => {
-        const id = event.target.value;
-        setID(id);
-        loginInfo.name = id;
-        localStorage.setItem('id', id);
-    };
 
-    const pwChange = (event) => {
-        const pw = event.target.value;
-        setPW(pw);
-        loginInfo.password = pw;
-        localStorage.setItem('pw', pw);
-    };
 
     const onChangeFindIDName = (event) => {
         const name = event.target.value;

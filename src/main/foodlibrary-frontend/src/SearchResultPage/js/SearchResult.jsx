@@ -32,6 +32,7 @@ const SearchResult = (props) => {
         setReSelectedDisease(value);
     };
 
+
     function initialAllergy() {
         setSelectedAllergy(selectedAllergies);
         let selectedAllergyArray = [];
@@ -84,12 +85,13 @@ const SearchResult = (props) => {
                 setSearchProduct(props.searchResults);
                 setAllergyAndDisease(initialAllergyAndDisease);
                 setResults(response.data);
-
             })
             .catch(e => {
                 console.log(e);
             });
-    },[allergyAndDisease]);
+    },[allergyAndDisease, inputValue]);
+
+
 
     return (
         <Container>
@@ -153,7 +155,7 @@ const SearchResult = (props) => {
                 <Col xl={1} id={"sortingArea"}>
                     <Input type="select" className={"selectSort"} onChange={e => setInputValue(e.target.value)}
                            value={inputValue}>
-                        <option className={"selectSort"} value={"좋아요"}> 좋아요순 </option>
+                        <option className={"selectSort"} value={"좋아요"} > 좋아요순 </option>
                         <option className={"selectSort"} value={"별점"}> 별점순 </option>
                         <option className={"selectSort"} value={"리뷰량"}> 리뷰순 </option>
                     </Input>
@@ -221,6 +223,5 @@ const disease = [
     {disease: '협십증'},
     {disease: '암'},
     {disease: '심장병'},
-    {disease: '심근경색'},
 ];
 

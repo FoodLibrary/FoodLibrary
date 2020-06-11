@@ -13,6 +13,15 @@ const ProductList = (props) => {
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
     const[heartColor, setColorHeart] = useState(imageResources.heart);
 
+    function thumb() {
+        if (thumbEmpty) {
+            setEmptyThumb(thumbEmpty => thumbColor);
+        }
+        else {
+            setColorThumb(thumbColor => thumbEmpty);
+        }
+    }
+
     const [searchResults, setResults]  = useState(props);
 
     const allergyResult = searchResults.allergy.split(",");
@@ -46,7 +55,6 @@ const ProductList = (props) => {
             .then(response => {
                 if (response.data.includes(localStorage.getItem('id'))) {
                     setEmptyHeart(heartEmpty => heartColor);
-                    setColorHeart(heartColor => heartEmpty);
                 }
             });
 
@@ -101,12 +109,7 @@ const ProductList = (props) => {
                     <Row id={"productResult"}>
                         <Col>
                             <img src={searchResults.img}  id={"productImg"} onClick={productOnClick}/>
-                            <button id={"heartButton"} onClick={heartButtonClick} >
-                                <img id={"heartButtonImage"} src={heartEmpty}/>
-                            </button>
-                            <button id={"likeButton"} onClick={thumbButtonClick}>
-                                <img id={"likeButtonImage"} src={thumbEmpty}/>
-                            </button>
+
                         </Col>
                         <Col>
 
@@ -116,7 +119,12 @@ const ProductList = (props) => {
 
                     <Row id={"manufacturerAndName"} >
                         <Col xl={12}>
-                            <span id={"productManufacturer"}> [{searchResults.manufacture}] </span>
+                            <button id={"heartButton"} onClick={heartButtonClick} >
+                                <img id={"heartButtonImage"} src={heartEmpty}/>
+                            </button>
+                            <button id={"likeButton"} onClick={thumbButtonClick}>
+                                <img id={"likeButtonImage"} src={thumbEmpty}/>
+                            </button>
                             <span id={"productName"} onClick={productOnClick}> {searchResults.prdlstnm}  </span>
 
                         </Col>

@@ -272,5 +272,4 @@ const disease = [
     {disease: '협십증'},
     {disease: '암'},
     {disease: '심장병'},
-    {disease: '심근경색'},
 ];

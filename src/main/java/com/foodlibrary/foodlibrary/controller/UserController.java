@@ -4,6 +4,7 @@ import com.foodlibrary.foodlibrary.entity.Like;
 import com.foodlibrary.foodlibrary.entity.Product;
 import com.foodlibrary.foodlibrary.entity.User;
 import com.foodlibrary.foodlibrary.entity.Zzim;
+import com.foodlibrary.foodlibrary.repository.UserRepository;
 import com.foodlibrary.foodlibrary.service.LikeService;
 import com.foodlibrary.foodlibrary.service.ProductService;
 import com.foodlibrary.foodlibrary.service.UserService;
@@ -36,6 +37,8 @@ public class UserController {
     @Autowired
     LikeController likeController;
 
+    @Autowired
+    UserRepository userRepository;
 
     //일단 여기가 회원가입
     @RequestMapping(value = "/users", method = RequestMethod.POST)
@@ -50,10 +53,36 @@ public class UserController {
         }
     }
 
+    //아이디중복검사함수
+    @GetMapping("/checknickname/{nickname}")
+    public ResponseEntity<Void> checkNickname(@PathVariable String nickname){
+        System.out.println(nickname);
+        boolean flag = userRepository.existsByNickname(nickname);
+        System.out.println(flag);
+        if(flag ==false)
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/updateUser/{nickname}")
+    public ResponseEntity<User> updateReview(@PathVariable("nickname") String nickname, @RequestBody User user) {
+        User userData = userService.getOneUser(nickname);
+        if (userData != null) {
+            User _user = userData;
+            _user.setEmail(user.getEmail());
+            _user.setPassword(user.getPassword());
+            _user.setUseralergy(user.getUseralergy());
+            _user.setUserdisease(user.getUserdisease());
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/getuser/{nickname}", method = RequestMethod.POST)
     public ResponseEntity<User> getUser(@PathVariable String nickname) {
         User user = userService.getOneUser(nickname);
-
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
@@ -186,5 +215,7 @@ public class UserController {
             return new ResponseEntity<List<String>>(splitUserAllergy, HttpStatus.OK);
         }
     }
+
+
 
 }

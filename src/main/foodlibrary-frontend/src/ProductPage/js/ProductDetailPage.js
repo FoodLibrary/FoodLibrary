@@ -104,11 +104,11 @@ const ProductDetailPage = (props) => {
                         <Col xl={{size:6,offset:1}}className="ProducPageColTitle">{product.prdlstnm}</Col>
                         <Col xl={{size:1}}>
                             <img id="productPageZButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/80406245-72B8-455B-BA53-B836563235E2.png" alt="hello world"
-                                 />
+                            />
                         </Col>
                         <Col xl={{size:1}}>
                             <img id="productPageBButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/2F3ECBE2-8BFE-4633-8D6D-04C11E07A486.png" alt="thank you"
-                                 />
+                            />
                         </Col>
                         <Col xl={{size:3}} id={"ProductPageBuyButtonArea"}>
                             <button className="ProductPageBuyButton" onClick={buyProduct}>구매하기</button>
@@ -153,7 +153,7 @@ const ProductDetailPage = (props) => {
                     </Row>
                 </Col>
             </Row>
-            <Tabbar {...props.productInfo} nutrient={nutrient} />
+            <Tabbar {...props.productInfo} productName={product.prdlstnm} nutrient={nutrient} />
         </Container>
     );
 };

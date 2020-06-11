@@ -22,8 +22,10 @@
     font-size: 0.7rem;
     font-family: NanumBarunGothic;
     border: 1px solid #006edc;
-    width: 4.5rem;
+    width: 5.4rem;
     height: 1.7rem;
+    margin-right: 1rem;
+    margin-top: -0.2rem;
 }
 
 #sortingSelect {

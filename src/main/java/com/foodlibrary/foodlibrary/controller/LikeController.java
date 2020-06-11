@@ -28,7 +28,7 @@ public class LikeController {
             likeService.deleteLike(like);
         }
         Product product = productService.getOneProduct(like.getPrdlstreportno());
-        product.setZzimcount(likeService.countLike(like));
+        product.setLikecount(likeService.countLike(like));
         productService.updateProduct(product);
         System.out.println("check");
 

@@ -16,5 +16,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     //비번 찾기용
     Boolean existsByNameAndNickname(String name,String nickname);
+
+    //아이디중복체크용
+    Boolean existsByNickname(String name);
 }
 
