@@ -103,9 +103,6 @@ const ProductList = (props) => {
                             <img src={searchResults.img}  id={"productImg"} onClick={productOnClick}/>
 
                         </Col>
-                        <Col>
-
-                        </Col>
 
                     </Row>
 

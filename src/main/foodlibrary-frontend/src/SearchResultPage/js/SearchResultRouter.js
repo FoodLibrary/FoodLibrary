@@ -13,7 +13,6 @@ function SearchResultRouter({match}) {
     useEffect(() => {
         const searchProduct = match.params.searchKeyword;
         setResults(searchProduct);
-
         const selectedAllergy = match.params.allergyInfo;
         setSelectedAllergy(selectedAllergy);
         const selectedDisease = match.params.diseaseInfo;

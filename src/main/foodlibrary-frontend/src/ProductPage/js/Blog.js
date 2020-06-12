@@ -58,34 +58,57 @@ function Blog(props) {
     }
 
     return (
-        <ListGroup className="reviewListGroup">
-            {pageOfItems &&
-            pageOfItems.map((blog, index) => (
-                <ListGroupItem className="listItem" id={"blog" + index}  onClick={() => { blogLink(blog.link); }} action>
-                    <Row>
-                        <Col className="userReviewTitle" xl={3}>
-                            {trimString(blog.title)}
-                        </Col>
-                        <Col xl={{size:5, offset:1}}>
-                            <div className="userName">
-                                {trimString(blog.description)}
-                            </div>
-                        </Col>
-                        <Col xl={2}>
-                            <div className="userReviewDate">
-                                {blog.bloggerName}
-                            </div>
-                        </Col>
-                        <Col md="1" xl={1}>
-                            <div className="userReviewPoint">
-                                {trimDate(blog.postDate)}
-                            </div>
-                        </Col>
-                    </Row>
-                </ListGroupItem>
-            ))}
-            <ReviewPagination items={blogs} onChangePage={onChangePage}/>
-        </ListGroup>
+        <div>
+            <Row className="blogReviewTitle">
+                <Col xl={3}>
+                    <span id={"blogReviewTitle"} > 리뷰 제목 </span>
+                </Col>
+                <Col xl={5}>
+                    <span id={"contents"}> 내용 </span>
+                </Col>
+                <Col xl={2}>
+                    <span id={"blogName"}> 블로그명 </span>
+                </Col>
+                <Col xl={2}>
+                    <span id={"blogDate"}> 작성일 </span>
+                </Col>
+
+
+            </Row>
+
+            <ListGroup className="reviewListGroup">
+
+
+
+                {pageOfItems &&
+                pageOfItems.map((blog, index) => (
+                    <ListGroupItem className="listItem" id={"blog" + index}  onClick={() => { blogLink(blog.link); }} action>
+                        <Row>
+                            <Col className="userReviewTitle" xl={3}>
+                                {trimString(blog.title)}
+                            </Col>
+                            <Col xl={5}>
+                                <div className="userName">
+                                    {trimString(blog.description)}
+                                </div>
+                            </Col>
+                            <Col xl={2}>
+                                <div className="userReviewDate">
+                                    {blog.bloggerName}
+                                </div>
+                            </Col>
+                            <Col md="1" xl={2}>
+                                <div className="userReviewPoint">
+                                    {trimDate(blog.postDate)}
+                                </div>
+                            </Col>
+                        </Row>
+                    </ListGroupItem>
+                ))}
+                <ReviewPagination items={blogs} onChangePage={onChangePage}/>
+            </ListGroup>
+        </div>
+
     );
 }
 

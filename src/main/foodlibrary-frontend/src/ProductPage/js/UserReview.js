@@ -73,29 +73,53 @@ function UserReview(props) {
 
     return (
         <React.Fragment>
+            <Row xl={2} className="reviewInfoRow">
+                {productUserInfo.nickname === "" || allowReviewWrite() ?
+                    <Col xl={2}></Col>
+                    : <Col xl={2}>
+                        <Button onClick={writeReview} id={"reviewWriteButton"}>
+                            리뷰작성
+                        </Button>
+                    </Col>}
+                <Col xl={2} id={"productReviewCount"}>
+                    <span > 이 제품의 리뷰 갯수 : {reviewCount} </span>
+                </Col>
+
+            </Row>
+
+            <Row className="reviewTitle">
+                <Col xl={3}>
+                    <span id={"reviewTitle"}> 리뷰 제목 </span>
+                </Col>
+                <Col xl={3}>
+                    <span id={"hashtag"}> 해쉬태그 </span>
+                </Col>
+                <Col xl={2}>
+                    <span id={"id"}> 아이디 </span>
+                </Col>
+                <Col xl={2}>
+                    <span id={"date"}> 작성일 </span>
+                </Col>
+                <Col xl={1}>
+                    <span id={"stars"}> 별점 </span>
+                </Col>
+            </Row>
+
+
+
             {submit ? (
                 <ReviewWrite {...productUserInfo} setSubmit={setSubmit} retrieveReviews={retrieveReviews}/>
             ) : (
                 <ListGroup className="reviewListGroup">
-                    <Row xl={2} className="reviewInfoRow">
-                        {productUserInfo.nickname === "" || allowReviewWrite() ?
-                            <Col xl={2}></Col>
-                            : <Col xl={2}>
-                                <Button onClick={writeReview} id={"reviewWriteButton"}>
-                                    리뷰작성
-                                </Button>
-                            </Col>}
-                        <Col xl={2} id={"productReviewCount"}>
-                            <span > 이 제품의 리뷰 갯수 : {reviewCount} </span>
-                        </Col>
 
-                    </Row>
+
                     {reviews &&
                     reviews.map((review, index) => (
                         <React.Fragment>
                             <ListGroupItem className="listItem" id={"review" + index} action>
+
                                 <Row>
-                                    <Col className="userReviewTitle" xl={4}>
+                                    <Col className="userReviewTitle" xl={3}>
                                         {review.reviewtitle}
                                     </Col>
                                     <Col xl={3}>

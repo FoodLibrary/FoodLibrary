@@ -23,8 +23,8 @@
 
 #productName {
     font-family: NanumBarunGothic;
-    font-size: 2vh;
-    margin-left: 0.2vh;
+    font-size: 1.3rem;
+    text-align: left;
 }
 
 #manufacturerAndName {

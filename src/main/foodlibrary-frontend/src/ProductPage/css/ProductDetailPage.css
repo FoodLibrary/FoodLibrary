@@ -71,3 +71,10 @@ hr{
 #wordcloud {
     margin-top: 3rem;
 }
+
+.userReviewHashTag {
+    margin: 0.2rem;
+    background-color: #006edc !important;
+    color: white !important;
+    font-weight: bold;
+}

@@ -35,7 +35,7 @@ const Tabbar = (props) => {
             <NavLink
                 className={classnames({ active: activeTab === 'blog' })}
                 onClick={() => { tabToggle('blog'); }}>
-              <span className={"tabMenu"}> 블로그 </span>
+              <span className={"tabMenu"}> 네이버 블로그 리뷰 </span>
             </NavLink>
           </NavItem>
         </Nav>

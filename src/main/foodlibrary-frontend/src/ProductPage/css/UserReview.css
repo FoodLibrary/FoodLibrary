@@ -3,16 +3,24 @@
     font-size: 0.8rem;
 }
 .reviewInfoRow{
-    border-right: 1px solid #dee2e6;
-    border-left: 1px solid #dee2e6;
-    width: 100%;
+    width: 98.5%;
+    margin-left: 1rem;
 }
 .userReviewTitle{
     text-align: center;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
-
+.userName {
+    font-size: 0.8rem;
+}
+.userReviewPoint {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
 .userReviewDate {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 .reviewListGroup{
     width:100%;
@@ -89,7 +97,7 @@
     color: #006edc;
     background-color: white;
     border: 1px solid #006edc;
-    margin-top: 1rem;
+
     margin-left: 93%;
 }
 
@@ -97,6 +105,7 @@
     border: 1px solid darkgray;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     font-size: 0.8rem;
 }
@@ -107,4 +116,66 @@
     padding-top: 1rem;
     padding-bottom: 0.3rem;
     margin-left: 1rem;
+}
+
+.reviewTitle {
+    margin-bottom: 1rem;
+}
+
+#reviewTitle {
+    align-items: center;
+    margin-left: 50%;
+    font-size: 1rem;
+}
+#hashtag {
+    align-items: center;
+    margin-left: 70%;
+    font-size: 1rem;
+}
+
+#id {
+    align-items: center;
+    margin-left: 60%;
+    font-size: 1rem;
+}
+
+#date {
+    align-items: center;
+    margin-left: 40%;
+    font-size: 1rem;
+}
+
+#stars {
+    align-items: center;
+    margin-left: 45%;
+    font-size: 1rem;
+}
+
+#blogReviewTitle {
+    align-items: center;
+    margin-left: 52%;
+    font-size: 1rem;
+}
+
+#contents {
+    align-items: center;
+    margin-left: 52%;
+    font-size: 1rem;
+}
+
+#blogName {
+    align-items: center;
+    margin-left: 40%;
+    font-size: 1rem;
+}
+
+#blogDate {
+    align-items: center;
+    margin-left: 40%;
+    font-size: 1rem;
+}
+
+.blogReviewTitle {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
