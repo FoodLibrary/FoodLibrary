@@ -18,14 +18,13 @@ import TextField from "@material-ui/core/TextField";
 import SearchService from "../services/SearchService";
 import SearchResult from "../SearchResultPage/js/SearchResult";
 import TopBar from "../defaultDiv/js/TopBar";
+import http from "../http-common";
 
 const imageResources = require('../util/ImageResources.js');
 
 const Main = () => {
     const [collapsed, setCollapsed,dropdownOpen, setOpen] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
-
-
     let [selectedAllergy, setSelectedAllergy] = useState([]);
     const [searchProduct, setSearchProduct] = useState("");
     const [searchResults, setResults] = useState([]);

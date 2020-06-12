@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,19 +28,15 @@ public class ProductService {
     }
 
     public List<Product> getProducts(){
-       // System.out.println(repository.findAll().toString());
         return repository.findAll();
     }
 
+    public Product getProductByName(String name){ return repository.findByPrdlstnm(name);}
     public Product getProductById(String id){
         System.out.println(repository.findById(id).orElse(null).toString());
         return repository.findById(id).orElse(null);
     }
-/*
-    public Product getProductByName(String name){
-        return repository.findByName(name);
-    }
-*/
+
     public String deleteProduct(String id){
         repository.deleteById(id);
         return "product removed" + id;
@@ -57,6 +54,8 @@ public class ProductService {
         existingProduct.setProducthashtag(product.getProducthashtag());
         existingProduct.setLikecount(product.getLikecount());
         existingProduct.setZzimcount(product.getZzimcount());
+        existingProduct.setSearchcount(product.getSearchcount());
+        existingProduct.setStaraverage(product.getStaraverage());
 
         return repository.save(existingProduct);
     }
@@ -67,5 +66,26 @@ public class ProductService {
 
     public int changeCount(int count,String prdlstreportno){
         return repository.setFixedCount(count,prdlstreportno);
+    }
+
+    public List<Product> searchAsCategory(String category,String filter){
+        if(filter.equals("likecount")) {
+            return repository.findByCategoryOrderByLikecountDesc(category);
+        }else if(filter.equals("zzimcount")){
+            return repository.findByCategoryOrderByZzimcountDesc(category);
+        }else if(filter.equals("staraverage")){
+            return repository.findByCategoryOrderByStaraverageDesc(category);
+        }
+        return null;
+    }
+
+    public List<Product> searchCategory(List<Product> products, String category){
+        List<Product> tmpProducts = new ArrayList<Product>();
+        for(Product product : products){
+            if(product.getCategory().equals(category)) {
+                tmpProducts.add(product);
+            }
+        }
+        return tmpProducts;
     }
 }
