@@ -13,15 +13,6 @@ const ProductList = (props) => {
     const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
     const[heartColor, setColorHeart] = useState(imageResources.heart);
 
-    function thumb() {
-        if (thumbEmpty) {
-            setEmptyThumb(thumbEmpty => thumbColor);
-        }
-        else {
-            setColorThumb(thumbColor => thumbEmpty);
-        }
-    }
-
     const [searchResults, setResults]  = useState(props);
 
     const allergyResult = searchResults.allergy.split(",");

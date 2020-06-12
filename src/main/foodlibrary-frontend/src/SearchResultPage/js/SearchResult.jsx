@@ -90,7 +90,7 @@ const SearchResult = (props) => {
             .catch(e => {
                 console.log(e);
             });
-    },[allergyAndDisease, inputValue]);
+    },[allergyAndDisease]);
 
 
 

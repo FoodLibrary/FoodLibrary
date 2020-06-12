@@ -178,6 +178,8 @@ public class ProductController {
 
     @RequestMapping(value = "/searchproduct/{name}/{category}/{sort}/{nickname}", method = RequestMethod.POST)
     public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @PathVariable String nickname, @RequestBody String allergyAndDisease) {
+        rankService.addword(name);
+
         List<Product> products;
         List<Product> tmpProducts = new ArrayList<Product>(); // 알러지 필터링
         List<Product> tmpProducts2 = new ArrayList<Product>(); // 지병 필터링
