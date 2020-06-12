@@ -30,7 +30,6 @@ const LoginPage = () => {
 
     const toggleFail = () => {
         setModalFail(!modalFail);
-        setModal(!modal);
     }
 
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
@@ -126,7 +125,7 @@ const LoginPage = () => {
             localStorage.setItem('id',"");
             localStorage.setItem('pw',"");
             localStorage.setItem('loginOK',null);
-            window.alert("로그인 실패");
+            toggleFail();
         }
     }
 
@@ -303,6 +302,16 @@ const LoginPage = () => {
                 <ModalFooter>
                     <Button color="primary" onClick={togglePWOK}> 확인 </Button>{' '}
                     <Button color="danger" onClick={togglePWOK}> 취소 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalFail} toggle={toggleFail} className={"abc"}>
+                <ModalHeader toggle={toggleFail}> 로그인 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 아이디와 비밀번호를 확인하세요. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleFail}> 확인 </Button>
                 </ModalFooter>
             </Modal>
 

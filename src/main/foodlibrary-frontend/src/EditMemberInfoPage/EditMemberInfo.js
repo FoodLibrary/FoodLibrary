@@ -1,5 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Row, Col, Button, Form, FormGroup, Input, Label} from "reactstrap";
+import {
+    Container,
+    Row,
+    Col,
+    Button,
+    Form,
+    FormGroup,
+    Input,
+    Label,
+    ModalHeader,
+    ModalBody,
+    ModalFooter, Modal
+} from "reactstrap";
 
 import Filtering from "../defaultDiv/js/Filtering";
 import './EditMemberInfo.css';
@@ -8,6 +20,18 @@ import UserService from "../services/UserService";
 const imageResources = require('../util/ImageResources.js');
 
 const EditMemberInfo = () => {
+    const [modalEdit, setModalEdit] = useState(false);
+
+    const toggleEdit = () => {
+        setModalEdit(!modalEdit);
+    };
+
+    const [modalEditError, setModalEditError] = useState(false);
+
+    const toggleEditError = () => {
+        setModalEditError(!modalEditError);
+    };
+
     const [userInfo, setUserInfo] = useState({
         birthday: "",
         email: "",
@@ -123,6 +147,7 @@ const EditMemberInfo = () => {
         UserService.update(data)
             .then(response => {
                 console.log(data);
+                toggleEdit();
             })
             .catch(e => {
                 console.log(e);
@@ -140,7 +165,8 @@ const EditMemberInfo = () => {
             const passwordConfirm = document.getElementById("checkPassword");
             password.value="";
             passwordConfirm.value="";
-            console.log("비번다름");
+
+            toggleEditError();
             return true;
         }
         Object.keys(userInfo).forEach(function(key) {
@@ -254,6 +280,27 @@ const EditMemberInfo = () => {
                     </Col>
                 </FormGroup>
             </Form>
+
+            <Modal isOpen={modalEdit} toggle={toggleEdit} className={"abc"}>
+                <ModalHeader toggle={toggleEdit}> 완료 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 회원 정보 수정이 완료되었습니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleEdit}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalEditError} toggle={toggleEditError} className={"abc"}>
+                <ModalHeader toggle={toggleEditError}> 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 회원 정보 수정에 실패하였습니다. 필수 입력 정보를 확인하세요. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleEditError}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
         </Container>
     );
 

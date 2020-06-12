@@ -1,6 +1,19 @@
 import React, {useEffect, useState} from 'react';
 
-import {Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import {
+    Container,
+    Row,
+    Col,
+    Button,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    FormText,
+    Modal,
+    ModalHeader,
+    ModalBody, ModalFooter
+} from 'reactstrap';
 import Filtering from "../defaultDiv/js/Filtering";
 import './SignUpStyle.css';
 import moment from "moment";
@@ -11,6 +24,42 @@ import {func} from "prop-types";
 const imageResources = require('../util/ImageResources.js');
 
 const SignUp = (props) => {
+
+    const [modalSignUpFail, setModalSignUpFail] = useState(false);
+
+    const toggleSignUpFail = () => {
+        setModalSignUpFail(!modalSignUpFail);
+    };
+
+    const [modalSignUpOK, setModalSignUpOK] = useState(false);
+
+    const toggleSignUpOK = () => {
+        setModalSignUpOK(!modalSignUpOK);
+    };
+
+    const toggleSignUpOKToHome = () => {
+        window.location.replace('/');
+    };
+
+    const [modalIdDupOK, setModalIdDupOK] = useState(false);
+
+    const toggleIdDupOK = () => {
+        setModalIdDupOK(!modalIdDupOK);
+    };
+
+    const [modalIdDupFail, setModalIdDupFail] = useState(false);
+
+    const toggleIdDupFail = () => {
+        setModalIdDupFail(!modalIdDupFail);
+    };
+
+    const [modalIdInputFail, setModalIdInputFail] = useState(false);
+
+    const toggleIdInputFail = () => {
+        setModalIdInputFail(!modalIdInputFail);
+    };
+
+
     const [userInfo, setUserInfo] = useState({
         birthday: "",
         email: "",
@@ -53,15 +102,15 @@ const SignUp = (props) => {
     //아이디 중복 체크 메소드.
     const checkNickname = () => {
         if (userInfo.nickname === "") {
-            alert("아이디를 입력하세요");
+            toggleIdInputFail();
         } else {
             UserService.checkNickname(userInfo.nickname)
                 .then(response => {
                     console.log(response);
                     if(response.status === 200)
-                        alert("아이디 있어연");
+                        toggleIdDupFail();
                     else if(response.status === 204)
-                        alert("사용가능");
+                        toggleIdDupOK();
                 })
                 .catch(e => {
                     console.log(e);
@@ -70,8 +119,13 @@ const SignUp = (props) => {
     }
 
     const saveUser = () => {
-        if(isInputCorrect())
-            return;
+        if(isInputCorrect() === true) {
+            toggleSignUpFail();
+        }
+        else {
+            toggleSignUpOK();
+        }
+
         var data = {
             birthday: userInfo.birthday,
             email: userInfo.email,
@@ -117,7 +171,6 @@ const SignUp = (props) => {
             const passwordConfirm = document.getElementById("checkPassword");
             password.value="";
             passwordConfirm.value="";
-            console.log("비번다름");
             return true;
         }
         Object.keys(userInfo).forEach(function(key) {
@@ -240,6 +293,58 @@ const SignUp = (props) => {
                     </Col>
                 </FormGroup>
             </Form>
+
+            <Modal isOpen={modalSignUpFail} toggle={toggleSignUpFail} className={"abc"}>
+                <ModalHeader toggle={toggleSignUpFail}> 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 회원 가입에 실패하였습니다. 필수 입력 정보를 확인하세요. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleSignUpFail}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalSignUpOK} toggle={toggleSignUpOK} className={"abc"}>
+                <ModalHeader toggle={toggleSignUpOK}> 완료 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 회원 가입에 성공하였습니다. 확인 버튼을 누르면 홈 화면으로 돌아갑니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleSignUpOKToHome}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalIdDupOK} toggle={toggleIdDupOK} className={"abc"}>
+                <ModalHeader toggle={toggleIdDupOK}> 사용 가능  </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 이 아이디는 사용 가능합니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleIdDupOK}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalIdDupFail} toggle={toggleIdDupFail} className={"abc"}>
+                <ModalHeader toggle={toggleIdDupFail}> 사용 불가  </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 이 아이디는 사용할 수 없습니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleIdDupFail}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalIdInputFail} toggle={toggleIdInputFail} className={"abc"}>
+                <ModalHeader toggle={toggleIdInputFail}> 아이디 입력 확인  </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 아이디를 입력하세요.  </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleIdInputFail}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+
         </Container>
     );
 }
