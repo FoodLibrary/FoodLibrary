@@ -347,7 +347,7 @@ public class ProductController {
         SearchCountComparator comp = new SearchCountComparator();
         Collections.sort(list, comp);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             tmpList.add(list.get(i));
         }
         return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
@@ -377,7 +377,7 @@ public class ProductController {
         reviewComparator comp = new reviewComparator();
         Collections.sort(list, comp);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             tmpList.add(list.get(i));
         }
         return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
@@ -422,7 +422,7 @@ public class ProductController {
             Collections.sort(list, comp);
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             tmpList.add(list.get(i));
         }
         return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
@@ -455,7 +455,7 @@ public class ProductController {
         AgeCountComparator comp = new AgeCountComparator(age);
         Collections.sort(list, comp);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             tmpList.add(list.get(i));
         }
         return new ResponseEntity<List<Product>>(tmpList, HttpStatus.OK);
