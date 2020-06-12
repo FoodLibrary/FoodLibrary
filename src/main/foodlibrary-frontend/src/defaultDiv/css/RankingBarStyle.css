@@ -29,6 +29,7 @@
 
 #rankingToggle {
     color: dimgray;
-    width: 30vh;
+    border: 1px solid #006edc;
+    width: 20rem;
     border-radius: 10px;
 }

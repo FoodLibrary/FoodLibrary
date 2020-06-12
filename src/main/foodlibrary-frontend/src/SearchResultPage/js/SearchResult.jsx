@@ -71,6 +71,7 @@ const SearchResult = (props) => {
 
     const toggleInfo = () => setPopoverOpen(!popoverOpen);
 
+    const nickname = localStorage.getItem('id');
 
 
     useEffect(() => {
@@ -80,7 +81,7 @@ const SearchResult = (props) => {
 
 
     useEffect(() => {
-        SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease)
+        SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease , nickname)
             .then(response => {
                 setSearchProduct(props.searchResults);
                 setAllergyAndDisease(initialAllergyAndDisease);

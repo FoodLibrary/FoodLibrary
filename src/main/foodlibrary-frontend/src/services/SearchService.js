@@ -1,7 +1,7 @@
 import http from "../http-common"
 
-const findByProductName = (searchProduct, category, inputValue ,allergyAndDisease ) => {
-    return http.post(`/searchproduct/${searchProduct}/${category}/${inputValue}`, allergyAndDisease);
+const findByProductName = (searchProduct, category, inputValue ,allergyAndDisease , nickname) => {
+    return http.post(`/searchproduct/${searchProduct}/${category}/${inputValue}/${nickname}`, allergyAndDisease);
 };
 
 const onTimeRanking = () => {

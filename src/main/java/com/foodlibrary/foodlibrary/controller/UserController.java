@@ -199,22 +199,38 @@ public class UserController {
         return userAge;
     }
 
-    @GetMapping("/userallergy/{nickname}")
-    public ResponseEntity<List<String>> sendAllergyList(@PathVariable String nickname) {
+    public List<String> sendAllergyList(String nickname) {
         User user = userService.getOneUser(nickname);
         String[] userAllergy = user.getUseralergy().split(",");
 
         if(userAllergy[0].equals("없음")){
-            return new ResponseEntity<List<String>>(HttpStatus.BAD_REQUEST);
+            return new ArrayList<String>();
         }
         else {
             List<String> splitUserAllergy = new ArrayList<String>();
             for(int i = 0 ; i < userAllergy.length; i++) {
                 splitUserAllergy.add(userAllergy[i]);
             }
-            return new ResponseEntity<List<String>>(splitUserAllergy, HttpStatus.OK);
+            return splitUserAllergy;
         }
     }
+
+    public List<String> sendDiseaseList(String nickname) {
+        User user = userService.getOneUser(nickname);
+        String[] userDisease = user.getUserdisease().split(",");
+
+        if(userDisease[0].equals("없음")){
+            return new ArrayList<String>();
+        }
+        else {
+            List<String> splitUserDisease = new ArrayList<String>();
+            for(int i = 0 ; i < userDisease.length; i++) {
+                splitUserDisease.add(userDisease[i]);
+            }
+            return splitUserDisease;
+        }
+    }
+
 
 
 

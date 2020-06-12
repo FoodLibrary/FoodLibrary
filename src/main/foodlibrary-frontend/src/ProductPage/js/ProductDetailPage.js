@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import '../css/ProductDetailPage.css'
-import {Container,Row,Col} from 'reactstrap';
+import {Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 import Tabbar from './Tabbar';
 import ProductService from '../js/ProductService';
 import Chip from "@material-ui/core/Chip";
 import ReactWordcloud from 'react-wordcloud';
+import SearchService from "../../services/SearchService";
+
+const imageResources = require('../../util/ImageResources.js');
 
 const options = {
     colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
@@ -74,25 +77,67 @@ const ProductDetailPage = (props) => {
     const buyProduct = () => {
         const url = product.buylink;
         window.open(url, '_blank');
-    }
-    //
-    // const setZzim = () =>{
-    //     ZzimLikeService.addZzim(productUserInfo)
-    //         .then(zzim =>{
-    //             console.log(zzim.data);
-    //         }).catch(e => {
-    //         console.log(e);
-    //     });
-    // }
-    //
-    // const setLike = () =>{
-    //     ZzimLikeService.addLike(productUserInfo)
-    //         .then(like =>{
-    //             console.log(like.data);
-    //         }).catch(e => {
-    //         console.log(e);
-    //     });
-    // }
+    };
+
+
+    const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
+    const[thumbColor, setColorThumb] = useState(imageResources.thumb);
+    const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
+    const[heartColor, setColorHeart] = useState(imageResources.heart);
+
+
+    const [like, setLike] = useState({
+        prdlstreportno:props.productInfo.productNumber,
+        nickname:localStorage.getItem('id')
+    });
+
+    const [zzim, setZzim] = useState({
+        prdlstreportno:props.productInfo.productNumber,
+        nickname:localStorage.getItem('id')
+    });
+
+
+    const clickZZim = () =>{
+        if (setEmptyHeart && localStorage.getItem('loginOK') === "OK") {
+            setEmptyHeart(heartEmpty => heartColor);
+            setColorHeart(heartColor => heartEmpty);
+            SearchService.addZzim(zzim)
+                .then(response =>{
+                    setZzim(zzim);
+                }).catch(e => {
+                console.log(e);
+            });
+
+        }
+        else {
+            setModalClickOK(!modalClickOK);
+        }
+
+    };
+
+    const clickLike = () =>{
+        if (setEmptyThumb && localStorage.getItem('loginOK') === "OK") {
+            setEmptyThumb(thumbEmpty => thumbColor);
+            setColorThumb(thumbColor => thumbEmpty);
+            SearchService.addLike(like)
+                .then(response =>{
+                    setLike(like);
+                }).catch(e => {
+                console.log(e);
+            });
+        }
+        else {
+            setModalClickOK(!modalClickOK);
+        }
+
+    };
+
+    const [modalClickOK, setModalClickOK] = useState(false);
+
+    const toggleClickOK = () => {
+        setModalClickOK(!modalClickOK);
+    };
+
     return(
         <Container id={"productChart"}>
             <Row>
@@ -103,12 +148,12 @@ const ProductDetailPage = (props) => {
                     <Row className="ProductPageRow1" md="4">
                         <Col xl={{size:6,offset:1}}className="ProducPageColTitle">{product.prdlstnm}</Col>
                         <Col xl={{size:1}}>
-                            <img id="productPageZButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/80406245-72B8-455B-BA53-B836563235E2.png" alt="hello world"
-                            />
+                            <img id="productPageZButton" src={heartEmpty}
+                            onClick={clickZZim}/>
                         </Col>
                         <Col xl={{size:1}}>
-                            <img id="productPageBButton" src="https://cdn.zeplin.io/5e62877178f87615c993cd42/assets/2F3ECBE2-8BFE-4633-8D6D-04C11E07A486.png" alt="thank you"
-                            />
+                            <img id="productPageBButton" src={thumbEmpty}
+                            onClick={clickLike}/>
                         </Col>
                         <Col xl={{size:3}} id={"ProductPageBuyButtonArea"}>
                             <button className="ProductPageBuyButton" onClick={buyProduct}>구매하기</button>
@@ -154,6 +199,16 @@ const ProductDetailPage = (props) => {
                 </Col>
             </Row>
             <Tabbar {...props.productInfo} productName={product.prdlstnm} nutrient={nutrient} />
+
+            <Modal isOpen={modalClickOK} toggle={toggleClickOK} className={"abc"}>
+                <ModalHeader toggle={toggleClickOK}> 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 찜, 좋아요 기능을 이용하기 위해서는 로그인을 하세요! </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleClickOK}> 확인 </Button>{' '}
+                </ModalFooter>
+            </Modal>
         </Container>
     );
 };

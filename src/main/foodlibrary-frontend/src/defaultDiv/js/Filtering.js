@@ -161,6 +161,7 @@ const Filtering = (props) =>{
 
                     </Col>
 
+
                     <Col xs={5} sm={4} md={2} lg={2}>
                         <FormGroup check inline className={"allergyCheck"}>
                             <Label check className={"allergy"}>
@@ -169,6 +170,15 @@ const Filtering = (props) =>{
                             </Label>
                         </FormGroup>
                     </Col>
+                    <Col xs={5} sm={4} md={2} lg={2}>
+                        <FormGroup check inline className={"allergyCheck"}>
+                            <Label check className={"allergy"}>
+                                <Input type="checkbox" name="useralergy" id="밀" value="밀" onChange={props.handleInputChange}/>
+                                <span className={"allergyNames"} id={"wheat"}> 밀 </span>
+                            </Label>
+                        </FormGroup>
+                    </Col>
+
                 </Row>
 
                 <Row id={"diseaseTitle"}>

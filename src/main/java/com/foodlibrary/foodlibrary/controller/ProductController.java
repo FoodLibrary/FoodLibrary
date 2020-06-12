@@ -176,8 +176,8 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = "/searchproduct/{name}/{category}/{sort}", method = RequestMethod.POST)
-    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @RequestBody String allergyAndDisease) {
+    @RequestMapping(value = "/searchproduct/{name}/{category}/{sort}/{nickname}", method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @PathVariable String nickname, @RequestBody String allergyAndDisease) {
         List<Product> products;
         List<Product> tmpProducts = new ArrayList<Product>(); // 알러지 필터링
         List<Product> tmpProducts2 = new ArrayList<Product>(); // 지병 필터링
@@ -188,7 +188,6 @@ public class ProductController {
         if (!name.equals("없음")) {
             products = service.getProductsAsSearch(name);
         }
-        //없으면 모든 상품 검색
         else {
             products = service.getProducts();
         }
@@ -197,16 +196,26 @@ public class ProductController {
         if (!category.equals("없음")) {
             products = service.searchCategory(products, category);
         }
-
         String[] allergyTmp = allergyAndDisease.split("\"allergy\":\"");
         String[] diseaseTmp = allergyAndDisease.split("\"disease\":\"");
 
         //알러지 유무 판단.
-        if (allergyTmp.length < 2) {
+        if (allergyTmp[0].split("\"")[0].equals("알러지없음")) {
             tmpProducts = products;
         } else {
-            for (int i = 1; i < allergyTmp.length; i++) {
-                allergys.add(allergyTmp[i].split("\"")[0]);
+            for (int i = 0; i < allergyTmp.length; i++) {
+                String allergySplit = allergyTmp[i].split("\"")[0];
+                //내알러지
+                if (allergySplit.equals("내 알러지")) {
+                    List<String> userAllergys = userController.sendAllergyList(nickname);
+                    for (String userAllergy : userAllergys) {
+                        allergys.add(userAllergy);
+                    }
+                }
+                //입력받은 알러지
+                else {
+                    allergys.add(allergySplit);
+                }
             }
             //입력받은 알러지와 상품의 알러지 비교
             for (int i = 0; i < products.size(); i++) {
@@ -226,11 +235,22 @@ public class ProductController {
         }
 
         //지병 유무 판단.
-        if (diseaseTmp.length < 2) {
+        if (diseaseTmp[0].split("\"")[0].equals("질병없음")) {
             tmpProducts2 = tmpProducts;
         } else {
-            for (int i = 1; i < diseaseTmp.length; i++) {
-                diseases.add(diseaseTmp[i].split("\"")[0]);
+            for (int i = 0; i < diseaseTmp.length; i++) {
+                String diseaseSplit = diseaseTmp[i].split("\"")[0];
+                //내지병
+                if (diseaseSplit.equals("내 질병")) {
+                    List<String> userDiseases = userController.sendDiseaseList(nickname);
+                    for (String userDisease : userDiseases) {
+                        diseases.add(userDisease);
+                    }
+                }
+                //입력받은 알러지
+                else {
+                    diseases.add(diseaseSplit);
+                }
             }
             //입력받은 지병과 상품의 지병 비교
             for (int i = 0; i < tmpProducts.size(); i++) {
@@ -261,7 +281,6 @@ public class ProductController {
 
         return new ResponseEntity<List<Product>>(tmpProducts2, HttpStatus.OK);
     }
-
     //좋아요 카운트
     class LikeComparator implements Comparator<Product> {
         @Override
@@ -463,5 +482,6 @@ public class ProductController {
         Product product = service.getProductByName(productName);
         return new ResponseEntity<String>(product.getPrdlstreportno(), HttpStatus.OK);
     }
+
 
 }

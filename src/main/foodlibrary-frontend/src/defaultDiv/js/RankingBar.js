@@ -14,30 +14,22 @@ const RankingBar = (props) => {
 
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
     const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
+    const [category, setCategory] = useState("없음");
     const [searchResults, setResults] = useState([]);
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [onTimeRankingToggle, setOnTimeRankingToggle] = useState([]);
 
-    // useEffect(() => {
-    //     SearchService.onTimeRankingToggleBar()
-    //         .then(response => {
-    //             setOnTimeRankingToggle(response.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // });
-
-    // function getOnclickRankingToggle() {
-    //     SearchService.onTimeRankingToggle()
-    //         .then(response => {
-    //             setOnTimeRankingToggle(response.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // }
+    function getOnclickRankingToggle() {
+        SearchService.onTimeRankingToggleBar()
+            .then(response => {
+                console.log(response.data.length)
+                setOnTimeRankingToggle(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
 
         return (
             <Container>
@@ -48,18 +40,19 @@ const RankingBar = (props) => {
                                     랭킹
                             </Button>
                         </Link>
-                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                            <DropdownToggle caret className={"rankingToggle"}>
+                        <Dropdown isOpen={dropdownOpen} toggle={toggle} >
+                            <DropdownToggle caret className={"rankingToggle"} onClick={getOnclickRankingToggle}>
                                 실시간 검색어 순위
                             </DropdownToggle>
                             <DropdownMenu id={"rankingToggle"} >
                                 {onTimeRankingToggle.map((ranking,i) => {
-                                    return (<DropdownItem key={i}>
-                                        {/*<Link to={`/productPage/${onTimeRankingToggle[i]}/${selectedAllergy}/${searchResults}`}>*/}
+                                    return (
+                                        <Link to={`/searchResult/${category}/${onTimeRankingToggle[i]}/${selectedAllergy}/${selectedDisease}`}>
+                                            <DropdownItem key={i} className={"rankingToggleMenu"}>
                                             {i+1}.  {onTimeRankingToggle[i]}
-                                        {/*</Link>*/}
-
-                                    </DropdownItem>);
+                                            </DropdownItem>
+                                        </Link>
+                                    );
                                     })}
                             </DropdownMenu>
                         </Dropdown>

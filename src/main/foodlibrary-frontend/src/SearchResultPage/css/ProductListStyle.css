@@ -60,6 +60,7 @@
     width: 3vh;
     height: 3vh;
     padding-bottom: 0.01vh;
+    margin-bottom: 0.5vh;
 }
 
 #heartButton {
@@ -76,7 +77,7 @@ button {
 
 #heartButtonImage {
     padding-top: 0.2vh;
-    padding-bottom: -0.3vh;
+    margin-bottom: 0.5vh;
     width: 3.1vh;
     height: 3.6vh;
 }

@@ -55,6 +55,7 @@ const ProductList = (props) => {
             .then(response => {
                 if (response.data.includes(localStorage.getItem('id'))) {
                     setEmptyHeart(heartEmpty => heartColor);
+                    setColorHeart(heartColor => heartEmpty)
                 }
             });
 
@@ -155,7 +156,6 @@ const ProductList = (props) => {
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={toggleClickOK}> 확인 </Button>{' '}
-                        <Button color="danger" onClick={toggleClickOK}> 취소 </Button>
                     </ModalFooter>
                 </Modal>
 
