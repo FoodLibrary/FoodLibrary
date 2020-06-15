@@ -119,7 +119,7 @@ const Ranking = (props) => {
                         className={classnames({ active: activeTab === '1' })}
                         onClick={onclickRankingOnTime}
                     >
-                        실시간 검색어 순위
+                        실시간 검색 순위
                     </NavLink>
                 </NavItem>
                 <NavItem>

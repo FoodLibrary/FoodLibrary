@@ -130,7 +130,7 @@ const ProductList = (props) => {
                     </Row>
 
                     <Row>
-                        <Col xl={4} id={"diseaseArea"} > 지병 위험군 </Col>
+                        <Col xl={4} id={"diseaseArea"} > 질병 위험군 </Col>
                         <Col xl={8} id={"diseaseChipArea"}>
                             {diseaseResult.map((result,index) => (
                                 <Chip className={"diseaseChip"} label={result}/>

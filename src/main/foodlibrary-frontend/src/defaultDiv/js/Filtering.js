@@ -183,7 +183,7 @@ const Filtering = (props) =>{
 
                 <Row id={"diseaseTitle"}>
                     <Col xs={12} sm={4} md={{size:3, offset:2}} lg={{size:2, offset:2}}>
-                        <span className={"diseaseCheck"} id={"diseaseText"}>  [ 내 지병 ]  </span>
+                        <span className={"diseaseCheck"} id={"diseaseText"}>  [ 내 질병 ]  </span>
                     </Col>
                 </Row>
                 <Row  xs={12} sm={2} md={12} lg={12}>
