@@ -55,16 +55,9 @@ const TopBar = (props) => {
             setModalSearchTop(true);
         } else {
             window.location.reload();
-            SearchService.searchCount(props.searchResults)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(response => {
-                    console.log(response);
-                })
 
         }
-    }
+    };
 
     useEffect(() => {
         loginOrNotShow();
@@ -76,6 +69,14 @@ const TopBar = (props) => {
         }
         if (props.searchResults !== "없음") {
             setCategory("없음");
+            SearchService.searchCount(props.searchResults)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+
         }
         if (props.selectedCategory !== "없음") {
             setSearchProduct("");

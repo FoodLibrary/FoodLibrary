@@ -28,35 +28,55 @@ const ProductDetailPage = (props) => {
     const [nutrient, setNutrient] = useState("");
     const [productHashtag, setProductHashTag] = useState([]);
     const [product, setproduct] = useState({
-        prdlstreportno:props.productInfo.productNumber,
+        prdlstreportno: props.productInfo.productNumber,
         prdlstnm: '',
         manufacture: '',
-        category:'',
-        img:'',
-        rawmtrl:'',
-        nutrient:'',
-        allergy:'',
-        disease:'',
-        producthashtag:'',
-        likecount:0,
-        zzimcount:0
+        category: '',
+        img: '',
+        rawmtrl: '',
+        nutrient: '',
+        allergy: '',
+        disease: '',
+        producthashtag: '',
+        likecount: 0,
+        zzimcount: 0
     });
 
     useEffect(() => {
         getProductInfo();
     }, []);
 
-    const getProductInfo = () =>{
+    useEffect(() => {
+        SearchService.getLikeUsers(product.prdlstreportno)
+            .then(response => {
+                if (response.data.includes(localStorage.getItem('id'))) {
+                    setEmptyThumb(thumbEmpty => thumbColor);
+                    setColorThumb(thumbColor => thumbEmpty);
+                }
+            });
+
+        SearchService.getZzimUsers(product.prdlstreportno)
+            .then(response => {
+                if (response.data.includes(localStorage.getItem('id'))) {
+                    setEmptyHeart(heartEmpty => heartColor);
+                    setColorHeart(heartColor => heartEmpty);
+                }
+            });
+    },[product]);
+
+    const getProductInfo = () => {
         ProductService.getProductInfo(product.prdlstreportno)
             .then(foundProduct => {
+
                 setproduct(foundProduct.data);
                 setNutrient(foundProduct.data.nutrient);
-                getWordCloud(foundProduct.data.producthashtag)
+                getWordCloud(foundProduct.data.producthashtag);
             }).catch(e => {
             console.log(e);
         });
+
     };
-    
+
     function getWordCloud(str) {
         const hashtag = str.split(",");
         const productHashtag = [];
@@ -64,12 +84,13 @@ const ProductDetailPage = (props) => {
             productHashtag[i] =
                 {
                     text: hashtag[i],
-                    value: i+1
+                    value: i + 1
                 }
         }
         setProductHashTag(productHashtag);
 
     }
+
 
     const allergyChip = product.allergy.split(",");
     const diseaseChip = product.disease.split(",");
@@ -80,53 +101,51 @@ const ProductDetailPage = (props) => {
     };
 
 
-    const[thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
-    const[thumbColor, setColorThumb] = useState(imageResources.thumb);
-    const[heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
-    const[heartColor, setColorHeart] = useState(imageResources.heart);
+    const [thumbEmpty, setEmptyThumb] = useState(imageResources.emptyThumb);
+    const [thumbColor, setColorThumb] = useState(imageResources.thumb);
+    const [heartEmpty, setEmptyHeart] = useState(imageResources.emptyHeart);
+    const [heartColor, setColorHeart] = useState(imageResources.heart);
 
 
     const [like, setLike] = useState({
-        prdlstreportno:props.productInfo.productNumber,
-        nickname:localStorage.getItem('id')
+        prdlstreportno: props.productInfo.productNumber,
+        nickname: localStorage.getItem('id')
     });
 
     const [zzim, setZzim] = useState({
-        prdlstreportno:props.productInfo.productNumber,
-        nickname:localStorage.getItem('id')
+        prdlstreportno: props.productInfo.productNumber,
+        nickname: localStorage.getItem('id')
     });
 
 
-    const clickZZim = () =>{
+    const clickZZim = () => {
         if (setEmptyHeart && localStorage.getItem('loginOK') === "OK") {
             setEmptyHeart(heartEmpty => heartColor);
             setColorHeart(heartColor => heartEmpty);
             SearchService.addZzim(zzim)
-                .then(response =>{
+                .then(response => {
                     setZzim(zzim);
                 }).catch(e => {
                 console.log(e);
             });
 
-        }
-        else {
+        } else {
             setModalClickOK(!modalClickOK);
         }
 
     };
 
-    const clickLike = () =>{
+    const clickLike = () => {
         if (setEmptyThumb && localStorage.getItem('loginOK') === "OK") {
             setEmptyThumb(thumbEmpty => thumbColor);
             setColorThumb(thumbColor => thumbEmpty);
             SearchService.addLike(like)
-                .then(response =>{
+                .then(response => {
                     setLike(like);
                 }).catch(e => {
                 console.log(e);
             });
-        }
-        else {
+        } else {
             setModalClickOK(!modalClickOK);
         }
 
@@ -138,43 +157,43 @@ const ProductDetailPage = (props) => {
         setModalClickOK(!modalClickOK);
     };
 
-    return(
+    return (
         <Container id={"productChart"}>
             <Row>
-                <Col xl={{size:5}}>
+                <Col xl={{size: 5}}>
                     <img className="ProductImage" src={product.img} alt="none"/>
                 </Col>
-                <Col xl={{size:7}}>
+                <Col xl={{size: 7}}>
                     <Row className="ProductPageRow1" md="4">
-                        <Col xl={{size:6,offset:1}}className="ProducPageColTitle">{product.prdlstnm}</Col>
-                        <Col xl={{size:1}}>
+                        <Col xl={{size: 6, offset: 1}} className="ProducPageColTitle">{product.prdlstnm}</Col>
+                        <Col xl={{size: 1}}>
                             <img id="productPageZButton" src={heartEmpty}
-                            onClick={clickZZim}/>
+                                 onClick={clickZZim}/>
                         </Col>
-                        <Col xl={{size:1}}>
+                        <Col xl={{size: 1}}>
                             <img id="productPageBButton" src={thumbEmpty}
-                            onClick={clickLike}/>
+                                 onClick={clickLike}/>
                         </Col>
-                        <Col xl={{size:3}} id={"ProductPageBuyButtonArea"}>
+                        <Col xl={{size: 3}} id={"ProductPageBuyButtonArea"}>
                             <button className="ProductPageBuyButton" onClick={buyProduct}>구매하기</button>
                         </Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size:3}} className="ProducPageCol1">생산자 및 소재지</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1">생산자 및 소재지</Col>
                         <Col className="ProducPageCol2">{product.manufacture}</Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size:3}} className="ProducPageCol1">원산지 정보</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1">원산지 정보</Col>
                         <Col className="ProducPageCol2">{product.rawmtrl}</Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size:3}} className="ProducPageCol1">알러지</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1">알러지</Col>
 
                         <Col className="ProducPageCol2">
-                            {allergyChip.map((result,index) => (
+                            {allergyChip.map((result, index) => (
                                 <Chip className={"allergyChip"} label={result}/>
                             ))}
 
@@ -182,23 +201,23 @@ const ProductDetailPage = (props) => {
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size:3}} className="ProducPageCol1">지병</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1">지병</Col>
                         <Col className="ProducPageCol2">
-                            {diseaseChip.map((result,index) => (
+                            {diseaseChip.map((result, index) => (
                                 <Chip className={"allergyChip"} label={result}/>
                             ))}
                         </Col>
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size:3}} className="ProducPageCol1">제품 키워드</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1">제품 키워드</Col>
                         <Col className="ProducPageCol2" id={"wordcloud"}>
                             <ReactWordcloud words={productHashtag} options={options}/>
                         </Col>
                     </Row>
                 </Col>
             </Row>
-            <Tabbar {...props.productInfo} productName={product.prdlstnm} nutrient={nutrient} />
+            <Tabbar {...props.productInfo} productName={product.prdlstnm} nutrient={nutrient}/>
 
             <Modal isOpen={modalClickOK} toggle={toggleClickOK} className={"abc"}>
                 <ModalHeader toggle={toggleClickOK}> 실패 </ModalHeader>

@@ -16,6 +16,7 @@ const ProductList = (props) => {
     const [searchResults, setResults]  = useState(props);
 
     const allergyResult = props.allergy.split(",");
+
     const [allergyInfo, setAllergyInfo] = useState(props.allergyForReSearch);
     const diseaseResult = props.disease.split(",");
     const [diseaseInfo, setDiseaseInfo] = useState(props.diseaseForReSearch);
@@ -97,7 +98,6 @@ const ProductList = (props) => {
     };
 
     return (
-
             <Row id={"productList"}>
                 <Col xl={12} >
                     <Row id={"productResult"}>
