@@ -66,7 +66,7 @@ const SignUp = (props) => {
         name: "",
         nickname: "",
         password: "",
-        passwordConfirm:"",
+        passwordConfirm: "",
         sex: "",
         useralergy: "",
         userdisease: ""
@@ -78,7 +78,7 @@ const SignUp = (props) => {
         if (name === "useralergy") {
             if (userInfo.useralergy.includes(value))
                 setUserInfo({...userInfo, [name]: (userInfo.useralergy.replace("," + value, ""))})
-            else if(userInfo.useralergy === "")
+            else if (userInfo.useralergy === "")
                 setUserInfo({...userInfo, [name]: (userInfo.useralergy.concat('', value))})
             else
                 setUserInfo({...userInfo, [name]: (userInfo.useralergy.concat(',', value))})
@@ -88,7 +88,7 @@ const SignUp = (props) => {
         if (name === "userdisease") {
             if (userInfo.userdisease.includes(value))
                 setUserInfo({...userInfo, [name]: (userInfo.userdisease.replace("," + value, ""))})
-            else if(userInfo.userdisease === "")
+            else if (userInfo.userdisease === "")
                 setUserInfo({...userInfo, [name]: (userInfo.userdisease.concat('', value))})
             else
                 setUserInfo({...userInfo, [name]: (userInfo.userdisease.concat(',', value))})
@@ -107,9 +107,9 @@ const SignUp = (props) => {
             UserService.checkNickname(userInfo.nickname)
                 .then(response => {
                     console.log(response);
-                    if(response.status === 200)
+                    if (response.status === 200)
                         toggleIdDupFail();
-                    else if(response.status === 204)
+                    else if (response.status === 204)
                         toggleIdDupOK();
                 })
                 .catch(e => {
@@ -119,10 +119,9 @@ const SignUp = (props) => {
     }
 
     const saveUser = () => {
-        if(isInputCorrect() === true) {
+        if (isInputCorrect() === true) {
             toggleSignUpFail();
-        }
-        else {
+        } else {
             toggleSignUpOK();
         }
 
@@ -145,35 +144,53 @@ const SignUp = (props) => {
             });
     };
 
-    // 비밀번호, 비밀번호확인 UserInfo에 넣고 valid설정해줄라고 했던 부분
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+
     const isPasswordSame = (event) => {
         const {name, value} = event.target;
         setUserInfo({...userInfo, [name]: value});
-        const password = document.getElementById("passwordInput");
-        const passwordConfirm = document.getElementById("checkPassword");
-        if(userInfo.password === userInfo.passwordConfirm) {
-            password.valid = true;
-            passwordConfirm.valid = true;
-        }else{
-            password.valid = false;
-            passwordConfirm.valid = false;
+        const password = document.getElementById("passwordInput").value;
+        setPassword(password);
+        const passwordConfirm = document.getElementById("checkPassword").value;
+        setPasswordConfirm(passwordConfirm);
+        // return password === passwordConfirm;
+    };
+
+    const [onChangePWArea, setOnChangePWArea] = useState(" ");
+
+    useEffect(() => {
+        if (password === passwordConfirm) {
+            if (password === "" ) {
+                setOnChangePWArea(" ");
+            }
+            else {
+                const onChangePWArea = "일치";
+                document.getElementById("pwCorrectOrNot").style.color = 'green';
+                setOnChangePWArea(onChangePWArea);
+            }
+
+
+        } else {
+            const onChangePWArea = "불일치";
+            document.getElementById("pwCorrectOrNot").style.color = 'red';
+            setOnChangePWArea(onChangePWArea);
         }
-        console.log(userInfo);
-    }
+    });
+
 
     //위에 saveUser에서 서버로 값들 넘기기전에 빈값이 있는지 비밀번호, 비밀번호 확인 같은지
     //여기에 alert(modal)추가하면댐. 그럼 맨밑에 버튼누르면 뭐가 잘못됐는지 뜰듯
     const isInputCorrect = () => {
-        console.log(userInfo);
         var flag = false;
-        if(userInfo.password !== userInfo.passwordConfirm){
-            const password = document.getElementById("passwordInput");
-            const passwordConfirm = document.getElementById("checkPassword");
-            password.value="";
-            passwordConfirm.value="";
+        if (userInfo.password !== userInfo.passwordConfirm) {
+            const password = document.getElementById("passwordInput").value;
+            const passwordConfirm = document.getElementById("checkPassword").value;
+            password.value = "";
+            passwordConfirm.value = "";
             return true;
         }
-        Object.keys(userInfo).forEach(function(key) {
+        Object.keys(userInfo).forEach(function (key) {
             if (userInfo[key] === "" && key != "userdisease" && key != "useralergy") {
                 console.log(key);
                 console.log(userInfo);
@@ -211,7 +228,7 @@ const SignUp = (props) => {
                         <Label for="examplePassword">비밀번호 </Label>
                     </Col>
                     <Col xl={4} lg={5} md={5} sm={5} xs={12}>
-                        <Input valid  type="password" name="password" id="passwordInput" onChange={isPasswordSame}/>
+                        <Input type="password" name="password" id="passwordInput" onChange={isPasswordSame}/>
                     </Col>
                     <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                 </FormGroup>
@@ -221,9 +238,10 @@ const SignUp = (props) => {
                         <Label for="examplePassword">비밀번호 확인</Label>
                     </Col>
                     <Col xl={4} lg={5} md={5} sm={5} xs={12}>
-                        <Input valid  type="password" name="passwordConfirm" id="checkPassword" onChange={isPasswordSame}/>
+                        <Input type="password" name="passwordConfirm" id="checkPassword"
+                               onChange={isPasswordSame}/>
                     </Col>
-                    <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    <Col xl={4} lg={3} md={3} sm={3} xs={3}> <Col xl={3} lg={2} xs={3} id={"pwCorrectOrNot"}> <span> {onChangePWArea} </span></Col></Col>
                 </FormGroup>
                 <FormGroup row>
                     <Col xl={{size: 2, offset: 2}} lg={{size: 2, offset: 2}} md={2} sm={{size: 2, offset: 1}} xs={12}
@@ -258,9 +276,9 @@ const SignUp = (props) => {
                          xs={{size: 3, offset: 0}} className={"signUpText"}>
                         <Input type="radio" onChange={handleInputChange} name="sex" value="여자">여자</Input> 여자
                     </Col>
-                    <Col xl={3} lg={2} xs={3}></Col>
+
                 </FormGroup>
-                <FormGroup row xs={2}>
+                <FormGroup row xs={2} id={"birthdayInputArea"}>
                     <Col xl={{size: 2, offset: 2}} lg={{size: 1, offset: 2}} md={{size: 1, offset: 2}}
                          sm={{size: 2, offset: 1}} xs={12} className={"signUpText"}>
                         <Label className={"inputBirthDay"}>생년 월일 : </Label>
@@ -274,7 +292,7 @@ const SignUp = (props) => {
                     </Col>
                     <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                 </FormGroup>
-                <hr/>
+                <hr id={"signUpHR"}/>
                 <FormGroup row>
                     <Col xl={{size: 4, offset: 2}} lg={{size: 1, offset: 2}} md={{size: 1, offset: 2}}
                          sm={{size: 2, offset: 1}} xs={12} className={"signUpText"}>
@@ -315,7 +333,7 @@ const SignUp = (props) => {
             </Modal>
 
             <Modal isOpen={modalIdDupOK} toggle={toggleIdDupOK} className={"abc"}>
-                <ModalHeader toggle={toggleIdDupOK}> 사용 가능  </ModalHeader>
+                <ModalHeader toggle={toggleIdDupOK}> 사용 가능 </ModalHeader>
                 <ModalBody>
                     <Row id={"okSign"}> 이 아이디는 사용 가능합니다. </Row>
                 </ModalBody>
@@ -325,7 +343,7 @@ const SignUp = (props) => {
             </Modal>
 
             <Modal isOpen={modalIdDupFail} toggle={toggleIdDupFail} className={"abc"}>
-                <ModalHeader toggle={toggleIdDupFail}> 사용 불가  </ModalHeader>
+                <ModalHeader toggle={toggleIdDupFail}> 사용 불가 </ModalHeader>
                 <ModalBody>
                     <Row id={"okSign"}> 이 아이디는 사용할 수 없습니다. </Row>
                 </ModalBody>
@@ -335,9 +353,9 @@ const SignUp = (props) => {
             </Modal>
 
             <Modal isOpen={modalIdInputFail} toggle={toggleIdInputFail} className={"abc"}>
-                <ModalHeader toggle={toggleIdInputFail}> 아이디 입력 확인  </ModalHeader>
+                <ModalHeader toggle={toggleIdInputFail}> 아이디 입력 확인 </ModalHeader>
                 <ModalBody>
-                    <Row id={"okSign"}> 아이디를 입력하세요.  </Row>
+                    <Row id={"okSign"}> 아이디를 입력하세요. </Row>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" onClick={toggleIdInputFail}> 확인 </Button>

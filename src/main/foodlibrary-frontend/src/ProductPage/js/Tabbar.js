@@ -38,7 +38,7 @@ const Tabbar = (props) => {
                 id = {"productTab"}
                 className={classnames({ active: activeTab === 'blog' })}
                 onClick={() => { tabToggle('blog'); }}>
-              <span > 블로그 </span>
+              <span > 네이버 블로그 </span>
             </NavLink>
           </NavItem>
         </Nav>

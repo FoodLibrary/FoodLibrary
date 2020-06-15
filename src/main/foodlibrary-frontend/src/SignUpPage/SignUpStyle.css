@@ -1,5 +1,6 @@
 #signUp {
     padding-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 #signUpTitleArea {
@@ -54,4 +55,15 @@
     border: 1px solid #006edc;
     color: #006edc;
     background-color: white;
+    margin-bottom: 3rem;
+}
+
+#signUpHR {
+    width: 80%;
+}
+
+#pwCorrectOrNot {
+    font-family: NanumBarunGothic;
+    font-size: 1rem;
+    margin-top: 0.5rem;
 }

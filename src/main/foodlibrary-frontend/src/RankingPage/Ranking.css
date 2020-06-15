@@ -72,12 +72,38 @@
 
 #sexRankingSelect {
     font-family: NanumBarunGothic;
-    font-size: 1rem;
+    vertical-align: center;
+    font-size: 1.2rem;
     color: #006edc;
-    padding-left: 5rem;
+    padding-top: 2rem;
     margin-top: 1rem;
+    margin-left: 8.5rem;
 }
 
 #sexRankingSelectArea {
     margin-top: 2rem;
+    padding-left: 4rem;
+}
+
+#sexSelect {
+    width: 5rem;
+}
+
+#ageRankingSelectArea {
+    font-family: NanumBarunGothic;
+    vertical-align: center;
+    font-size: 1.2rem;
+    color: #006edc;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    margin-left: 17rem;
+    padding-left: 9rem;
+}
+
+#ageSelect {
+    margin-top: 2rem;
+}
+
+#ageInput {
+    width: 7rem;
 }

@@ -1,7 +1,7 @@
 
 import React, {useEffect, useState} from 'react';
 import './Ranking.css';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink,  Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Container from "reactstrap/es/Container";
 import ProductList from "../SearchResultPage/js/ProductList";
@@ -24,10 +24,10 @@ const Ranking = (props) => {
     const [inputAgeValue, setInputAgeValue] = useState("20대");
 
     useEffect(() => {
-        setInputSexValue(inputSexValue);
-        setInputAgeValue(inputAgeValue);
+
         SearchService.onTimeRanking()
             .then(response => {
+
                 setOnTimeRanking(response.data);
             })
             .catch(e => {
@@ -35,6 +35,29 @@ const Ranking = (props) => {
             });
 
     });
+
+    useEffect(() => {
+        SearchService.ageRanking(inputAgeValue)
+            .then(response => {
+                setInputAgeValue(inputAgeValue);
+                setAgeRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    },[inputAgeValue]);
+
+    useEffect(() => {
+        SearchService.sexRanking(inputSexValue)
+            .then(response => {
+
+                setInputSexValue(inputSexValue);
+                setSexRanking(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    },[inputSexValue]);
 
     function onclickRankingOnTime() {
         toggle('1');
@@ -58,10 +81,12 @@ const Ranking = (props) => {
             });
     }
 
-    function onClickSexRanking() {
+    const onClickSexRanking = () => {
         toggle('3');
         SearchService.sexRanking(inputSexValue)
             .then(response => {
+
+                setInputSexValue(inputSexValue);
                 setSexRanking(response.data);
             })
             .catch(e => {
@@ -69,10 +94,12 @@ const Ranking = (props) => {
             });
     }
 
-    function onClickAgeRanking() {
+    const onClickAgeRanking = () => {
         toggle('4');
+
         SearchService.ageRanking(inputAgeValue)
             .then(response => {
+                setInputAgeValue(inputAgeValue);
                 setAgeRanking(response.data);
             })
             .catch(e => {
@@ -139,13 +166,12 @@ const Ranking = (props) => {
                 </TabPane>
                 <TabPane tabId="3">
                     <Row id={"sexRankingSelectArea"}>
-                        <Col xl={7}></Col>
-                        <Col xl={2}>
+                        <Col xl={8}></Col>
+                        <Col xl={3}>
                             <span id={"sexRankingSelect"}> 성별 선택 : </span>
                         </Col>
-                        <Col xl={3}>
-
-                            <Input type={"select"} onChange={e => setInputSexValue(e.target.value)} value={inputSexValue}>
+                        <Col xl={1} >
+                            <Input id={"sexSelect"} type={"select"} onChange={e => setInputSexValue(e.target.value)} value={inputSexValue}>
                                 <option value={"남자"}> 남성 </option>
                                 <option value={"여자"}> 여성 </option>
                             </Input>
@@ -161,13 +187,13 @@ const Ranking = (props) => {
                 </TabPane>
 
                 <TabPane tabId="4">
-                    <Row id={"sexRankingSelectArea"}>
-                        <Col xl={7}></Col>
+                    <Row id={"ageRankingSelectArea"}>
+                        <Col xl={8}></Col>
                         <Col xl={2}>
-                            <span id={"sexRankingSelect"}> 성별 선택 : </span>
+                            <span id={"ageSelect"}> 연령 선택 : </span>
                         </Col>
-                        <Col xl={3}>
-                            <Input type={"select"} onChange={e => setInputAgeValue(e.target.value)} value={inputAgeValue}>
+                        <Col xl={1}>
+                            <Input id={"ageInput"} type={"select"} onChange={e => setInputAgeValue(e.target.value)} value={inputAgeValue}>
                                 <option value={"10대"}> 10대 </option>
                                 <option value={"20대"} defaultChecked={true}> 20대 </option>
                                 <option value={"30대"}> 30대 </option>
