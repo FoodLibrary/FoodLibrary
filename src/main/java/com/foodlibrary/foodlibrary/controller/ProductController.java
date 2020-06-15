@@ -175,10 +175,17 @@ public class ProductController {
         return service.deleteProduct(id);
     }
 
-
-    @RequestMapping(value = "/searchproduct/{name}/{category}/{sort}/{nickname}", method = RequestMethod.POST)
-    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @PathVariable String nickname, @RequestBody String allergyAndDisease) {
+    //실시간 검색어 저장
+    @RequestMapping(value = "/addRealTimeSearch/{name}", method = RequestMethod.POST)
+    public ResponseEntity<Void> findSearchRanking(@PathVariable String name) {
         rankService.addword(name);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = {"/searchproduct/{name}/{category}/{sort}/","/searchproduct/{name}/{category}/{sort}/{nickname}"}, method = RequestMethod.POST)
+    public ResponseEntity<List<Product>> searchProductAsName(@PathVariable String name, @PathVariable String category, @PathVariable String sort, @PathVariable Optional<String> nickname, @RequestBody String allergyAndDisease) {
+//        rankService.addword(name);
 
         List<Product> products;
         List<Product> tmpProducts = new ArrayList<Product>(); // 알러지 필터링
@@ -186,6 +193,7 @@ public class ProductController {
         List<String> allergys = new ArrayList<String>();
         List<String> diseases = new ArrayList<String>();
 
+        String nickName = nickname.orElse("없음");
         //name 입력이 있으면 해당 상품만 검색
         if (!name.equals("없음")) {
             products = service.getProductsAsSearch(name);
@@ -209,7 +217,8 @@ public class ProductController {
                 String allergySplit = allergyTmp[i].split("\"")[0];
                 //내알러지
                 if (allergySplit.equals("내 알러지")) {
-                    List<String> userAllergys = userController.sendAllergyList(nickname);
+                    if(nickName.equals("없음")) break;
+                    List<String> userAllergys = userController.sendAllergyList(nickName);
                     for (String userAllergy : userAllergys) {
                         allergys.add(userAllergy);
                     }
@@ -244,7 +253,8 @@ public class ProductController {
                 String diseaseSplit = diseaseTmp[i].split("\"")[0];
                 //내지병
                 if (diseaseSplit.equals("내 질병")) {
-                    List<String> userDiseases = userController.sendDiseaseList(nickname);
+                    if(nickName.equals("없음")) break;
+                    List<String> userDiseases = userController.sendDiseaseList(nickName);
                     for (String userDisease : userDiseases) {
                         diseases.add(userDisease);
                     }

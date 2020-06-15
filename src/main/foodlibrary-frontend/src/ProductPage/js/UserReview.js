@@ -89,13 +89,13 @@ function UserReview(props) {
 
             <Row className="reviewTitle">
                 <Col xl={3}>
-                    <span id={"reviewTitle"}> 리뷰 제목 </span>
+                    <span id={"reviewTitles"}> 리뷰 제목 </span>
                 </Col>
                 <Col xl={3}>
                     <span id={"hashtag"}> 해쉬태그 </span>
                 </Col>
                 <Col xl={2}>
-                    <span id={"id"}> 아이디 </span>
+                    <span id={"idTitle"}> 아이디 </span>
                 </Col>
                 <Col xl={2}>
                     <span id={"date"}> 작성일 </span>

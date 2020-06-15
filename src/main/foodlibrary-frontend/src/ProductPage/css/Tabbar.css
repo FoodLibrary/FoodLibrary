@@ -37,3 +37,14 @@
     text-align: center;
 }
 
+#productTab {
+    font-family: NanumBarunGothic;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    color: #006edc;
+    text-align: center;
+}
+
+#productTab:hover{
+    border: 1px solid #006edc;
+}

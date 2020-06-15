@@ -17,11 +17,10 @@ function SearchResultRouter({match}) {
         setSelectedAllergy(selectedAllergy);
         const selectedDisease = match.params.diseaseInfo;
         setSelectedDisease(selectedDisease);
-
         const selectedCategory = match.params.categoryInfo;
         setSelectedCategory(selectedCategory);
 
-    });
+    },[]);
 
     return (
         <div className="searchResultRouter">

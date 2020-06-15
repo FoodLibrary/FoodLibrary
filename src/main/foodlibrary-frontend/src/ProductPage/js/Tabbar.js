@@ -19,23 +19,26 @@ const Tabbar = (props) => {
         <Nav tabs>
           <NavItem>
             <NavLink
+                id = {"productTab"}
                 className={classnames({ active: activeTab === 'chart' })}
                 onClick={() => { tabToggle('chart'); }}>
-              <span className={"tabMenu"}> 식품분석표 </span>
+              <span > 식품분석표 </span>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
+                id = {"productTab"}
                 className={classnames({ active: activeTab === 'userReview' })}
                 onClick={() => { tabToggle('userReview'); }}>
-              <span className={"tabMenu"}> 회원 리뷰 </span>
+              <span > 회원 리뷰 </span>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
+                id = {"productTab"}
                 className={classnames({ active: activeTab === 'blog' })}
                 onClick={() => { tabToggle('blog'); }}>
-              <span className={"tabMenu"}> 네이버 블로그 리뷰 </span>
+              <span > 블로그 </span>
             </NavLink>
           </NavItem>
         </Nav>

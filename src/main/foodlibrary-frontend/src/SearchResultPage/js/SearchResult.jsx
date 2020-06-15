@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import '../css/SearchResult.css';
 import {Button, Col, Container, Popover, PopoverBody, PopoverHeader, Row} from 'reactstrap';
 import ProductList from "./ProductList";
@@ -6,6 +6,7 @@ import Input from "reactstrap/es/Input";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import SearchService from "../../services/SearchService";
+import {func} from "prop-types";
 
 const imageResources = require('../../util/ImageResources');
 
@@ -80,18 +81,21 @@ const SearchResult = (props) => {
     },[]);
 
 
+
     useEffect(() => {
         SearchService.findByProductName(searchProduct, category, inputValue , allergyAndDisease , nickname)
             .then(response => {
-                setSearchProduct(props.searchResults);
                 setAllergyAndDisease(initialAllergyAndDisease);
+                setCategory(props.selectedCategory);
+                setSearchProduct(props.searchResults);
                 setResults(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-    },[allergyAndDisease]);
 
+
+    },[allergyAndDisease]);
 
 
     return (

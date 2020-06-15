@@ -15,9 +15,9 @@ const ProductList = (props) => {
 
     const [searchResults, setResults]  = useState(props);
 
-    const allergyResult = searchResults.allergy.split(",");
+    const allergyResult = props.allergy.split(",");
     const [allergyInfo, setAllergyInfo] = useState(props.allergyForReSearch);
-    const diseaseResult = searchResults.disease.split(",");
+    const diseaseResult = props.disease.split(",");
     const [diseaseInfo, setDiseaseInfo] = useState(props.diseaseForReSearch);
     const [like, setLike] = useState({
         prdlstreportno:'',
@@ -31,7 +31,7 @@ const ProductList = (props) => {
 
     useEffect(() => {
         setResults(props);
-    }, [props]);
+    },[props]);
 
     useEffect(() => {
         SearchService.getLikeUsers(searchResults.prdlstreportno)
@@ -46,22 +46,24 @@ const ProductList = (props) => {
             .then(response => {
                 if (response.data.includes(localStorage.getItem('id'))) {
                     setEmptyHeart(heartEmpty => heartColor);
-                    setColorHeart(heartColor => heartEmpty)
+                    setColorHeart(heartColor => heartEmpty);
                 }
             });
-
     },[]);
+
+
 
     function thumbButtonClick() {
         like.nickname=localStorage.getItem('id');
         like.prdlstreportno = searchResults.prdlstreportno;
-        if (setEmptyThumb && localStorage.getItem('loginOK') === "OK") {
-            setEmptyThumb(thumbEmpty => thumbColor);
-            setColorThumb(thumbColor => thumbEmpty);
+        if (localStorage.getItem('loginOK') === "OK") {
             SearchService.addLike(like)
                 .then(response => {
+                    setEmptyThumb(thumbEmpty => thumbColor);
+                    setColorThumb(thumbColor => thumbEmpty);
                     console.log(like);
             });
+            window.location.reload();
         }
         else {
             setModalClickOK(!modalClickOK);
@@ -71,11 +73,11 @@ const ProductList = (props) => {
     function heartButtonClick() {
         zzim.nickname=localStorage.getItem('id');
         zzim.prdlstreportno = searchResults.prdlstreportno;
-        if (setEmptyHeart && localStorage.getItem('loginOK') === "OK") {
-            setEmptyHeart(heartEmpty => heartColor);
-            setColorHeart(heartColor => heartEmpty);
+        if (localStorage.getItem('loginOK') === "OK") {
             SearchService.addZzim(zzim)
                 .then(response => {
+                    setEmptyHeart(heartEmpty => heartColor);
+                    setColorHeart(heartColor => heartEmpty);
                     console.log(zzim);
                 });
         }
@@ -100,7 +102,7 @@ const ProductList = (props) => {
                 <Col xl={12} >
                     <Row id={"productResult"}>
                         <Col>
-                            <img src={searchResults.img}  id={"productImg"} onClick={productOnClick}/>
+                            <img src={props.img}  id={"productImg"} onClick={productOnClick}/>
 
                         </Col>
 
@@ -114,7 +116,7 @@ const ProductList = (props) => {
                             <button id={"likeButton"} onClick={thumbButtonClick}>
                                 <img id={"likeButtonImage"} src={thumbEmpty}/>
                             </button>
-                            <span id={"productName"} onClick={productOnClick}> {searchResults.prdlstnm}  </span>
+                            <span id={"productName"} onClick={productOnClick}> {props.prdlstnm}  </span>
 
                         </Col>
                     </Row>

@@ -58,7 +58,11 @@ const getUserZzim = (nickname) => {
 
 const getProductInfoForZzim = (prdlstreportno) => {
     return http.post(`/productListForZzim`,prdlstreportno)
-}
+};
+
+const searchCount = (name) => {
+    return http.post(`addRealTimeSearch/${name}`);
+};
 
 
 
@@ -78,4 +82,5 @@ export default {
     getZzimUsers,
     getUserZzim,
     getProductInfoForZzim,
+    searchCount
 };

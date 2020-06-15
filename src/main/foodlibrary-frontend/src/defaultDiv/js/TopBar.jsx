@@ -16,6 +16,7 @@ import '../css/TopBarStyle.css';
 
 import RankingBar from "./RankingBar";
 import {Link, Route} from "react-router-dom";
+import SearchService from "../../services/SearchService";
 
 const imageResources = require('../../util/ImageResources.js');
 
@@ -49,15 +50,37 @@ const TopBar = (props) => {
         }
     }
 
-    function allowSearchTop() {
+    const allowSearchTop = () => {
         if (searchProduct === "") {
             setModalSearchTop(true);
+        } else {
+            window.location.reload();
+            SearchService.searchCount(props.searchResults)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+
         }
     }
 
     useEffect(() => {
         loginOrNotShow();
     });
+
+    useEffect(() => {
+        if (props.searchResults === "없음") {
+            setSearchProduct("");
+        }
+        if (props.searchResults !== "없음") {
+            setCategory("없음");
+        }
+        if (props.selectedCategory !== "없음") {
+            setSearchProduct("");
+        }
+    }, []);
 
     function loginOrOutButton() {
         if (loginOrNotA === "Logout") {
@@ -80,11 +103,7 @@ const TopBar = (props) => {
 
     const onChangeSearchProduct = e => {
         const searchProduct = e.target.value;
-        if (searchProduct === "없음") {
-            setSearchProduct(null);
-        } else {
-            setSearchProduct(searchProduct);
-        }
+        setSearchProduct(searchProduct);
 
         if (props.selectedAllergy === null) {
             console.log(selectedAllergy)
@@ -114,10 +133,12 @@ const TopBar = (props) => {
                 </NavItem>
                 <NavItem>
                     <Route>
-                        <Button id={"searchButton"} onClick={allowSearchTop}>
-                            <Link to={`/searchResult/${category}/${searchProduct}/${selectedAllergy}/${selectedDisease}`}
-                                  onClick={allowSearchTop}>
-                                <img onClick={allowSearchTop} id={"searchButtonImg"} src={imageResources.searchButtonImg} />
+                        <Button id={"searchButton"} onClick= {() => {allowSearchTop()}}>
+                            <Link
+                                to={`/searchResult/${category}/${searchProduct}/${selectedAllergy}/${selectedDisease}`}
+                                onClick= {() => {allowSearchTop()}}>
+                                <img  id={"searchButtonImg"}
+                                     src={imageResources.searchButtonImg}/>
                             </Link>
                         </Button>
                     </Route>

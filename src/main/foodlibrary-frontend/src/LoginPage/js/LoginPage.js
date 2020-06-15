@@ -12,6 +12,7 @@ const LoginPage = () => {
     const [modal, setModal] = useState(false);
 
     const [modalOK, setModalOK] = useState(false);
+    const [modalFindFail, setModalFindFail] = useState(false);
     const [modalPWOK, setModalPWOK] = useState(false);
     const [modalFail, setModalFail] = useState(false);
     const [modalPW, setModalPW] = useState(false);
@@ -30,7 +31,11 @@ const LoginPage = () => {
 
     const toggleFail = () => {
         setModalFail(!modalFail);
-    }
+    };
+
+    const toggleFindFail = () => {
+        setModalFindFail(!modalFindFail);
+    };
 
     const [selectedAllergy, setSelectedAllergy] = useState(["알러지없음"]);
     const [selectedDisease, setSelectedDisease] = useState(["질병없음"]);
@@ -75,7 +80,6 @@ const LoginPage = () => {
     useEffect(() => {
         SearchService.loginCertification(loginInfo)
             .then(response => {
-                console.log(loginInfo)
                 setLoginCertificate(response.status.toString());
             })
             .catch(e => {
@@ -89,11 +93,9 @@ const LoginPage = () => {
                 if (response.status === 200) {
                     setModalOK(true);
                 }
-                else {
-                    console.log("fail")
-                }
             })
             .catch(e => {
+                setModalFindFail(true);
                 console.log(e.status);
             })
     };
@@ -104,11 +106,10 @@ const LoginPage = () => {
                 if (response.status === 200) {
                     setModalPWOK(true);
                 }
-                else {
-                    console.log("fail")
-                }
+
             })
             .catch(e => {
+                setModalFindFail(true);
                 console.log(e.status);
             })
 
@@ -312,6 +313,16 @@ const LoginPage = () => {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" onClick={toggleFail}> 확인 </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalFindFail} toggle={toggleFindFail} className={"abc"}>
+                <ModalHeader toggle={toggleFindFail}> 이메일 전송 실패 </ModalHeader>
+                <ModalBody>
+                    <Row id={"okSign"}> 입력 정보가 올바르지 않습니다. </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={toggleFindFail}> 확인 </Button>
                 </ModalFooter>
             </Modal>
 
