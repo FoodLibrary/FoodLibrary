@@ -7,10 +7,10 @@ Team. Mealing - 고석준, 나경욱, 이상윤, 천수빈
  마지막으로 식품을 구매할 수 있도록 네이버 쇼핑 사이트로 이동해 구매를 유도한다.
 
 ####Project info
- - 개발 환경 - Window, MacOs  
- - 개발 언어 - Java, JSX, HSQL  
- - 개발 도구 - React, SpringBoot, Bootstrap, Hibernate  
- - DataBase - MariaDB
+ * 개발 환경 - Window, MacOs  
+ * 개발 언어 - Java, JSX, HSQL  
+ * 개발 도구 - React, SpringBoot, Bootstrap, Hibernate  
+ * DataBase - MariaDB
  
 #### Description
  * 사용자 맞춤형 검색 결과 지원  
