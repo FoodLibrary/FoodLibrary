@@ -1,5 +1,4 @@
-### FoodLibrary  
+# FoodLibrary  
 ## Team. Mealing  
- # Member : 고석준, 나경욱, 이상윤, 천수빈
-  
-#
+ ### Member : 고석준, 나경욱, 이상윤, 천수빈
+ 
