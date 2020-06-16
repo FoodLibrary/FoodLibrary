@@ -6,7 +6,7 @@ Team. Mealing - 고석준, 나경욱, 이상윤, 천수빈
  상품의 정보는 제조사, 원재료 및 원산지, 영양성분표, 회원 리뷰, 네이버 블로그 리뷰를 제공한다. 또한 네이버 블로그, 회원 리뷰에 자주 언급된 단어들을 워드클라우드로 제공한다.  
  마지막으로 식품을 구매할 수 있도록 네이버 쇼핑 사이트로 이동해 구매를 유도한다.
 
-####Project info
+#### Project info
  * 개발 환경 - Window, MacOs  
  * 개발 언어 - Java, JSX, HSQL  
  * 개발 도구 - React, SpringBoot, Bootstrap, Hibernate  
