@@ -147,7 +147,8 @@ const TopBar = (props) => {
                 </NavItem>
                 <NavItem>
                     <RankingBar/>
-                </NavItem>                <NavItem>
+                </NavItem>
+                <NavItem>
                 <Button id={"loginButton"} onClick={loginOrOutButton}>
 
                         <Link to={"/login"}>  {loginOrNotA} </Link>

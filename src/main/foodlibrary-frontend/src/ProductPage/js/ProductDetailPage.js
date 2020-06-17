@@ -201,7 +201,7 @@ const ProductDetailPage = (props) => {
                     </Row>
                     <hr/>
                     <Row className="ProductPageRow1">
-                        <Col xl={{size: 3}} className="ProducPageCol1">지병</Col>
+                        <Col xl={{size: 3}} className="ProducPageCol1"> 질병 </Col>
                         <Col className="ProducPageCol2">
                             {diseaseChip.map((result, index) => (
                                 <Chip className={"allergyChip"} label={result}/>

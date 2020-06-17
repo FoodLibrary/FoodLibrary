@@ -154,6 +154,8 @@ const EditMemberInfo = () => {
             });
     };
 
+
+
     //위에 updateUser에서 서버로 값들 넘기기전에 빈값이 있는지 비밀번호, 비밀번호 확인 같은지
     //여기에 alert(modal)추가하면댐. 그럼 맨밑에 버튼누르면 뭐가 잘못됐는지 뜰듯
     //signup이랑 똑같음
@@ -177,22 +179,39 @@ const EditMemberInfo = () => {
         return flag;
     }
 
-    // 비밀번호, 비밀번호확인 UserInfo에 넣고 valid설정해줄라고 했던 부분
-    //signup이랑 똑같음
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+
     const isPasswordSame = (event) => {
         const {name, value} = event.target;
         setUserInfo({...userInfo, [name]: value});
-        const password = document.getElementById("passwordInput");
-        const passwordConfirm = document.getElementById("checkPassword");
-        if(userInfo.password === userInfo.passwordConfirm) {
-            password.valid = true;
-            passwordConfirm.valid = true;
-        }else{
-            password.valid = false;
-            passwordConfirm.valid = false;
+        const password = document.getElementById("passwordInput").value;
+        setPassword(password);
+        const passwordConfirm = document.getElementById("checkPassword").value;
+        setPasswordConfirm(passwordConfirm);
+        // return password === passwordConfirm;
+    };
+
+    const [onChangePWArea, setOnChangePWArea] = useState(" ");
+
+    useEffect(() => {
+        if (password === passwordConfirm) {
+            if (password === "" ) {
+                setOnChangePWArea(" ");
+            }
+            else {
+                const onChangePWArea = "일치";
+                document.getElementById("pwCorrectOrNot").style.color = 'green';
+                setOnChangePWArea(onChangePWArea);
+            }
+
+
+        } else {
+            const onChangePWArea = "불일치";
+            document.getElementById("pwCorrectOrNot").style.color = 'red';
+            setOnChangePWArea(onChangePWArea);
         }
-        console.log(userInfo);
-    }
+    });
 
     return (
         <Container id={"editMemberInfo"}>
@@ -212,7 +231,7 @@ const EditMemberInfo = () => {
                          sm={{size: 2, offset: 1}} xs={12} className={"signUpText"}> <Label
                         for="examplePassword">비밀번호 </Label> </Col>
                     <Col xl={4} lg={5} md={5} sm={5} xs={12}>
-                        <Input valid type="password" name="password" id="passwordInput" onChange={isPasswordSame}/>
+                        <Input type="password" name="password" id="passwordInput" onChange={isPasswordSame}/>
                     </Col>
                     <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
                 </FormGroup>
@@ -221,18 +240,18 @@ const EditMemberInfo = () => {
                          sm={{size: 2, offset: 1}} xs={12} className={"signUpText"}> <Label for="examplePassword" >비밀번호
                         확인</Label> </Col>
                     <Col xl={4} lg={5} md={5} sm={5} xs={12}>
-                        <Input valid alid type="password" name="passwordConfirm" id="checkPassword" onChange={isPasswordSame}/>
+                        <Input alid type="password" name="passwordConfirm" id="checkPassword" onChange={isPasswordSame}/>
                     </Col>
-                    <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    <Col xl={3} lg={3} md={3} sm={3} xs={3}> <Col xl={3} lg={2} xs={3} id={"pwCorrectOrNot"}> <span> {onChangePWArea} </span> </Col> </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Col xl={{size: 2, offset: 3}} lg={{size: 1, offset: 2}} md={{size: 1, offset: 2}}
                          sm={{size: 2, offset: 1}} xs={12} className={"signUpText"}> <Label
                         className={"inputName"}> 이름 </Label> </Col>
-                    <Col xl={4} lg={5} md={5} sm={5} xs={12}>
+                    <Col xl={3} lg={5} md={5} sm={5} xs={12}>
                         <span className={"defaultValue"}> {userInfo.name} </span>
                     </Col>
-                    <Col xl={4} lg={3} md={3} sm={3} xs={3}></Col>
+                    <Col xl={3} lg={3} md={3} sm={3} xs={3}></Col>
                 </FormGroup>
                 <FormGroup row>
                     <Col xl={{size: 2, offset: 3}} lg={{size: 1, offset: 2}} md={{size: 1, offset: 2}}

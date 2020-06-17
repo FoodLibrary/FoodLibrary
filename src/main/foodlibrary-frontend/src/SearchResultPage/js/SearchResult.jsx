@@ -146,7 +146,13 @@ const SearchResult = (props) => {
                     </Button>
                     <Popover placement="bottom" isOpen={popoverOpen} target="infoImgButton" toggle={toggleInfo}>
                         <PopoverHeader> 필터링 설명 </PopoverHeader>
-                        <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                        <PopoverBody>
+                            <div> <span className={"infoTitles"}> 알러지 유발 요소 : </span>가지고 계신 알러지 정보를 입력하시면, 해당 알러지 유발 요소가 포함된 식품은 제외하고 검색됩니다. </div>
+                            <br/>
+
+                            <div> <span className={"infoTitles"}> 질병 정보 : </span>가지고 계신 질병의 정보를 입력하시면, 해당 질병에 유해한 식품들은 제외하고 검색됩니다. </div>
+
+                        </PopoverBody>
                     </Popover>
                 </Col>
 
